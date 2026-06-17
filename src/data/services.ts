@@ -305,7 +305,7 @@ export const services: CleaningService[] = [
   },
   {
     id: 'trash-house',
-    serviceNameKo: '쓰레기집청소',
+    serviceNameKo: '쓰레기집 청소',
     serviceSlug: 'hoarder-house-cleaning',
     shortDescription: '장기간 방치된 쓰레기 수거 및 살균 탈취',
     mainDescription: '실내에 누적된 생활 쓰레기를 신속히 분류하여 배출하고, 정밀 세척과 살균 작업을 거쳐 일상 공간으로 정돈합니다.',
@@ -365,4 +365,33 @@ export const services: CleaningService[] = [
     imageUrl: '/images/services/special-cleaning.jpg',
     showOnMain: true,
   },
+  {
+    id: 'floor-clean',
+    serviceNameKo: '바닥청소',
+    serviceSlug: 'floor-cleaning',
+    shortDescription: '바닥 찌든 때 및 오염 기계 세정',
+    mainDescription: '오래 눌러붙은 먼지, 찌든 때, 미끄러운 기름 얼룩 등을 전문 바닥 세정 기계와 적합한 pH 세제를 배합하여 세정합니다.',
+    neededSituations: [
+      '바닥 찌든 때, 오염 누적, 미끄럼, 광택 저하가 발생했을 때',
+      '일상 청소로 지워지지 않는 기름때와 묵은 때가 있을 때',
+      '상가, 매장, 사무실 바닥의 기계 박리 및 오염 제거가 필요할 때'
+    ],
+    workingMethod: '바닥 상태에 알맞은 전용 세제를 도포하여 불려준 후, 바닥 전용 기계(폴리셔)로 회전 세척하며 찌든 때를 제거하고 흡입 및 건조합니다.',
+    preCheckItems: [
+      '바닥 타일 종류 및 파손 부분 유무 점검',
+      '이동식 집기류 사전 이동 가능 여부 조율',
+      '실내 가동 전력 및 고압수 수원 연결 상태 확인'
+    ],
+    targetBuildings: ['상가 및 매장', '사무실 빌딩', '식당 및 음식점', '학원 및 병원', '다세대 계단 및 로비'],
+    commonProblems: ['바닥 찌든 때', '오염 누적', '미끄럼', '광택 저하'],
+    process: ['바닥 오염 및 재질 점검', '이동 집기류 보양 및 이동', '전용 세제 반응 작업', '기계식 솔 회전 세정', '오염 폐수 흡입 및 건조', '최종 검수 및 정돈'],
+    faq: [
+      { question: '{region} {service} 견적은 어떻게 확인하나요?', answer: '바닥 실평수, 타일 자재 종류, 오염 강도(기름때 유무), 집기 이동 필요성에 따라 가이드라인에 맞춰 제안합니다.' },
+      { question: '타일에 검게 찌든 얼룩도 지워지나요?', answer: '네, 묵은 때를 불리는 전문 박리 약품과 바닥 폴리싱 기계의 강한 회전력을 통해 타일 손상 없이 제거합니다.' }
+    ],
+    priority: 11,
+    indexStatus: 'index',
+    imageUrl: '/images/services/floor-wax.jpg',
+    showOnMain: false,
+  }
 ];

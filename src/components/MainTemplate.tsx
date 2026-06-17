@@ -169,11 +169,11 @@ export default function MainTemplate({
 
     if (keywordObj) {
       const josa = getSubjectParticle(keywordObj.serviceName);
-      return `${keywordObj.regionName}에서 ${keywordObj.serviceName}${josa} 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
+      return `${keywordObj.regionName}에서 ${keywordObj.serviceName}${josa} 필요한 상가, 매장, 음식점, 병원, 학원 등의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
     }
     if (regionObj || (region !== '서울·경기' && service !== '종합청소')) {
       const josa = getSubjectParticle(service);
-      return `${region}에서 ${service}${josa} 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
+      return `${region}에서 ${service}${josa} 필요한 상가, 매장, 음식점, 병원, 학원 등의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
     }
     const customContent = serviceContents[service];
     if (customContent && service !== '종합청소') {
@@ -199,8 +199,7 @@ export default function MainTemplate({
     if (region !== '서울·경기' && service !== '종합청소') {
       return (
         <>
-          {region} <span className={styles.highlight}>{service}</span><br />
-          공간 맞춤 정밀 클리닝
+          {region} <span className={styles.highlight}>{service}</span> 전문 올케어서비스
         </>
       );
     }
@@ -233,8 +232,8 @@ export default function MainTemplate({
             <div className={styles.heroCta}>
               <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>
                 {keywordObj 
-                  ? `${keywordObj.regionName} ${keywordObj.serviceName} 사진 상담하기` 
-                  : (regionObj || region !== '서울·경기' || service !== '종합청소' ? `${region} ${service} 사진 상담하기` : '서울 종합청소 전화 상담')
+                  ? `${keywordObj.regionName} ${keywordObj.serviceName} 상담하기` 
+                  : (regionObj || region !== '서울·경기' || service !== '종합청소' ? `${region} ${service} 상담하기` : '서울 종합청소 전화 상담')
                 }
               </a>
             </div>

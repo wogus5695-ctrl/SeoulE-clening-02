@@ -182,7 +182,7 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
   const region = regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === subDistrictSlug);
   const service = services.find((s) => s.id === serviceId);
 
-  if (!region || !service) return { title: BRAND_NAME };
+  if (!region || !service) return { title: '올케어서비스' };
 
   const regionName = region.subDistrict === '전지역' ? region.district : `${region.district} ${region.subDistrict}`;
   
@@ -196,9 +196,13 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     ? `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`
     : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
 
+  const lastChar = service.serviceNameKo.charCodeAt(service.serviceNameKo.length - 1);
+  const jong = (lastChar - 0xac00) % 28;
+  const josa = jong === 0 ? '가' : '이';
+
   return getBaseMetadata({
-    title: `${regionName} ${service.serviceNameKo} 전문 | ${BRAND_NAME}`,
-    description: `${regionName} ${service.serviceNameKo}${service.serviceNameKo.endsWith('코팅') ? '이' : '가'} 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 작업 범위와 오염 상태를 확인해 상담을 안내합니다.`,
+    title: `${regionName} ${service.serviceNameKo} 전문 | 올케어서비스`,
+    description: `${regionName} ${service.serviceNameKo}${josa} 필요한 상가, 매장, 음식점, 사무실 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`,
     indexStatus: indexStatus,
     path: path,
     ogType: 'article',
