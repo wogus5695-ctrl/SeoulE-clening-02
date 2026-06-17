@@ -6,7 +6,7 @@ import MobileFloatingCTA from "@/components/MobileFloatingCTA";
 import FooterDescription from "@/components/FooterDescription";
 import { Suspense } from "react";
 import Link from 'next/link';
-import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, CONTACT_PHONE, NAVER_VERIFICATION, GOOGLE_VERIFICATION } from "@/lib/seo";
+import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, CONTACT_PHONE, NAVER_VERIFICATION, GOOGLE_VERIFICATION, BUSINESS_OWNER, BUSINESS_NUMBER } from "@/lib/seo";
 
 const scDream = localFont({
   src: [
@@ -71,8 +71,10 @@ export default function RootLayout({
                 </p>
               </div>
             </div>
-             <div style={{ marginTop: '50px', paddingTop: '30px', borderTop: '1px solid var(--gray-200)', textAlign: 'center', fontSize: '13px', color: 'var(--gray-600)' }}>
-              <p style={{ marginBottom: '5px' }}>상호명: {BUSINESS_NAME}</p>
+             <div style={{ marginTop: '50px', paddingTop: '30px', borderTop: '1px solid var(--gray-200)', textAlign: 'center', fontSize: '13px', color: 'var(--gray-600)', lineHeight: '1.8' }}>
+              <p style={{ marginBottom: '5px' }}>
+                상호명: {BUSINESS_NAME} &nbsp;|&nbsp; 대표자: {BUSINESS_OWNER} &nbsp;|&nbsp; 사업자등록번호: {BUSINESS_NUMBER}
+              </p>
               <p>&copy; 2026 {BRAND_NAME}. All rights reserved.</p>
             </div>
           </div>
