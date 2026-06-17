@@ -204,21 +204,7 @@ export default function MainTemplate({
     );
   };
 
-  // 12개 서울 주요 지역 및 거점 구 리스트
-  const targetDistricts = [
-    { name: '서초구', slug: 'seocho' },
-    { name: '강남구', slug: 'gangnam' },
-    { name: '송파구', slug: 'songpa' },
-    { name: '강동구', slug: 'gangdong' },
-    { name: '광진구', slug: 'gwangjin' },
-    { name: '성동구', slug: 'seongdong' },
-    { name: '동대문구', slug: 'dongdaemun' },
-    { name: '중랑구', slug: 'jungnang' },
-    { name: '성북구', slug: 'seongbuk' },
-    { name: '강북구', slug: 'gangbuk' },
-    { name: '도봉구', slug: 'dobong' },
-    { name: '노원구', slug: 'nowon' }
-  ];
+
 
   return (
     <div className={styles.container}>
@@ -447,24 +433,7 @@ export default function MainTemplate({
         </div>
       </section>
 
-      {/* 5. 서울 주요 작업 가능 지역 */}
-      <section className={styles.coverage}>
-        <div className={styles.inner}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.subTitle}>SERVICE AREA</span>
-            <h2 className={styles.sectionTitle}>서울 주요 작업 가능 지역</h2>
-            <p className={styles.sectionDesc}>서울 주요 지역 및 수도권 거점망을 중심으로 신속하고 정확한 청소 지원이 가능한 구역입니다.</p>
-          </div>
-          <div className={styles.coverageGrid}>
-            {targetDistricts.map((dist, idx) => (
-              <Link key={idx} href={`/area/seoul/${dist.slug}`} className={styles.coverageItem}>
-                <span>{dist.name}</span>
-                <span className={styles.coverageArrow}>➔</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* 6. FAQ 섹션 */}
       <section className={styles.faq}>
@@ -521,6 +490,16 @@ export default function MainTemplate({
             <div className={styles.faqBottomButtons}>
               <a href={`tel:${CONTACT_PHONE}`} className={styles.faqPhoneLink}>📞 실시간 무료 전화 상담</a>
             </div>
+          </div>
+
+          {/* 키워드 안내 페이지 링크 안내 박스 */}
+          <div className={styles.sitemapLinkBox}>
+            <p className={styles.sitemapLinkText}>
+              서울 지역별 청소 작업 안내는 키워드 안내 페이지에서 확인할 수 있습니다.
+            </p>
+            <Link href="/sitemap-seoul" className={styles.sitemapLinkBtn}>
+              서울 지역별 작업 안내 보기 ➔
+            </Link>
           </div>
         </div>
       </section>

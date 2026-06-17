@@ -1011,3 +1011,68 @@
     margin-bottom: 14px;
   }
 }
+
+/* Sitemap Link Box Styles (FAQ Bottom replacement for coverage) */
+.sitemapLinkBox {
+  max-width: 800px;
+  margin: 40px auto 0 auto; /* Placed cleanly under FAQ notice */
+  padding: 24px 30px;
+  background-color: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.sitemapLinkBox:hover {
+  border-color: rgba(15, 118, 110, 0.2);
+  box-shadow: var(--shadow-md);
+}
+
+.sitemapLinkText {
+  font-size: 15px;
+  color: var(--gray-700);
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.sitemapLinkBtn {
+  background-color: var(--accent);
+  color: white !important;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 13.5px;
+  font-weight: 800;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sitemapLinkBtn:hover {
+  background-color: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
+}
+
+@media (max-width: 768px) {
+  .sitemapLinkBox {
+    flex-direction: column;
+    text-align: center;
+    margin: 30px 0 0 0;
+    padding: 20px;
+    gap: 16px;
+  }
+  
+  .sitemapLinkBtn {
+    width: 100%;
+    padding: 12px 20px;
+  }
+}
