@@ -55,67 +55,55 @@ export default function MainTemplate({
     {
       id: 'outer-wall',
       name: '외벽청소',
-      desc: '고층 빌딩 및 매장 외벽에 고착된 분진과 찌든 물때를 자재 맞춤 약품과 고압수로 상태에 맞춰 꼼꼼히 세정합니다.',
-      tags: ['안전 로프 공법', '석재/패널 중화 반응', '고압 물세척'],
+      desc: '건물 외벽에 쌓인 먼지, 빗물 자국, 매연 오염을 현장 조건에 맞춰 정리합니다.',
+      tags: ['외벽오염', '빗물자국', '건물관리'],
       image: '/images/services/outer-wall.jpg'
     },
     {
       id: 'window',
-      name: '유리창 청소',
-      desc: '쇼윈도와 고층 유리의 찌든 물때, 거미줄, 얼룩을 전문 스퀴지 공법으로 닦아내어 시야를 복원합니다.',
-      tags: ['스퀴지 연마 세정', '내외부 양면 작업', '투명 시야 회복'],
+      name: '유리창청소',
+      desc: '유리면의 물때, 손자국, 빗물 얼룩을 확인하고 깨끗한 시야를 유지할 수 있도록 관리합니다.',
+      tags: ['유리물때', '손자국', '외부유리'],
       image: '/images/services/window.jpg'
     },
     {
       id: 'fire',
       name: '화재현장 청소',
-      desc: '화재 흔적인 그을음, 유독성 타르 분진을 탈취 가스 시공 및 전용 약품으로 정리하여 복구 공사를 지원합니다.',
-      tags: ['그을음 연화 세정', '오존 분자 탈취', '증빙용 서류 발급'],
+      desc: '화재 후 남은 그을음, 냄새, 분진 상태를 확인하고 정리 범위에 맞춰 청소를 안내합니다.',
+      tags: ['그을음', '냄새정리', '분진청소'],
       image: '/images/services/fire.jpg'
     },
     {
       id: 'floor-wax',
       name: '바닥청소 및 왁스코팅',
-      desc: '디럭스타일과 아스타일 표면의 구형 코팅막을 기계로 완전히 박리한 후 현장에 맞는 코팅제를 도포해 마모를 차단합니다.',
-      tags: ['기계 연마 박리', '고강도 2회 코팅', '보행 타일 보호'],
+      desc: '오염이 누적된 바닥을 정리하고, 공간 상태에 맞춰 왁스코팅 작업을 진행합니다.',
+      tags: ['바닥오염', '광택관리', '왁스코팅'],
       image: '/images/services/floor-wax.jpg'
     },
     {
       id: 'awning-sign',
       name: '어닝/간판청소',
-      desc: '가게의 첫인상을 결정하는 천막 어닝의 곰팡이 오염과 아크릴 간판의 눈물 자국 얼룩을 깨끗하게 정리합니다.',
-      tags: ['패브릭 이끼 살균', '고압 분사 세정', '시인성 즉시 개선'],
+      desc: '매장 전면의 어닝, 간판에 쌓인 먼지와 빗물 자국을 정리해 외관을 관리합니다.',
+      tags: ['매장외관', '어닝오염', '간판청소'],
       image: '/images/services/awning-sign.jpg'
     },
     {
       id: 'interior-completion',
       name: '준공/인테리어 후 청소',
-      desc: '공사 후 바닥에 남은 시멘트 자국, 비닐 보양막, 미세한 석고 가루를 구역별 전문 인력 배치를 통해 말끔히 치웁니다.',
-      tags: ['보양 필름 박리', '시멘트 백화 제거', '대규모 인력 운영'],
+      desc: '공사 후 남은 분진, 접착제 자국, 잔여물을 확인하고 입주 전 상태에 맞춰 정리합니다.',
+      tags: ['공사분진', '입주전청소', '잔여물정리'],
       image: '/images/services/interior-completion.jpg'
     },
     {
       id: 'hood',
       name: '후드청소',
-      desc: '음식점 주방 후드 내벽에 누적되어 흘러내리기 직전인 누런 유지분 기름때를 특수 고열 스팀과 약품으로 세정합니다.',
-      tags: ['동식물 유지 제거', '배기팬 모터 세척', '화재 발화 예방'],
+      desc: '주방 후드와 배기 주변에 쌓인 기름때, 찌든 오염을 확인하고 위생적으로 관리합니다.',
+      tags: ['기름때', '주방후드', '위생관리'],
       image: '/images/services/hood.jpg'
     },
     {
       id: 'special',
       name: '쓰레기집/특수 청소',
-      desc: '다량의 방치 쓰레기나 고독사 현장처럼 일반 청소로 해결 불가능한 공간을 정밀 약품 멸균 및 탈취 시공으로 복구합니다.',
-      tags: ['비대면 보안 수거', '유품 멸균 정리', '고농도 산화 탈취'],
-      image: '/images/services/special-cleaning.jpg'
-    }
-  ];
-
-  const mobileServicesList = [
-    {
-      id: 'outer-wall',
-      name: '외벽청소',
-      desc: '건물 외벽 먼지와 빗물 자국을 정리합니다.',
-      image: '/images/services/outer-wall.jpg'
     },
     {
       id: 'window',
@@ -308,22 +296,21 @@ export default function MainTemplate({
                   </div>
                   <div className={styles.serviceContent}>
                     <div className={styles.serviceTags}>
-                      {item.tags.map((tag, tIdx) => (
+                      {item.tags?.map((tag, tIdx) => (
                         <span key={tIdx} className={styles.serviceTag}>#{tag}</span>
                       ))}
                     </div>
                     <h3>{item.name}</h3>
                     <p>{item.desc}</p>
-                    <a href={`tel:${CONTACT_PHONE}`} className={styles.serviceCardCta}>📞 견적 및 예약 문의</a>
                   </div>
                 </div>
               ))}
             </div>
             <div className={styles.servicesBottomCta}>
-              <p className={styles.ctaTip}>💡 작업 공간의 주소와 필요한 작업을 말씀해 주시면 신속하게 안내해 드립니다.</p>
-              <p className={styles.ctaNotice}>※ 현장 오염 상태에 따라 세부적인 작업 범위와 일정이 조율될 수 있습니다.</p>
+              <p className={styles.ctaTip}>어떤 청소가 필요한지 모르겠다면</p>
+              <p className={styles.ctaNotice}>현장 사진과 위치를 보내주시면 가능한 작업부터 안내해 드립니다.</p>
               <div className={styles.ctaActions}>
-                <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>📞 실시간 무료 전화 상담</a>
+                <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>사진 상담하기</a>
               </div>
             </div>
           </div>
@@ -336,24 +323,29 @@ export default function MainTemplate({
               <p className={styles.sectionDesc}>현장 오염도와 작업 조건에 맞춰 상담을 안내합니다.</p>
             </div>
             <div className={styles.mobileServiceList}>
-              {mobileServicesList.map((item) => (
-                <a key={item.id} href={`tel:${CONTACT_PHONE}`} className={styles.mobileServiceCard}>
+              {mainServicesList.map((item) => (
+                <div key={item.id} className={styles.mobileServiceCard}>
                   <div className={styles.mobileServiceImage}>
                     <img src={item.image} alt={`${item.name} 작업 이미지`} />
                   </div>
                   <div className={styles.mobileServiceContent}>
+                    <div className={styles.mobileServiceTags}>
+                      {item.tags?.slice(0, 2).map((tag, tIdx) => (
+                        <span key={tIdx} className={styles.mobileServiceTag}>#{tag}</span>
+                      ))}
+                    </div>
                     <h3>{item.name}</h3>
                     <p>{item.desc}</p>
                   </div>
-                </a>
+                </div>
               ))}
             </div>
             <div className={styles.mobileServicesBottomCta}>
-              <p className={styles.mobileCtaTitle}>빠른 견적문의가 필요하신가요?</p>
-              <p className={styles.mobileCtaTip}>
-                현장 사진을 전달주시면<br />
-                <u>보다 빠른 견적</u>을 받아보실 수 있습니다.
-              </p>
+              <p className={styles.mobileCtaTitle}>어떤 청소가 필요한지 모르겠다면</p>
+              <p className={styles.mobileCtaTip}>현장 사진과 위치를 보내주시면 가능한 작업부터 안내해 드립니다.</p>
+              <div className={styles.mobileCtaActions}>
+                <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>사진 상담하기</a>
+              </div>
             </div>
           </div>
         </div>
