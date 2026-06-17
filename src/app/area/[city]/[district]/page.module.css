@@ -1,0 +1,221 @@
+.wrapper {
+  background-color: #fcfcfc;
+  padding-bottom: 100px;
+}
+
+.header {
+  background: linear-gradient(135deg, #003366 0%, #004a94 100%);
+  color: white;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 18px;
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.primaryBtn {
+  display: inline-block;
+  background-color: #00E5FF;
+  color: #003366;
+  padding: 18px 40px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.content {
+  padding: 60px 0;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 40px;
+}
+
+.card {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.card h2 {
+  font-size: 26px;
+  margin-bottom: 30px;
+  color: #003366;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 15px;
+}
+
+/* Service Grid */
+.serviceGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.serviceLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  background-color: #fafbfc;
+  border-radius: 15px;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.serviceLink:hover {
+  background-color: #f0f8ff;
+  border-color: #00AEEF;
+  transform: translateX(10px);
+}
+
+.serviceInfo h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.serviceInfo p {
+  font-size: 14px;
+  color: #777;
+}
+
+.arrow {
+  font-size: 20px;
+  color: #00AEEF;
+  font-weight: 700;
+}
+
+.descText {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #555;
+}
+
+/* Dong Grid */
+.dongGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.dongTag {
+  background-color: #f0f4f8;
+  color: #003366;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.dongTag:hover {
+  background-color: #003366;
+  color: white;
+}
+
+.dongInfo {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #999;
+}
+
+/* Sidebar */
+.sideCard {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
+  border: 1px solid #f0f0f0;
+}
+
+.sideCard h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #003366;
+}
+
+.sideDesc {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.checklist {
+  list-style: none;
+}
+
+.checklist li {
+  font-size: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f9f9f9;
+  position: relative;
+  padding-left: 25px;
+}
+
+.checklist li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  font-weight: 900;
+  font-size: 20px;
+  color: #00AEEF;
+}
+
+.blueCard {
+  background-color: #003366;
+  color: white;
+}
+
+.blueCard h3 {
+  color: #00E5FF;
+}
+
+.sideBtn {
+  display: block;
+  background-color: #00E5FF;
+  color: #003366;
+  text-align: center;
+  padding: 15px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .mainGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .title { font-size: 32px; }
+  .card { padding: 25px; }
+  .serviceLink { padding: 15px; }
+}

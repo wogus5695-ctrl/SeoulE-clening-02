@@ -1,0 +1,195 @@
+.wrapper {
+  background-color: #f8fbff;
+  padding-bottom: 100px;
+}
+
+.header {
+  background-color: #003366;
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.9;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.content {
+  padding: 50px 0;
+}
+
+.sectionCard {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.sectionCard h2 {
+  font-size: 26px;
+  margin-bottom: 30px;
+  color: #003366;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 15px;
+}
+
+.sectionDesc {
+  color: #777;
+  margin-bottom: 25px;
+  font-size: 15px;
+}
+
+/* Gu Link Grid */
+.guLinkGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.guLink {
+  background-color: #f0f4f8;
+  color: #003366;
+  padding: 15px;
+  border-radius: 12px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+
+.guLink:hover {
+  background-color: #003366;
+  color: white;
+}
+
+/* Dong Group Grid */
+.dongGroupGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.dongGroup h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.dongSubLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dongSubLinks a {
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.dongSubLinks a:hover {
+  color: #00AEEF;
+}
+
+/* Bottom Grid */
+.bottomGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 30px;
+}
+
+.checklistCard, .infoCard {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.checklistCard h3, .infoCard h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #003366;
+}
+
+.checklist {
+  list-style: none;
+}
+
+.checklist li {
+  font-size: 15px;
+  padding: 8px 0;
+  padding-left: 25px;
+  position: relative;
+  border-bottom: 1px solid #f9f9f9;
+}
+
+.checklist li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  font-weight: 900;
+  font-size: 24px;
+  color: #00AEEF;
+}
+
+.infoCard p {
+  line-height: 1.7;
+  color: #555;
+  font-size: 16px;
+}
+
+.ctaBox {
+  margin-top: 30px;
+}
+
+.primaryBtn {
+  display: inline-block;
+  background-color: #003366;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.primaryBtn:hover {
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .dongGroupGrid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 992px) {
+  .guLinkGrid { grid-template-columns: repeat(2, 1fr); }
+  .dongGroupGrid { grid-template-columns: repeat(2, 1fr); }
+  .bottomGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .title { font-size: 32px; }
+  .header { padding: 60px 0; }
+  .sectionCard, .checklistCard, .infoCard { padding: 25px; }
+  .guLinkGrid { grid-template-columns: 1fr; }
+  .pcOnly { display: none; }
+}

@@ -1,0 +1,59 @@
+.wrapper {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+  width: 90%;
+  max-width: 500px;
+}
+
+.btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 54px;
+  border-radius: 27px;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.phone {
+  background: var(--accent);
+  color: white;
+}
+
+.kakao {
+  background: #FAE100;
+  color: #3C1E1E;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    left: auto;
+    right: 30px;
+    bottom: 30px;
+    transform: none;
+    flex-direction: column;
+    width: auto;
+  }
+  
+  .btn {
+    width: 160px;
+  }
+}

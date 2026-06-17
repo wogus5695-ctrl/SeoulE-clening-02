@@ -1,0 +1,157 @@
+.wrapper {
+  padding: 100px 20px;
+  background-color: #ffffff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 36px;
+  color: #003366;
+  text-align: center;
+  margin-bottom: 12px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: #666;
+  text-align: center;
+  margin-bottom: 60px;
+  font-size: 18px;
+}
+
+.mainContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.mapFrame {
+  background-color: #f8fafc;
+  border-radius: 40px;
+  padding: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mapImage {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.category h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.category p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.seoulBox {
+  background: linear-gradient(135deg, #003366 0%, #0055aa 100%);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 51, 102, 0.2);
+}
+
+.seoulBtn {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  display: block;
+}
+
+.cityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.cityLink {
+  background-color: #f1f5f9;
+  color: #475569;
+  text-decoration: none;
+  padding: 12px 15px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.cityLink:hover {
+  background-color: #00AEEF;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.bottomCta {
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 1px solid #eee;
+  text-align: center;
+}
+
+.bottomCta p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.callBtn {
+  display: inline-block;
+  background-color: #00AEEF;
+  color: white;
+  text-decoration: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(0, 174, 239, 0.2);
+  transition: all 0.3s ease;
+}
+
+.callBtn:hover {
+  background-color: #003366;
+  transform: scale(1.05);
+}
+
+@media (max-width: 968px) {
+  .mainContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .mapFrame {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px;
+  }
+  .wrapper {
+    padding: 60px 20px;
+  }
+}
