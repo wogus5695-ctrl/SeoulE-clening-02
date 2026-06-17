@@ -161,23 +161,10 @@ export default function MainTemplate({
 
   // Hero 서브문구 설정
   const getHeroDesc = () => {
-    const getSubjectParticle = (word: string) => {
-      const lastChar = word.charCodeAt(word.length - 1);
-      const jong = (lastChar - 0xac00) % 28;
-      return jong === 0 ? '가' : '이';
-    };
-
-    if (keywordObj) {
-      const josa = getSubjectParticle(keywordObj.serviceName);
-      return `${keywordObj.regionName}에서 ${keywordObj.serviceName}${josa} 필요한 상가, 매장, 음식점, 병원, 학원 등의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
-    }
-    if (regionObj || (region !== '서울·경기' && service !== '종합청소')) {
-      const josa = getSubjectParticle(service);
-      return `${region}에서 ${service}${josa} 필요한 상가, 매장, 음식점, 병원, 학원 등의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
-    }
     const customContent = serviceContents[service];
     if (customContent && service !== '종합청소') {
-      return replacePlaceholders(customContent.intro);
+      const displayRegion = region === '서울·경기' ? '서울' : region;
+      return customContent.intro.replace(/{region}/g, displayRegion);
     }
     return '상가, 매장, 빌딩, 사무실, 음식점, 준공 현장까지 오염 상태와 작업 조건에 맞춰 청소를 안내합니다.';
   };
@@ -186,20 +173,23 @@ export default function MainTemplate({
   const getHeroTitle = () => {
     if (keywordObj) {
       const serviceName = keywordObj.serviceName;
-      const parts = keywordObj.h1.split(serviceName);
-      if (parts.length === 2) {
-        return (
-          <>
-            {parts[0]}<span className={styles.highlight}>{serviceName}</span>{parts[1]}
-          </>
-        );
-      }
-      return keywordObj.h1;
+      const regionName = keywordObj.regionName;
+      return (
+        <>
+          {regionName} <span className={styles.highlight}>{serviceName}</span>
+          <span className={styles.pcOnly}> 전문</span>
+          <br />
+          올케어서비스
+        </>
+      );
     }
     if (region !== '서울·경기' && service !== '종합청소') {
       return (
         <>
-          {region} <span className={styles.highlight}>{service}</span> 전문 올케어서비스
+          {region} <span className={styles.highlight}>{service}</span>
+          <span className={styles.pcOnly}> 전문</span>
+          <br />
+          올케어서비스
         </>
       );
     }

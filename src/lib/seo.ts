@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { services } from '@/data/services';
 import { regions } from '@/data/regions';
+import { serviceContents } from '@/data/service-contents';
 
 // 초기 인덱싱 권장 동 단위 조합 (구Slug-동Slug-서비스Id)
 export const INDEXED_DONG_COMBINATIONS = [
@@ -196,13 +197,14 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     ? `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`
     : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
 
-  const lastChar = service.serviceNameKo.charCodeAt(service.serviceNameKo.length - 1);
-  const jong = (lastChar - 0xac00) % 28;
-  const josa = jong === 0 ? '가' : '이';
+  const customContent = serviceContents[service.serviceNameKo];
+  const description = customContent
+    ? customContent.intro.replace(/{region}/g, regionName)
+    : `${regionName} ${service.serviceNameKo} 전문 청소 상담을 안내합니다.`;
 
   return getBaseMetadata({
     title: `${regionName} ${service.serviceNameKo} 전문 | 올케어서비스`,
-    description: `${regionName} ${service.serviceNameKo}${josa} 필요한 상가, 매장, 음식점, 사무실 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`,
+    description: description,
     indexStatus: indexStatus,
     path: path,
     ogType: 'article',

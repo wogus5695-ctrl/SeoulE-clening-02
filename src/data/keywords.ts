@@ -1,4 +1,5 @@
 import { sourceRegions } from './regions-source';
+import { serviceContents } from './service-contents';
 
 export interface KeywordRecord {
   keyword: string;
@@ -58,12 +59,17 @@ export function generateKeywords(): KeywordRecord[] {
   for (const reg of targetRegions) {
     for (const serv of targetServices) {
       const josa = getSubjectParticle(serv.name);
+      const customContent = serviceContents[serv.name];
 
       // 1. 구 포함 버전 (예: 강남구 외벽청소) - index
       const districtWithGu = reg.fullName;
       const keywordWithGu = `${districtWithGu} ${serv.name}`;
       const urlKeywordWithGu = `${districtWithGu}-${serv.name}`.replace(/\s+/g, '-');
       const overrideWithGu = KEYWORD_SEO_OVERRIDES[urlKeywordWithGu];
+      
+      const fullDesc = customContent
+        ? customContent.intro.replace(/{region}/g, districtWithGu)
+        : `${districtWithGu} ${serv.name}${josa} 필요한 상가, 매장, 음식점, 사무실 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
 
       records.push({
         keyword: keywordWithGu,
@@ -74,7 +80,7 @@ export function generateKeywords(): KeywordRecord[] {
         indexStatus: overrideWithGu?.indexStatus !== undefined ? overrideWithGu.indexStatus : 'index',
         canonicalTarget: overrideWithGu?.canonicalTarget !== undefined ? overrideWithGu.canonicalTarget : null,
         title: `${districtWithGu} ${serv.name} 전문 | ${BRAND_NAME}`,
-        description: `${districtWithGu} ${serv.name}${josa} 필요한 상가, 매장, 음식점, 사무실 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`,
+        description: fullDesc,
         h1: `${districtWithGu} ${serv.name} 전문 ${BRAND_NAME}`,
         priority: 1
       });
@@ -85,6 +91,10 @@ export function generateKeywords(): KeywordRecord[] {
       const urlKeywordWithoutGu = `${districtWithoutGu}-${serv.name}`.replace(/\s+/g, '-');
       const overrideWithoutGu = KEYWORD_SEO_OVERRIDES[urlKeywordWithoutGu];
 
+      const shortDesc = customContent
+        ? customContent.intro.replace(/{region}/g, districtWithoutGu)
+        : `${districtWithoutGu} ${serv.name}${josa} 필요한 상가, 매장, 음식점, 사무실 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
+
       records.push({
         keyword: keywordWithoutGu,
         regionName: districtWithoutGu,
@@ -94,7 +104,7 @@ export function generateKeywords(): KeywordRecord[] {
         indexStatus: overrideWithoutGu?.indexStatus !== undefined ? overrideWithoutGu.indexStatus : 'noindex',
         canonicalTarget: overrideWithoutGu?.canonicalTarget !== undefined ? overrideWithoutGu.canonicalTarget : `/?k=${encodeURIComponent(urlKeywordWithGu)}`,
         title: `${districtWithoutGu} ${serv.name} 전문 | ${BRAND_NAME}`,
-        description: `${districtWithoutGu} ${serv.name}${josa} 필요한 상가, 매장, 음식점, 사무실 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`,
+        description: shortDesc,
         h1: `${districtWithoutGu} ${serv.name} 전문 ${BRAND_NAME}`,
         priority: 2
       });
@@ -105,6 +115,10 @@ export function generateKeywords(): KeywordRecord[] {
         const urlKeywordDong = `${dong}-${serv.name}`.replace(/\s+/g, '-');
         const overrideDong = KEYWORD_SEO_OVERRIDES[urlKeywordDong];
 
+        const dongDesc = customContent
+          ? customContent.intro.replace(/{region}/g, dong)
+          : `${dong} ${serv.name}${josa} 필요한 상가, 매장, 음식점, 사무실 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
+
         records.push({
           keyword: keywordDong,
           regionName: dong,
@@ -114,7 +128,7 @@ export function generateKeywords(): KeywordRecord[] {
           indexStatus: overrideDong?.indexStatus !== undefined ? overrideDong.indexStatus : 'index',
           canonicalTarget: overrideDong?.canonicalTarget !== undefined ? overrideDong.canonicalTarget : null,
           title: `${dong} ${serv.name} 전문 | ${BRAND_NAME}`,
-          description: `${dong} ${serv.name}${josa} 필요한 상가, 매장, 음식점, 사무실 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`,
+          description: dongDesc,
           h1: `${dong} ${serv.name} 전문 ${BRAND_NAME}`,
           priority: 3
         });
