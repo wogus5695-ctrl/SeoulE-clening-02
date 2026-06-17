@@ -16,7 +16,7 @@ export const INDEXED_DONG_COMBINATIONS = [
 // --- 브랜드 환경 설정 (추후 관리자 입력 가능하도록 변수 처리) ---
 export const BRAND_NAME = '올케어 서비스';
 export const BUSINESS_NAME = '올케어 서비스';
-export const DOMAIN = 'https://www.allcareservice.co.kr';
+export const DOMAIN = 'https://www.allcareseoul.co.kr';
 export const CONTACT_PHONE = '010-4667-5568'; // 전화번호
 export const CONTACT_SMS = 'sms:010-4667-5568'; // 문자 상담 링크
 export const CONTACT_KAKAOTALK = 'https://open.kakao.com/o/sallcare'; // 카카오톡 상담 링크

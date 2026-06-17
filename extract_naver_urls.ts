@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { keywords, KeywordRecord } from './src/data/keywords';
 
-const DOMAIN = 'https://www.allcareservice.co.kr';
+const DOMAIN = 'https://www.allcareseoul.co.kr';
 
 interface CsvRow {
   regionType: string;       // 지역구분
