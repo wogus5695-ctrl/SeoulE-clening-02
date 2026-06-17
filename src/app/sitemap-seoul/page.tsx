@@ -14,10 +14,12 @@ export default function SitemapSeoulPage() {
       <header className={styles.header}>
         <div className={styles.container}>
           <span className={styles.badge}>올케어 서비스 행정구역별 청소 안내</span>
-          <h1 className={styles.title}>서울 및 경기 일부 지역 청소 서비스 구역별 안내 지도</h1>
-          <p className={styles.subtitle}>
-            올케어 서비스는 서울 주요 지역과 경기 일부 지역 빌딩, 매장, 사무실, 공사 현장에 전문 장비와 직영 시공 팀을 신속히 파견합니다.<br />
-            아래의 해당 지역과 필요한 작업을 선택하시면, 맞춤식 청소 가이드라인과 상세 견적 상담으로 안내해 드립니다.
+          <h1 className={styles.title}>서울 지역별 청소 키워드 안내</h1>
+          <p className={styles.subtitle} style={{ marginBottom: '14px' }}>
+            올케어 서비스의 서울 지역별 청소 작업 페이지를 정리한 안내 페이지입니다. 지역명과 작업명을 선택하면 해당 청소 상담 페이지로 이동할 수 있습니다.
+          </p>
+          <p className={styles.subtitle} style={{ fontSize: '0.9rem', opacity: 0.8 }}>
+            외벽청소, 유리창청소, 화재청소, 바닥왁스코팅, 어닝청소, 간판청소, 준공청소, 인테리어 후 청소, 후드청소, 특수청소 등 주요 작업을 지역별로 확인할 수 있습니다.
           </p>
         </div>
       </header>
