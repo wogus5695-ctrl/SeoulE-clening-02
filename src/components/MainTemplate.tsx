@@ -403,26 +403,65 @@ export default function MainTemplate({
       <section className={styles.process} role="img" aria-label="유리창 및 실내 청소 작업 도구가 준비된 정돈된 매장 배경 이미지">
         <div className={styles.processOverlay}></div>
         <div className={styles.inner} style={{ position: 'relative', zIndex: 2 }}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.subTitle}>WORK PROCESS</span>
-            <h2 className={styles.sectionTitle}>올케어 서비스의 진행 방식</h2>
-            <p className={styles.sectionDesc}>과도한 추가금 요구 없는 투명하고 체계적인 6단계 시공 공정입니다.</p>
+          {/* PC용 진행 방식 레이아웃 */}
+          <div className={styles.pcProcess}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.subTitle}>WORK PROCESS</span>
+              <h2 className={styles.sectionTitle}>올케어 서비스의 진행 방식</h2>
+              <p className={styles.sectionDesc}>과도한 추가금 요구 없는 투명하고 체계적인 6단계 진행 방식입니다.</p>
+            </div>
+            <div className={styles.processSteps}>
+              {[
+                { step: '01', title: '현장 정보 확인', desc: '대표 번호 전화를 통해 문의하시는 공간 주소와 기본 요건 등 기본 정보를 신속하게 파악합니다.' },
+                { step: '02', title: '오염 상태 확인', desc: '유선 상담이나 주소 조회를 통해 오염 종류, 작업 높이, 현장 면적 등 세부 상태를 파악합니다.' },
+                { step: '03', title: '작업 범위 안내', desc: '작업이 필요한 부위와 제외할 부위를 고객님과 협의 후, 고정식 견적 금액을 제안합니다.' },
+                { step: '04', title: '일정 조율', desc: '영업 시간이나 이사 계획에 맞춰 주간, 야간 심야, 주말 일정 중 최적의 일정을 결정합니다.' },
+                { step: '05', title: '청소 진행', desc: '현장 조건에 맞는 작업 인력이 자재별 pH 세제와 기계 장비를 투입하여 꼼꼼히 청소를 실시합니다.' },
+                { step: '06', title: '마감 확인', desc: '작업 후 마감 상태 확인 및 1차 검수 후, 고객님과 최종 대면 검수를 통해 미흡 부위를 즉시 재수정하고 마감합니다.' }
+              ].map((item, idx) => (
+                <div key={idx} className={styles.processStepCard}>
+                  <div className={styles.stepNum}>{item.step}</div>
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className={styles.processSteps}>
-            {[
-              { step: '01', title: '현장 정보 확인', desc: '대표 번호 전화를 통해 문의하시는 공간 주소와 기본 요건 등 기본 정보를 신속하게 파악합니다.' },
-              { step: '02', title: '오염 상태 확인', desc: '유선 상담이나 주소 조회를 통해 오염 종류, 작업 높이, 현장 면적 등 세부 상태를 파악합니다.' },
-              { step: '03', title: '작업 범위 안내', desc: '작업이 필요한 부위와 제외할 부위를 고객님과 협의 후, 고정식 견적 금액을 제안합니다.' },
-              { step: '04', title: '일정 조율', desc: '영업 시간이나 이사 계획에 맞춰 주간, 야간 심야, 주말 일정 중 최적의 일정을 결정합니다.' },
-              { step: '05', title: '청소 진행', desc: '현장 조건에 맞는 작업 인력이 자재별 pH 세제와 기계 장비를 투입하여 꼼꼼히 청소를 실시합니다.' },
-              { step: '06', title: '마감 확인', desc: '작업 후 마감 상태 확인 및 1차 검수 후, 고객님과 최종 대면 검수를 통해 미흡 부위를 즉시 재수정하고 마감합니다.' }
-            ].map((item, idx) => (
-              <div key={idx} className={styles.processStepCard}>
-                <div className={styles.stepNum}>{item.step}</div>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
+
+          {/* 모바일용 진행 방식 레이아웃 (세로 타임라인형) */}
+          <div className={styles.mobileProcess}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.subTitle}>WORK PROCESS</span>
+              <h2 className={styles.sectionTitle}>상담부터 마감까지 간단하게 진행됩니다</h2>
+              <p className={styles.sectionDesc}>사진과 위치를 보내주시면 작업 가능 여부부터 안내합니다.</p>
+            </div>
+            <div className={styles.mobileTimelineContainer}>
+              <div className={styles.mobileTimelineLine}></div>
+              <div className={styles.mobileTimelineSteps}>
+                {[
+                  { step: '01', title: '상담 접수', desc: '사진·위치 확인' },
+                  { step: '02', title: '상태 확인', desc: '오염도·면적 확인' },
+                  { step: '03', title: '견적 안내', desc: '범위·비용 안내' },
+                  { step: '04', title: '일정 조율', desc: '작업 시간 조율' },
+                  { step: '05', title: '청소 진행', desc: '현장 맞춤 작업' },
+                  { step: '06', title: '마감 확인', desc: '작업 후 확인' }
+                ].map((item, idx) => (
+                  <div key={idx} className={styles.mobileTimelineStep}>
+                    <div className={styles.mobileStepBadge}>{item.step}</div>
+                    <div className={styles.mobileStepContent}>
+                      <h3>{item.title}</h3>
+                      <p>{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <div className={styles.mobileProcessBottomCta}>
+              <p className={styles.mobileCtaTitle}>사진과 위치만 보내도 상담이 가능합니다.</p>
+              <div className={styles.mobileCtaActions}>
+                <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>사진 보내고 상담하기</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
