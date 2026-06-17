@@ -13,8 +13,6 @@ const GYEONGGI_CITIES = [
   { name: '부천/인천', href: '/' },
   { name: '안산/시흥', href: '/' },
   { name: '화성/동탄', href: '/' },
-  { name: '남양주/구리', href: '/' },
-  { name: '하남/미사', href: '/' },
   { name: '안양/과천', href: '/' },
   { name: '평택/오산', href: '/' },
   { name: '파주/김포', href: '/' },

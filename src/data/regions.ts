@@ -132,7 +132,7 @@ function getDongSlug(dongName: string): string {
 export function generateRegions(): Region[] {
   const list: Region[] = [];
 
-  for (const src of sourceRegions) {
+  for (const src of sourceRegions.filter(r => r.city === '서울')) {
     const parentDesc = src.localDescription || `${src.fullName} 전 지역 종합청소 서비스를 지원합니다.`;
     const parentBuilding = src.buildingCharacteristics || '상가, 오피스 빌딩, 매장 및 준공 현장';
 

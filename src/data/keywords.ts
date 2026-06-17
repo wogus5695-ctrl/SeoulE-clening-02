@@ -34,7 +34,7 @@ export const targetServices = [
 ];
 
 // regions-source에서 가져온 데이터를 targetRegions로 맵핑 사용
-export const targetRegions = sourceRegions;
+export const targetRegions = sourceRegions.filter(r => r.city === '서울');
 
 // 개별 키워드의 SEO 설정(수집여부, 캐노니컬 타겟)을 수동으로 재정의(오버라이드)할 수 있는 사전 데이터 구조.
 // 특정 구 제외 버전(예: '강남-외벽청소')의 본문을 차별화하여 개별 인덱싱을 원하는 경우, 아래 사전 항목에 등록하여 제어할 수 있습니다.
