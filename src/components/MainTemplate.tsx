@@ -608,23 +608,6 @@ export default function MainTemplate({
               });
             })()}
           </div>
-          <div className={styles.faqBottomNotice}>
-            <p>💡 현장 오염도와 내장재 구성에 따라 작업 방법, 소요 일정 및 최종 견적이 다르게 책정될 수 있습니다.</p>
-            <p>📞 전화 상담 시 현장 상황을 알려주시면 보다 정밀한 사전 상담이 가능합니다.</p>
-            <div className={styles.faqBottomButtons}>
-              <a href={`tel:${CONTACT_PHONE}`} className={styles.faqPhoneLink}>📞 실시간 무료 전화 상담</a>
-            </div>
-          </div>
-
-          {/* 키워드 안내 페이지 링크 안내 박스 */}
-          <div className={styles.sitemapLinkBox}>
-            <p className={styles.sitemapLinkText}>
-              서울 지역별 청소 작업 안내는 키워드 안내 페이지에서 확인할 수 있습니다.
-            </p>
-            <Link href="/sitemap-seoul" className={styles.sitemapLinkBtn}>
-              서울 지역별 작업 안내 보기 ➔
-            </Link>
-          </div>
         </div>
       </section>
 
