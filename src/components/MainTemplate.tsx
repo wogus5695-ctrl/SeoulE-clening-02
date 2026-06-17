@@ -145,6 +145,29 @@ export default function MainTemplate({
   };
 
 
+  const isDynamic = !!keywordObj || (region !== '서울·경기' && service !== '종합청소');
+
+  const HOOKING_MAP: { [key: string]: string } = {
+    '외벽청소': '외벽 오염부터 확인하세요',
+    '유리창청소': '유리 얼룩부터 확인하세요',
+    '화재청소': '그을음과 냄새부터 정리하세요',
+    '화재현장 청소': '그을음과 냄새부터 정리하세요',
+    '바닥왁스코팅': '바닥 광택부터 회복하세요',
+    '바닥청소 및 왁스코팅': '바닥 광택부터 회복하세요',
+    '어닝청소': '매장 전면 오염부터 정리하세요',
+    '어닝/간판청소': '매장 전면 오염부터 정리하세요',
+    '간판청소': '간판 오염부터 확인하세요',
+    '인테리어 후 청소': '공사 분진부터 정리하세요',
+    '준공청소': '입주 전 먼지부터 정리하세요',
+    '준공/인테리어 후 청소': '입주 전 먼지부터 정리하세요',
+    '후드청소': '기름때와 악취부터 관리하세요',
+    '특수청소': '방치된 오염부터 확인하세요',
+    '쓰레기집/특수 청소': '방치된 오염부터 확인하세요',
+    '바닥청소': '바닥 찌든 때부터 정리하세요',
+    '쓰레기집 청소': '정리 범위부터 확인하세요'
+  };
+
+  const hookingText = HOOKING_MAP[service] || '작업 범위와 견적부터 확인하세요';
 
   return (
     <div className={styles.container}>
@@ -512,25 +535,33 @@ export default function MainTemplate({
         <div className={styles.bottomCtaOverlay}></div>
         <div className={styles.inner} style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.bottomCtaCard}>
-            {region !== '서울·경기' && service !== '종합청소' ? (
-              <h2>
-                {region} {service} 전문 올케어 서비스<br />
-                <span style={{ color: 'var(--accent)' }}>전화 한 통으로 쉽고 간편하게</span> 견적을 확인해 보세요.
-              </h2>
+            {isDynamic ? (
+              <>
+                <h2>
+                  {region} {service},<br />
+                  <span style={{ color: 'var(--accent)' }}>{hookingText}</span>
+                </h2>
+                <div className={styles.bottomCtaDesc}>
+                  <p>사진을 보내주시면 작업 가능 여부를 안내합니다.</p>
+                </div>
+                <div className={styles.bottomCtaButtons}>
+                  <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>{region} {service} 상담하기</a>
+                </div>
+              </>
             ) : (
-              <h2>
-                청소가 필요한 공간의 조건과 위치를 말씀해 주시면<br />
-                <span style={{ color: 'var(--accent)' }}>신속하고 투명하게</span> 안내해 드리겠습니다.
-              </h2>
+              <>
+                <h2>
+                  청소가 필요한 공간,<br />
+                  <span style={{ color: 'var(--accent)' }}>사진으로 먼저 확인하세요</span>
+                </h2>
+                <div className={styles.bottomCtaDesc}>
+                  <p>위치와 사진을 보내주시면 작업 가능 여부를 안내합니다.</p>
+                </div>
+                <div className={styles.bottomCtaButtons}>
+                  <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>사진 상담하기</a>
+                </div>
+              </>
             )}
-            <div className={styles.bottomCtaDesc}>
-              <p>💡 지역과 작업명을 말씀해 주시면 작업 가능 여부를 신속하게 안내해 드립니다.</p>
-              <p>📞 대표번호 전화 상담을 통해 무료 견적 상담을 바로 받아보실 수 있습니다.</p>
-              <p>※ 현장 오염도와 면적에 따라 시공 일정 및 상세 견적이 조율될 수 있습니다.</p>
-            </div>
-            <div className={styles.bottomCtaButtons}>
-              <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>📞 실시간 무료 전화 상담</a>
-            </div>
           </div>
         </div>
       </section>
