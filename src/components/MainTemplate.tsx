@@ -54,56 +54,56 @@ export default function MainTemplate({
   const mainServicesList = [
     {
       id: 'outer-wall',
-      name: '외벽 전문 정화',
+      name: '외벽청소',
       desc: '고층 빌딩 및 매장 외벽에 고착된 분진과 찌든 물때를 자재 맞춤 약품과 고압수로 완벽히 세정합니다.',
       tags: ['안전 로프 공법', '석재/패널 중화 반응', '고압 물세척'],
       image: '/images/services/outer-wall.jpg'
     },
     {
       id: 'window',
-      name: '고급 유리 정밀 세정',
+      name: '유리창 청소',
       desc: '쇼윈도와 고층 유리의 찌든 물때, 거미줄, 얼룩을 전문 스퀴지 공법으로 닦아내어 시야를 복원합니다.',
       tags: ['스퀴지 연마 세정', '내외부 양면 작업', '투명 시야 회복'],
       image: '/images/services/window.jpg'
     },
     {
       id: 'fire',
-      name: '화재 복구 특수 세정',
+      name: '화재현장 청소',
       desc: '화재 흔적인 그을음, 유독성 타르 분진을 탈취 가스 시공 및 전용 약품으로 정리하여 복구 공사를 지원합니다.',
       tags: ['그을음 연화 세정', '오존 분자 탈취', '증빙용 서류 발급'],
       image: '/images/services/fire.jpg'
     },
     {
       id: 'floor-wax',
-      name: '바닥 연마 및 왁스 보호막',
+      name: '바닥청소 및 왁스코팅',
       desc: '디럭스타일과 아스타일 표면의 구형 코팅막을 기계로 완전히 박리한 후 최고급 보호제를 도포해 마모를 차단합니다.',
       tags: ['기계 연마 박리', '고강도 2회 코팅', '보행 타일 보호'],
       image: '/images/services/floor-wax.jpg'
     },
     {
       id: 'awning-sign',
-      name: '전면 어닝 및 간판 크리닝',
+      name: '어닝/간판청소',
       desc: '가게의 첫인상을 결정하는 천막 어닝의 곰팡이 오염과 아크릴 간판의 눈물 자국 얼룩을 깨끗하게 정리합니다.',
       tags: ['패브릭 이끼 살균', '고압 분사 세정', '시인성 즉시 개선'],
       image: '/images/services/awning-sign.jpg'
     },
     {
       id: 'interior-completion',
-      name: '건축 준공 및 완공 정돈',
+      name: '준공/인테리어 후 청소',
       desc: '공사 후 바닥에 남은 시멘트 자국, 비닐 보양막, 미세한 석고 가루를 구역별 전문 인력 배치를 통해 말끔히 치웁니다.',
       tags: ['보양 필름 박리', '시멘트 백화 제거', '대규모 인력 운영'],
       image: '/images/services/interior-completion.jpg'
     },
     {
       id: 'hood',
-      name: '주방 배기 후드 유화 세척',
+      name: '후드청소',
       desc: '음식점 주방 후드 내벽에 누적되어 흘러내리기 직전인 누런 유지분 기름때를 특수 고열 스팀과 약품으로 세정합니다.',
       tags: ['동식물 유지 제거', '배기팬 모터 세척', '화재 발화 예방'],
       image: '/images/services/hood.jpg'
     },
     {
       id: 'special',
-      name: '사생활 보호 특수 크리닝',
+      name: '쓰레기집/특수 청소',
       desc: '다량의 방치 쓰레기나 고독사 현장처럼 일반 청소로 해결 불가능한 공간을 정밀 약품 멸균 및 탈취 시공으로 복구합니다.',
       tags: ['비대면 보안 수거', '유품 멸균 정리', '고농도 산화 탈취'],
       image: '/images/services/special-cleaning.jpg'
