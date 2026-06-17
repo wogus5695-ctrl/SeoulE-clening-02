@@ -44,15 +44,22 @@ export default function FooterDescription() {
   if (pService) currentService = pService;
 
   // 기본값 설정
-  const displayRegion = currentRegion || '서울 동부권';
+  const displayRegion = currentRegion || '서울';
   const displayService = currentService || '종합청소';
 
+  if (!currentRegion && !currentService) {
+    return (
+      <p style={{ lineHeight: '1.6', fontSize: '14px', color: 'var(--gray-600)' }}>
+        올케어 서비스는 서울 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장 등 다양한 공간의 청소 상담을 안내합니다.
+      </p>
+    );
+  }
+
   return (
-    <p style={{ lineHeight: '1.6', fontSize: '14px', color: '#666' }}>
-      {displayRegion} {displayService} 전문 {BRAND_NAME}은<br />
-      상가, 빌딩, 매장 및 준공, 특수 현장 등<br />
-      자재별 맞춤 친환경 클리닝 솔루션을 제안합니다.<br />
-      동서울 및 경기 동부 신속 무료 방문 견적이 가능합니다.
+    <p style={{ lineHeight: '1.6', fontSize: '14px', color: 'var(--gray-600)' }}>
+      {displayRegion} {displayService} 전문 {BRAND_NAME}는<br />
+      상가, 빌딩, 매장, 사무실, 음식점, 준공 현장까지<br />
+      오염 상태와 작업 범위에 맞춰 청소 상담을 안내합니다.
     </p>
   );
 }

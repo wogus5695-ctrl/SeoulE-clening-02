@@ -66,8 +66,8 @@ export default function RootLayout({
               <div>
                 <h4 style={{ fontSize: '16px', marginBottom: '15px' }}>작업 지역</h4>
                 <p style={{ fontSize: '14px', color: 'var(--gray-600)', lineHeight: '1.6' }}>
-                  서울 주요 지역 및 경기 일부 지역<br />
-                  신속 방문 상담 가능
+                  서울 주요 지역 상담 가능<br />
+                  지역별 작업 가능 여부는 상담 시 확인해 드립니다.
                 </p>
               </div>
               <div>
@@ -83,8 +83,8 @@ export default function RootLayout({
                 </ul>
               </div>
             </div>
-            <div style={{ marginTop: '50px', paddingTop: '30px', borderTop: '1px solid var(--gray-200)', textAlign: 'center', fontSize: '13px', color: 'var(--gray-600)' }}>
-              <p style={{ marginBottom: '5px' }}>상호명: {BUSINESS_NAME} | 사업자등록번호: {BUSINESS_NUMBER}</p>
+             <div style={{ marginTop: '50px', paddingTop: '30px', borderTop: '1px solid var(--gray-200)', textAlign: 'center', fontSize: '13px', color: 'var(--gray-600)' }}>
+              <p style={{ marginBottom: '5px' }}>상호명: {BUSINESS_NAME}</p>
               <p>&copy; 2026 {BRAND_NAME}. All rights reserved.</p>
             </div>
           </div>
