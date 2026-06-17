@@ -4,6 +4,7 @@ import MainTemplate from '@/components/MainTemplate';
 export const dynamic = 'force-dynamic';
 import { services } from '@/data/services';
 import { regions } from '@/data/regions';
+import { serviceContents } from '@/data/service-contents';
 import { getBaseMetadata, getLandingMetadata, getMainMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME, DEFAULT_OG_IMAGE } from '@/lib/seo';
 import { keywords, KeywordRecord } from '@/data/keywords';
 

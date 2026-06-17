@@ -157,20 +157,8 @@
   padding: 100px 0;
 }
 
-.pcServices {
+.servicesWrapper {
   display: block;
-}
-
-.mobileServices {
-  display: none;
-}
-
-.pcProcess {
-  display: block;
-}
-
-.mobileProcess {
-  display: none;
 }
 
 .serviceGrid {
@@ -388,6 +376,18 @@
   z-index: 1;
 }
 
+.processWrapper {
+  display: block;
+}
+
+.timelineContainer {
+  position: relative;
+}
+
+.timelineLine {
+  display: none;
+}
+
 .processSteps {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -410,7 +410,7 @@
   transform: translateY(-3px);
 }
 
-.stepNum {
+.stepBadge {
   font-size: 36px;
   font-weight: 900;
   color: var(--accent);
@@ -419,7 +419,7 @@
   line-height: 1;
 }
 
-.processStepCard:hover .stepNum {
+.processStepCard:hover .stepBadge {
   opacity: 1;
 }
 
@@ -435,6 +435,14 @@
   color: var(--gray-600);
   line-height: 1.5;
   word-break: keep-all;
+}
+
+.stepContent {
+  display: block;
+}
+
+.processBottomCta {
+  display: none;
 }
 
 /* 5. Coverage Section */
@@ -605,89 +613,19 @@
 
 /* Mobile Media Queries */
 @media (max-width: 768px) {
-  .pcServices {
-    display: none;
-  }
-  .mobileServices {
-    display: block;
-  }
-  .pcProcess {
-    display: none;
-  }
-  .mobileProcess {
-    display: block;
-  }
   .services {
     padding: 40px 0;
   }
   .process {
     padding: 40px 0;
   }
-  .mobileTimelineContainer {
-    position: relative;
-    padding-left: 30px;
-    margin-top: 24px;
-  }
-  .mobileTimelineLine {
-    position: absolute;
-    left: 9px;
-    top: 12px;
-    bottom: 12px;
-    width: 2px;
-    background-color: var(--accent);
-    opacity: 0.4;
-  }
-  .mobileTimelineSteps {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .mobileTimelineStep {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  .mobileStepBadge {
-    position: absolute;
-    left: 0px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: var(--accent);
-    color: white;
-    font-size: 10px;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-  }
-  .mobileStepContent {
-    padding-left: 30px;
-  }
-  .mobileStepContent h3 {
-    font-size: 16px;
-    font-weight: 800;
-    color: var(--primary);
-    margin: 0 0 2px 0;
-  }
-  .mobileStepContent p {
-    font-size: 13px;
-    color: var(--gray-600);
-    margin: 0;
-    word-break: keep-all;
-  }
-  .mobileProcessBottomCta {
-    margin-top: 28px;
-    text-align: center;
-  }
-  .mobileServiceList {
-    display: flex;
-    flex-direction: column;
+  
+  /* Services Section Unified Mobile Layout */
+  .serviceGrid {
+    grid-template-columns: 1fr;
     gap: 12px;
   }
-  .mobileServiceCard {
+  .serviceCard {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -700,35 +638,35 @@
     text-decoration: none;
     transition: transform 0.2s ease, border-color 0.2s ease;
   }
-  .mobileServiceCard:hover, .mobileServiceCard:active {
+  .serviceCard:hover, .serviceCard:active {
     transform: translateY(-2px);
     border-color: rgba(15, 118, 110, 0.25);
   }
-  .mobileServiceImage {
+  .serviceImage {
     width: 35%;
     height: 100%;
     position: relative;
     overflow: hidden;
   }
-  .mobileServiceImage img {
+  .serviceImage img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  .mobileServiceContent {
+  .serviceContent {
     width: 65%;
     padding: 8px 12px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  .mobileServiceTags {
+  .serviceTags {
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
     margin-bottom: 4px;
   }
-  .mobileServiceTag {
+  .serviceTag {
     font-size: 11px;
     font-weight: 800;
     color: var(--accent-dark);
@@ -736,44 +674,105 @@
     padding: 2px 6px;
     border-radius: 20px;
   }
-  .mobileServiceContent h3 {
+  .serviceTag:nth-child(n+3) {
+    display: none;
+  }
+  .serviceContent h3 {
     font-size: 17px;
     font-weight: 800;
     color: var(--primary);
     margin-bottom: 4px;
   }
-  .mobileServiceContent p {
+  .serviceContent p {
     font-size: 13px;
     color: var(--gray-600);
     line-height: 1.35;
     margin: 0;
     word-break: keep-all;
   }
-  .mobileServicesBottomCta {
-    background-color: white;
-    border: 1px solid rgba(15, 118, 110, 0.08);
-    border-radius: var(--radius);
-    padding: 20px;
+  
+  /* Work Process Unified Mobile Layout */
+  .timelineContainer {
+    position: relative;
+    padding-left: 30px;
     margin-top: 24px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(15, 118, 110, 0.02);
   }
-  .mobileCtaTitle {
+  .timelineLine {
+    display: block;
+    position: absolute;
+    left: 9px;
+    top: 12px;
+    bottom: 12px;
+    width: 2px;
+    background-color: var(--accent);
+    opacity: 0.4;
+  }
+  .processSteps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .processStepCard {
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    transform: none !important;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    position: relative;
+  }
+  .stepBadge {
+    position: absolute;
+    left: -30px;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    opacity: 1 !important;
+    margin-bottom: 0;
+  }
+  .stepContent {
+    padding-left: 10px;
+  }
+  .stepContent h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 0 0 2px 0;
+  }
+  .stepContent p {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin: 0;
+    word-break: keep-all;
+    line-height: 1.45;
+  }
+  .processBottomCta {
+    display: block;
+    margin-top: 28px;
+    text-align: center;
+  }
+  .processCtaTitle {
     font-size: 16px;
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 4px;
   }
-  .mobileCtaTip {
-    font-size: 13px;
-    color: var(--gray-600);
-    margin-bottom: 16px;
-  }
-  .mobileCtaActions {
+  .processCtaActions {
     display: flex;
     justify-content: center;
   }
-  .mobileCtaActions .ctaBtn {
+  .processCtaActions .ctaBtn {
     width: 100%;
     padding: 12px 20px;
     font-size: 14px;
@@ -791,24 +790,6 @@
   .ctaBtn {
     width: 100%;
     padding: 14px 20px;
-  }
-  .serviceGrid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .serviceCard {
-    flex-direction: column;
-    max-width: 480px;
-    margin: 0 auto;
-    height: auto;
-  }
-  .serviceImage {
-    width: 100%;
-    height: 180px;
-  }
-  .serviceContent {
-    width: 100%;
-    padding: 20px;
   }
   .suitable {
     padding: 60px 0;
