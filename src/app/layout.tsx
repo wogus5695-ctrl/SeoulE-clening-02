@@ -6,7 +6,7 @@ import MobileFloatingCTA from "@/components/MobileFloatingCTA";
 import FooterDescription from "@/components/FooterDescription";
 import { Suspense } from "react";
 import Link from 'next/link';
-import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, BUSINESS_NUMBER, CONTACT_PHONE, NAVER_VERIFICATION, GOOGLE_VERIFICATION } from "@/lib/seo";
+import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, CONTACT_PHONE, NAVER_VERIFICATION, GOOGLE_VERIFICATION } from "@/lib/seo";
 
 const scDream = localFont({
   src: [
@@ -51,7 +51,7 @@ export default function RootLayout({
                   <p style={{ lineHeight: '1.6', fontSize: '14px', color: 'var(--gray-600)' }}>
                     외벽, 유리창, 준공, 화재 복구 등<br />
                     현장 맞춤형 종합청소 솔루션을 제공합니다.<br />
-                    서울 주요 지역 및 경기 일부 구역 신속 방문 견적 가능합니다.
+                    지역별 작업 가능 여부는 상담 시 확인해 드립니다.
                   </p>
                 }>
                   <FooterDescription />

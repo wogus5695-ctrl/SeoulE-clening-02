@@ -20,7 +20,7 @@ export const CONTACT_PHONE = '010-4667-5568'; // 전화번호
 export const CONTACT_SMS = 'sms:010-4667-5568'; // 문자 상담 링크
 export const CONTACT_KAKAOTALK = 'https://open.kakao.com/o/sallcare'; // 카카오톡 상담 링크
 export const BUSINESS_ADDRESS = '서울특별시 송파구 올림픽로'; // 사업장 주소
-export const BUSINESS_NUMBER = '123-45-67890'; // 사업자 등록 번호
+export const BUSINESS_NUMBER = ''; // 사업자 등록 번호
 export const DEFAULT_OG_IMAGE = `${DOMAIN}/logo.png`;
 export const NAVER_VERIFICATION = '43f9e9e2c0022b1961730e583c46aef2bc51b2fa'; // 네이버 서치어드바이저 연동 코드
 export const GOOGLE_VERIFICATION = 'Ii7CJaIsKz33EVUVJhJfnbT6cv7MN_4Nda52eMQOv7s'; // 구글 서치 콘솔 연동 코드
@@ -198,7 +198,7 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
 
   return getBaseMetadata({
     title: `${regionName} ${service.serviceNameKo} 전문 | ${BRAND_NAME}`,
-    description: `${regionName} ${service.serviceNameKo}이 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 작업 범위와 오염 상태를 확인해 상담을 안내합니다.`,
+    description: `${regionName} ${service.serviceNameKo}${service.serviceNameKo.endsWith('코팅') ? '이' : '가'} 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 작업 범위와 오염 상태를 확인해 상담을 안내합니다.`,
     indexStatus: indexStatus,
     path: path,
     ogType: 'article',
@@ -224,11 +224,11 @@ export function getKeywordHubMetadata(cityDistrict: string): Metadata {
   });
 }
 
-// 6. 마스터 사이트맵 (서울·인천 전 지역 키워드 맵)
+// 6. 마스터 사이트맵 (서울 지역 키워드 맵)
 export function getSitemapMetadata(): Metadata {
   return getBaseMetadata({
-    title: `서울 주요 지역 및 경기 일부 종합청소 서비스 키워드 맵 | ${BRAND_NAME}`,
-    description: `서울 주요 지역(송파, 강동, 광진, 성동, 노원, 중랑 등) 및 경기 일부(구리, 하남, 남양주)의 구/동별 청소 서비스 키워드를 한눈에 확인하세요. 외벽, 유리창, 준공 등 맞춤형 솔루션을 안내합니다.`,
+    title: `서울 지역별 청소 키워드 안내 | ${BRAND_NAME}`,
+    description: `서울 주요 지역(송파, 강동, 광진, 성동, 노원, 중랑 등)의 구/동별 청소 서비스 키워드를 한눈에 확인하세요. 외벽, 유리창, 준공 등 맞춤형 솔루션을 안내합니다.`,
     indexStatus: 'index',
     path: `/sitemap-seoul`,
   });

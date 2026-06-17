@@ -26,7 +26,7 @@ export default function InteractiveMap() {
     <section className={styles.wrapper}>
       <div className={styles.container}>
         <h2 className={styles.title}>지역별 서비스 거점</h2>
-        <p className={styles.subtitle}>서울 주요 지역 및 경기 일부 어디든 신속하게 방문합니다.</p>
+        <p className={styles.subtitle}>지역별 작업 가능 여부는 상담 시 확인해 드립니다.</p>
 
         <div className={styles.mainContent}>
           {/* Map Image Section */}

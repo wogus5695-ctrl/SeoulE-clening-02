@@ -55,7 +55,7 @@ export default function MainTemplate({
     {
       id: 'outer-wall',
       name: '외벽청소',
-      desc: '고층 빌딩 및 매장 외벽에 고착된 분진과 찌든 물때를 자재 맞춤 약품과 고압수로 완벽히 세정합니다.',
+      desc: '고층 빌딩 및 매장 외벽에 고착된 분진과 찌든 물때를 자재 맞춤 약품과 고압수로 상태에 맞춰 꼼꼼히 세정합니다.',
       tags: ['안전 로프 공법', '석재/패널 중화 반응', '고압 물세척'],
       image: '/images/services/outer-wall.jpg'
     },
@@ -76,7 +76,7 @@ export default function MainTemplate({
     {
       id: 'floor-wax',
       name: '바닥청소 및 왁스코팅',
-      desc: '디럭스타일과 아스타일 표면의 구형 코팅막을 기계로 완전히 박리한 후 최고급 보호제를 도포해 마모를 차단합니다.',
+      desc: '디럭스타일과 아스타일 표면의 구형 코팅막을 기계로 완전히 박리한 후 현장에 맞는 코팅제를 도포해 마모를 차단합니다.',
       tags: ['기계 연마 박리', '고강도 2회 코팅', '보행 타일 보호'],
       image: '/images/services/floor-wax.jpg'
     },
@@ -161,11 +161,19 @@ export default function MainTemplate({
 
   // Hero 서브문구 설정
   const getHeroDesc = () => {
+    const getSubjectParticle = (word: string) => {
+      const lastChar = word.charCodeAt(word.length - 1);
+      const jong = (lastChar - 0xac00) % 28;
+      return jong === 0 ? '가' : '이';
+    };
+
     if (keywordObj) {
-      return `${keywordObj.regionName}에서 ${keywordObj.serviceName}이 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 오염 상태와 작업 범위에 맞춰 상담을 안내합니다.`;
+      const josa = getSubjectParticle(keywordObj.serviceName);
+      return `${keywordObj.regionName}에서 ${keywordObj.serviceName}${josa} 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
     }
     if (regionObj || (region !== '서울·경기' && service !== '종합청소')) {
-      return `${region}에서 ${service}이 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 오염 상태와 작업 범위에 맞춰 상담을 안내합니다.`;
+      const josa = getSubjectParticle(service);
+      return `${region}에서 ${service}${josa} 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
     }
     const customContent = serviceContents[service];
     if (customContent && service !== '종합청소') {
@@ -334,8 +342,8 @@ export default function MainTemplate({
               { step: '02', title: '오염 상태 확인', desc: '유선 상담이나 주소 조회를 통해 오염 종류, 작업 높이, 현장 면적 등 세부 상태를 파악합니다.' },
               { step: '03', title: '작업 범위 안내', desc: '작업이 필요한 부위와 제외할 부위를 고객님과 협의 후, 고정식 견적 금액을 제안합니다.' },
               { step: '04', title: '일정 조율', desc: '영업 시간이나 이사 계획에 맞춰 주간, 야간 심야, 주말 일정 중 최적의 일정을 결정합니다.' },
-              { step: '05', title: '청소 진행', desc: '본사 소속 정규 직영 팀이 자재별 pH 세제와 기계 장비를 투입하여 꼼꼼히 청소를 실시합니다.' },
-              { step: '06', title: '마감 확인', desc: '품질 관리자의 1차 검수 후, 고객님과 최종 대면 검수를 통해 미흡 부위를 즉시 재수정하고 마감합니다.' }
+              { step: '05', title: '청소 진행', desc: '현장 조건에 맞는 작업 인력이 자재별 pH 세제와 기계 장비를 투입하여 꼼꼼히 청소를 실시합니다.' },
+              { step: '06', title: '마감 확인', desc: '작업 후 마감 상태 확인 및 1차 검수 후, 고객님과 최종 대면 검수를 통해 미흡 부위를 즉시 재수정하고 마감합니다.' }
             ].map((item, idx) => (
               <div key={idx} className={styles.processStepCard}>
                 <div className={styles.stepNum}>{item.step}</div>
@@ -358,8 +366,8 @@ export default function MainTemplate({
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>BEFORE & AFTER</span>
-            <h2 className={styles.sectionTitle}>{replacePlaceholders('{region} 실제 작업 현장')}</h2>
-            <p className={styles.sectionDesc}>거짓 없는 작업 전후 사진으로 증명합니다.</p>
+            <h2 className={styles.sectionTitle}>주요 청소 작업 전후 사례</h2>
+            <p className={styles.sectionDesc}>작업 전후 상태를 사진으로 확인할 수 있습니다.</p>
           </div>
           
           <div 

@@ -28,7 +28,7 @@ export default function SitemapSeoulPage() {
         <div className={styles.container}>
           {/* 클라이언트 컴포넌트에 서버 측 데이터를 전달하여 하이브리드 구성 */}
           <SitemapAccordion 
-            sourceRegions={sourceRegions} 
+            sourceRegions={sourceRegions.filter(r => r.city === '서울')} 
             targetServices={targetServices} 
           />
         </div>
