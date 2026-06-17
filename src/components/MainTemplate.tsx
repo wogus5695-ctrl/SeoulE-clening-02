@@ -110,6 +110,57 @@ export default function MainTemplate({
     }
   ];
 
+  const mobileServicesList = [
+    {
+      id: 'outer-wall',
+      name: '외벽청소',
+      desc: '건물 외벽 먼지와 빗물 자국을 정리합니다.',
+      image: '/images/services/outer-wall.jpg'
+    },
+    {
+      id: 'window',
+      name: '유리창청소',
+      desc: '유리면 물때와 손자국을 깨끗하게 관리합니다.',
+      image: '/images/services/window.jpg'
+    },
+    {
+      id: 'fire',
+      name: '화재청소',
+      desc: '그을음, 냄새, 분진이 남은 현장을 정리합니다.',
+      image: '/images/services/fire.jpg'
+    },
+    {
+      id: 'floor-wax',
+      name: '바닥왁스코팅',
+      desc: '바닥 광택과 관리성을 높입니다.',
+      image: '/images/services/floor-wax.jpg'
+    },
+    {
+      id: 'awning-sign',
+      name: '어닝/간판청소',
+      desc: '매장 외부 오염과 간판 주변을 정리합니다.',
+      image: '/images/services/awning-sign.jpg'
+    },
+    {
+      id: 'interior-completion',
+      name: '인테리어 후/준공청소',
+      desc: '공사 후 분진과 잔여물을 정리합니다.',
+      image: '/images/services/interior-completion.jpg'
+    },
+    {
+      id: 'hood',
+      name: '후드청소',
+      desc: '주방 후드의 기름때와 오염을 관리합니다.',
+      image: '/images/services/hood.jpg'
+    },
+    {
+      id: 'special',
+      name: '특수청소',
+      desc: '일반 청소가 어려운 오염 공간을 확인합니다.',
+      image: '/images/services/special-cleaning.jpg'
+    }
+  ];
+
   // 현재 활성화된 서비스 상세 데이터 조회 (neededSituations 동적 연동용)
   const activeServiceObj = services.find(s => 
     s.serviceNameKo === service || 
@@ -242,35 +293,67 @@ export default function MainTemplate({
       {/* 2. 서비스 안내 섹션 */}
       <section id="services" className={styles.services}>
         <div className={styles.inner}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.subTitle}>SERVICES</span>
-            <h2 className={styles.sectionTitle}>올케어 전문 청소 서비스</h2>
-            <p className={styles.sectionDesc}>현장의 오염도와 난이도 조건에 맞춰 실무 방법으로 정밀하게 세정합니다.</p>
-          </div>
-          <div className={styles.serviceGrid}>
-            {mainServicesList.map((item) => (
-              <div key={item.id} className={styles.serviceCard}>
-                <div className={styles.serviceImage}>
-                  <img src={item.image} alt={item.name} />
-                </div>
-                <div className={styles.serviceContent}>
-                  <div className={styles.serviceTags}>
-                    {item.tags.map((tag, tIdx) => (
-                      <span key={tIdx} className={styles.serviceTag}>#{tag}</span>
-                    ))}
+          {/* PC용 서비스 레이아웃 */}
+          <div className={styles.pcServices}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.subTitle}>SERVICES</span>
+              <h2 className={styles.sectionTitle}>올케어 전문 청소 서비스</h2>
+              <p className={styles.sectionDesc}>현장의 오염도와 난이도 조건에 맞춰 실무 방법으로 정밀하게 세정합니다.</p>
+            </div>
+            <div className={styles.serviceGrid}>
+              {mainServicesList.map((item) => (
+                <div key={item.id} className={styles.serviceCard}>
+                  <div className={styles.serviceImage}>
+                    <img src={item.image} alt={item.name} />
                   </div>
-                  <h3>{item.name}</h3>
-                  <p>{item.desc}</p>
-                  <a href={`tel:${CONTACT_PHONE}`} className={styles.serviceCardCta}>📞 견적 및 예약 문의</a>
+                  <div className={styles.serviceContent}>
+                    <div className={styles.serviceTags}>
+                      {item.tags.map((tag, tIdx) => (
+                        <span key={tIdx} className={styles.serviceTag}>#{tag}</span>
+                      ))}
+                    </div>
+                    <h3>{item.name}</h3>
+                    <p>{item.desc}</p>
+                    <a href={`tel:${CONTACT_PHONE}`} className={styles.serviceCardCta}>📞 견적 및 예약 문의</a>
+                  </div>
                 </div>
+              ))}
+            </div>
+            <div className={styles.servicesBottomCta}>
+              <p className={styles.ctaTip}>💡 작업 공간의 주소와 필요한 작업을 말씀해 주시면 신속하게 안내해 드립니다.</p>
+              <p className={styles.ctaNotice}>※ 현장 오염 상태에 따라 세부적인 작업 범위와 일정이 조율될 수 있습니다.</p>
+              <div className={styles.ctaActions}>
+                <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>📞 실시간 무료 전화 상담</a>
               </div>
-            ))}
+            </div>
           </div>
-          <div className={styles.servicesBottomCta}>
-            <p className={styles.ctaTip}>💡 작업 공간의 주소와 필요한 작업을 말씀해 주시면 신속하게 안내해 드립니다.</p>
-            <p className={styles.ctaNotice}>※ 현장 오염 상태에 따라 세부적인 작업 범위와 일정이 조율될 수 있습니다.</p>
-            <div className={styles.ctaActions}>
-              <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>📞 실시간 무료 전화 상담</a>
+
+          {/* 모바일용 서비스 레이아웃 */}
+          <div className={styles.mobileServices}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.subTitle}>SERVICES</span>
+              <h2 className={styles.sectionTitle}>올케어 전문 청소 서비스</h2>
+              <p className={styles.sectionDesc}>현장 오염도와 작업 조건에 맞춰 상담을 안내합니다.</p>
+            </div>
+            <div className={styles.mobileServiceList}>
+              {mobileServicesList.map((item) => (
+                <a key={item.id} href={`tel:${CONTACT_PHONE}`} className={styles.mobileServiceCard}>
+                  <div className={styles.mobileServiceImage}>
+                    <img src={item.image} alt={`${item.name} 작업 이미지`} />
+                  </div>
+                  <div className={styles.mobileServiceContent}>
+                    <h3>{item.name}</h3>
+                    <p>{item.desc}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+            <div className={styles.mobileServicesBottomCta}>
+              <p className={styles.mobileCtaTitle}>필요한 작업이 보이지 않나요?</p>
+              <p className={styles.mobileCtaTip}>사진과 위치를 보내주시면 작업 가능 여부를 안내합니다.</p>
+              <div className={styles.mobileCtaActions}>
+                <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>사진 보내고 상담하기</a>
+              </div>
             </div>
           </div>
         </div>

@@ -157,6 +157,14 @@
   padding: 100px 0;
 }
 
+.pcServices {
+  display: block;
+}
+
+.mobileServices {
+  display: none;
+}
+
 .serviceGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -589,6 +597,98 @@
 
 /* Mobile Media Queries */
 @media (max-width: 768px) {
+  .pcServices {
+    display: none;
+  }
+  .mobileServices {
+    display: block;
+  }
+  .services {
+    padding: 40px 0;
+  }
+  .mobileServiceList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .mobileServiceCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(15, 118, 110, 0.04);
+    border: 1px solid rgba(15, 118, 110, 0.08);
+    height: 120px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .mobileServiceCard:hover, .mobileServiceCard:active {
+    transform: translateY(-2px);
+    border-color: rgba(15, 118, 110, 0.25);
+  }
+  .mobileServiceImage {
+    width: 35%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .mobileServiceImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .mobileServiceContent {
+    width: 65%;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .mobileServiceContent h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+  .mobileServiceContent p {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.4;
+    margin: 0;
+    word-break: keep-all;
+  }
+  .mobileServicesBottomCta {
+    background-color: white;
+    border: 1px solid rgba(15, 118, 110, 0.08);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-top: 24px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(15, 118, 110, 0.02);
+  }
+  .mobileCtaTitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+  .mobileCtaTip {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin-bottom: 16px;
+  }
+  .mobileCtaActions {
+    display: flex;
+    justify-content: center;
+  }
+  .mobileCtaActions .ctaBtn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
   .hero {
     padding: 100px 0 80px;
     min-height: auto;
