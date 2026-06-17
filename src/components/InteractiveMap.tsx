@@ -26,7 +26,7 @@ export default function InteractiveMap() {
     <section className={styles.wrapper}>
       <div className={styles.container}>
         <h2 className={styles.title}>지역별 서비스 거점</h2>
-        <p className={styles.subtitle}>서울 및 경기권 전역 어디든 신속하게 방문합니다.</p>
+        <p className={styles.subtitle}>서울 주요 지역 및 경기 일부 어디든 신속하게 방문합니다.</p>
 
         <div className={styles.mainContent}>
           {/* Map Image Section */}
@@ -44,10 +44,10 @@ export default function InteractiveMap() {
           <div className={styles.infoSection}>
             <div className={styles.category}>
               <h3>서울특별시</h3>
-              <p>전 지역 집중 관리 서비스 제공</p>
+              <p>서울 주요 지역 서비스 제공</p>
               <div className={styles.seoulBox}>
                 <Link href="/area/seoul/mapo" className={styles.seoulBtn}>
-                  서울 전 지역 서비스 거점 확인하기 →
+                  서울 주요 지역 서비스 거점 확인하기 →
                 </Link>
               </div>
             </div>
@@ -67,7 +67,7 @@ export default function InteractiveMap() {
         </div>
 
         <div className={styles.bottomCta}>
-          <p>찾으시는 지역이 없으신가요? <strong>전국 어디든 상담 가능합니다.</strong></p>
+          <p>찾으시는 지역이 없으신가요? <strong>서울·경기 상담 가능 여부를 안내해 드립니다.</strong></p>
           <a href={`tel:${CONTACT_PHONE}`} className={styles.callBtn}>실시간 견적 문의하기</a>
         </div>
       </div>
