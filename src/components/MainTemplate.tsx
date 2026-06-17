@@ -161,15 +161,15 @@ export default function MainTemplate({
 
   // Hero 서브문구 설정
   const getHeroDesc = () => {
+    if (keywordObj) {
+      return `${keywordObj.regionName}에서 ${keywordObj.serviceName}이 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 오염 상태와 작업 범위에 맞춰 상담을 안내합니다.`;
+    }
+    if (regionObj || (region !== '서울·경기' && service !== '종합청소')) {
+      return `${region}에서 ${service}이 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 오염 상태와 작업 범위에 맞춰 상담을 안내합니다.`;
+    }
     const customContent = serviceContents[service];
     if (customContent && service !== '종합청소') {
       return replacePlaceholders(customContent.intro);
-    }
-    if (keywordObj) {
-      return keywordObj.description;
-    }
-    if (region !== '서울·경기' && service !== '종합청소') {
-      return `${region} ${service} 의뢰에 맞추어 전문 장비와 직영 인력을 신속히 파견하며, 마감재 특성에 맞춰 디테일하게 복원합니다.`;
     }
     return '상가, 매장, 빌딩, 사무실, 음식점, 준공 현장까지 오염 상태와 작업 조건에 맞춰 청소를 안내합니다.';
   };
@@ -225,13 +225,18 @@ export default function MainTemplate({
             <div className={styles.heroCta}>
               <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>
                 {keywordObj 
-                  ? `${keywordObj.regionName} ${keywordObj.serviceName} 전화 상담` 
-                  : (regionObj || region !== '서울·경기' || service !== '종합청소' ? `${region} ${service} 전화 상담` : '서울 종합청소 전화 상담')
+                  ? `${keywordObj.regionName} ${keywordObj.serviceName} 사진 상담하기` 
+                  : (regionObj || region !== '서울·경기' || service !== '종합청소' ? `${region} ${service} 사진 상담하기` : '서울 종합청소 전화 상담')
                 }
               </a>
             </div>
             <div className={styles.heroTip}>
-              <span>💡 지역과 작업명을 알려주시면 작업 가능 여부를 빠르게 안내해 드립니다.</span>
+              <span>
+                {keywordObj || regionObj || region !== '서울·경기' || service !== '종합청소'
+                  ? '💡 현장 사진과 위치를 알려주시면 작업 가능 여부와 상담 방향을 빠르게 안내해 드립니다.'
+                  : '💡 지역과 작업명을 알려주시면 작업 가능 여부를 빠르게 안내해 드립니다.'
+                }
+              </span>
             </div>
           </div>
         </div>
@@ -298,7 +303,7 @@ export default function MainTemplate({
       </section>
 
       {/* 3. 동적 랜딩 전용 CTA (동적 유입 시 중간에 강조 노출) */}
-      {(keywordObj || (region !== '서울 동부·경기' && service !== '종합청소')) && (
+      {(keywordObj || (region !== '서울·경기' && service !== '종합청소')) && (
         <section className={styles.landingCtaSection} role="img" aria-label="올케어 서비스 상담 안내 배경">
           <div className={styles.landingCtaOverlay}></div>
           <div className={styles.inner} style={{ position: 'relative', zIndex: 2 }}>
@@ -509,7 +514,7 @@ export default function MainTemplate({
         <div className={styles.bottomCtaOverlay}></div>
         <div className={styles.inner} style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.bottomCtaCard}>
-            {region !== '서울 동부·경기' && service !== '종합청소' ? (
+            {region !== '서울·경기' && service !== '종합청소' ? (
               <h2>
                 {region} {service} 전문 올케어 서비스<br />
                 <span style={{ color: 'var(--accent)' }}>전화 한 통으로 쉽고 간편하게</span> 견적을 확인해 보세요.
