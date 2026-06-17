@@ -349,11 +349,11 @@ export default function MainTemplate({
               ))}
             </div>
             <div className={styles.mobileServicesBottomCta}>
-              <p className={styles.mobileCtaTitle}>필요한 작업이 보이지 않나요?</p>
-              <p className={styles.mobileCtaTip}>사진과 위치를 보내주시면 작업 가능 여부를 안내합니다.</p>
-              <div className={styles.mobileCtaActions}>
-                <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>사진 보내고 상담하기</a>
-              </div>
+              <p className={styles.mobileCtaTitle}>빠른 견적문의가 필요하신가요?</p>
+              <p className={styles.mobileCtaTip}>
+                현장 사진을 전달주시면<br />
+                <u>보다 빠른 견적</u>을 받아보실 수 있습니다.
+              </p>
             </div>
           </div>
         </div>
