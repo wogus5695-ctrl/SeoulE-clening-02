@@ -143,8 +143,8 @@ export function getBaseMetadata({
 // 1. 메인 페이지
 export function getMainMetadata(): Metadata {
   return getBaseMetadata({
-    title: `서울 동부권 종합청소 전문 | ${BRAND_NAME}`,
-    description: `서울 동부권 상가, 빌딩, 사무실, 음식점, 준공 현장 청소가 필요할 때 올케어 서비스가 현장 상태에 맞춰 상담을 안내합니다.`,
+    title: `서울 종합청소 전문 | ${BRAND_NAME}`,
+    description: `서울 상가, 빌딩, 사무실, 음식점, 준공 현장 청소가 필요할 때 올케어 서비스가 현장 상태에 맞춰 상담을 안내합니다.`,
     path: '',
     indexStatus: 'index',
   });
@@ -237,8 +237,8 @@ export function getKeywordHubMetadata(cityDistrict: string): Metadata {
 // 6. 마스터 사이트맵 (서울·인천 전 지역 키워드 맵)
 export function getSitemapMetadata(): Metadata {
   return getBaseMetadata({
-    title: `서울 동부 및 경기 동부 종합청소 서비스 키워드 맵 | ${BRAND_NAME}`,
-    description: `서울 동부(송파, 강동, 광진, 성동, 노원, 중랑 등) 및 경기 동부(구리, 하남, 남양주)의 구/동별 청소 서비스 키워드를 한눈에 확인하세요. 외벽, 유리창, 준공 등 맞춤형 솔루션을 안내합니다.`,
+    title: `서울 주요 지역 및 경기 일부 종합청소 서비스 키워드 맵 | ${BRAND_NAME}`,
+    description: `서울 주요 지역(송파, 강동, 광진, 성동, 노원, 중랑 등) 및 경기 일부(구리, 하남, 남양주)의 구/동별 청소 서비스 키워드를 한눈에 확인하세요. 외벽, 유리창, 준공 등 맞춤형 솔루션을 안내합니다.`,
     indexStatus: 'index',
     path: `/sitemap-seoul`,
   });
@@ -252,7 +252,7 @@ export function getJsonLd() {
     'name': BRAND_NAME,
     'legalName': BUSINESS_NAME,
     'alternateName': '올케어 서비스 청소전문',
-    'description': '서울 동부권 상가, 빌딩, 사무실, 음식점, 준공 현장 청소가 필요할 때 올케어 서비스가 현장 상태에 맞춰 상담을 안내합니다.',
+    'description': '서울 상가, 빌딩, 사무실, 음식점, 준공 현장 청소가 필요할 때 올케어 서비스가 현장 상태에 맞춰 상담을 안내합니다.',
     'url': DOMAIN,
     'logo': `${DOMAIN}/logo.png`,
     'image': DEFAULT_OG_IMAGE,

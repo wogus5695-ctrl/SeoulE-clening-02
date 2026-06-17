@@ -50,7 +50,7 @@ export default function RootLayout({
                   <p style={{ lineHeight: '1.6', fontSize: '14px', color: 'var(--gray-600)' }}>
                     외벽, 유리창, 준공, 화재 복구 등<br />
                     현장 맞춤형 종합청소 솔루션을 제공합니다.<br />
-                    서울·경기 전 지역 신속 방문 견적 가능합니다.
+                    서울 주요 지역 및 경기 일부 구역 신속 방문 견적 가능합니다.
                   </p>
                 }>
                   <FooterDescription />
@@ -65,8 +65,8 @@ export default function RootLayout({
               <div>
                 <h4 style={{ fontSize: '16px', marginBottom: '15px' }}>작업 지역</h4>
                 <p style={{ fontSize: '14px', color: 'var(--gray-600)', lineHeight: '1.6' }}>
-                  서울 동부 및 경기 동부권<br />
-                  수도권 전역 신속 방문 상담 가능
+                  서울 주요 지역 및 경기 일부 지역<br />
+                  신속 방문 상담 가능
                 </p>
               </div>
             </div>

@@ -18,7 +18,7 @@ interface MainTemplateProps {
 }
 
 export default function MainTemplate({ 
-  region = '서울 동부·경기', 
+  region = '서울·경기', 
   service = '종합청소',
   regionObj,
   keywordObj
@@ -117,7 +117,7 @@ export default function MainTemplate({
   );
 
   const replacePlaceholders = (text: string) => {
-    const displayRegion = region === '서울 동부·경기' ? '올케어 서비스' : region;
+    const displayRegion = region === '서울·경기' ? '올케어 서비스' : region;
     const displayService = service === '종합청소' ? '청소' : service;
     return text
       .replace(/{region}/g, displayRegion)
@@ -130,7 +130,7 @@ export default function MainTemplate({
     if (customContent) {
       return replacePlaceholders(customContent.suitableDesc);
     }
-    if (keywordObj || (region !== '서울 동부·경기' && service !== '종합청소')) {
+    if (keywordObj || (region !== '서울·경기' && service !== '종합청소')) {
       return `${region} 인근 현장의 건물 유형과 작업 조건을 고려해 상담합니다.`;
     }
     return '비즈니스 공간부터 주택 및 특수 오염지까지 현장 맞춤형 솔루션을 대입합니다.';
@@ -168,7 +168,7 @@ export default function MainTemplate({
     if (keywordObj) {
       return keywordObj.description;
     }
-    if (region !== '서울 동부·경기' && service !== '종합청소') {
+    if (region !== '서울·경기' && service !== '종합청소') {
       return `${region} ${service} 의뢰에 맞추어 전문 장비와 직영 인력을 신속히 파견하며, 마감재 특성에 맞춰 디테일하게 복원합니다.`;
     }
     return '상가 매장, 상업용 빌딩, 오피스, 완공 건축물의 찌든 오염을 첨단 특수 세정 기법으로 안전하게 해결해 드립니다.';
@@ -188,7 +188,7 @@ export default function MainTemplate({
       }
       return keywordObj.h1;
     }
-    if (region !== '서울 동부·경기' && service !== '종합청소') {
+    if (region !== '서울·경기' && service !== '종합청소') {
       return (
         <>
           {region} <span className={styles.highlight}>{service}</span><br />
@@ -204,7 +204,7 @@ export default function MainTemplate({
     );
   };
 
-  // 12개 서울 동부권 및 거점 구 리스트
+  // 12개 서울 주요 지역 및 거점 구 리스트
   const targetDistricts = [
     { name: '서초구', slug: 'seocho' },
     { name: '강남구', slug: 'gangnam' },
@@ -228,7 +228,7 @@ export default function MainTemplate({
         <div className={styles.inner} style={{ position: 'relative', zIndex: 2 }}>
           <div className="animate-fade-up">
             <span className={styles.badge}>
-              서울 동부 및 경기 동부 종합청소 서비스
+              서울 주요 지역 및 경기 일부 종합청소 서비스
             </span>
             <h1 className={styles.heroTitle}>
               {getHeroTitle()}
@@ -240,7 +240,7 @@ export default function MainTemplate({
               <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>
                 {keywordObj 
                   ? `${keywordObj.regionName} ${keywordObj.serviceName} 전화 상담` 
-                  : (regionObj || region !== '서울 동부·경기' || service !== '종합청소' ? `${region} ${service} 전화 상담` : '전화 상담')
+                  : (regionObj || region !== '서울·경기' || service !== '종합청소' ? `${region} ${service} 전화 상담` : '전화 상담')
                 }
               </a>
             </div>
@@ -447,13 +447,13 @@ export default function MainTemplate({
         </div>
       </section>
 
-      {/* 5. 서울 동부권 작업 가능 지역 */}
+      {/* 5. 서울 주요 작업 가능 지역 */}
       <section className={styles.coverage}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>SERVICE AREA</span>
-            <h2 className={styles.sectionTitle}>서울 동부권 작업 가능 지역</h2>
-            <p className={styles.sectionDesc}>동서울 거점망을 중심으로 신속하고 정확한 청소 지원이 가능한 구역입니다.</p>
+            <h2 className={styles.sectionTitle}>서울 주요 작업 가능 지역</h2>
+            <p className={styles.sectionDesc}>서울 주요 지역 및 수도권 거점망을 중심으로 신속하고 정확한 청소 지원이 가능한 구역입니다.</p>
           </div>
           <div className={styles.coverageGrid}>
             {targetDistricts.map((dist, idx) => (
