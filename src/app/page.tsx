@@ -220,6 +220,11 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       // 신규 키워드 데이터베이스(keywords.ts)에 매칭된 레코드가 있는 경우 우선 적용
       if (keywordObj) {
         const path = `/?k=${encodeURIComponent(keywordObj.urlKeyword)}`;
+        const { SEO_IMAGE_MAP } = require('@/lib/seo');
+        const seoImage = SEO_IMAGE_MAP[keywordObj.serviceName];
+        const ogImage = seoImage ? seoImage.image : service.imageUrl;
+        const ogImageAlt = seoImage ? `${keywordObj.regionName} ${seoImage.altBase}` : `${keywordObj.regionName} ${keywordObj.serviceName} 전문 청소 현장`;
+
         return getBaseMetadata({
           title: keywordObj.title,
           description: keywordObj.description,
@@ -229,11 +234,43 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
           ogType: 'article',
           publishedTime: new Date().toISOString(),
           modifiedTime: new Date().toISOString(),
-          ogImage: service.imageUrl || DEFAULT_OG_IMAGE
+          ogImage: ogImage,
+          ogImageAlt: ogImageAlt,
+          ogImageWidth: 1200,
+          ogImageHeight: 630
         });
       }
 
-      return getLandingMetadata(region.districtSlug, region.subDistrictSlug, service.id);
+      // 한글 슬러그 기반 parseK 유입 시에도 썸네일 매핑 적용
+      const regionName = region.subDistrict === '전지역' ? region.district : `${region.district} ${region.subDistrict}`;
+      const parentRegion = regions.find((r) => r.districtSlug === region.districtSlug && r.subDistrictSlug === 'all');
+      const isParentIndexed = parentRegion ? parentRegion.indexStatus === 'index' : true;
+      const indexStatus: 'index' | 'noindex' = (region.indexStatus === 'index' && isParentIndexed && service.indexStatus === 'index') ? 'index' : 'noindex';
+
+      const path = `/?k=${encodeURIComponent(k)}`;
+      const { SEO_IMAGE_MAP } = require('@/lib/seo');
+      const seoImage = SEO_IMAGE_MAP[service.serviceNameKo];
+      const ogImage = seoImage ? seoImage.image : service.imageUrl;
+      const ogImageAlt = seoImage ? `${regionName} ${seoImage.altBase}` : `${regionName} ${service.serviceNameKo} 전문 청소 현장`;
+
+      const customContent = serviceContents[service.serviceNameKo];
+      const description = customContent
+        ? customContent.intro.replace(/{region}/g, regionName)
+        : `${regionName} ${service.serviceNameKo} 전문 청소 상담을 안내합니다.`;
+
+      return getBaseMetadata({
+        title: `${regionName} ${service.serviceNameKo} 전문 | 올케어서비스`,
+        description: description,
+        indexStatus: indexStatus,
+        path: path,
+        ogType: 'article',
+        publishedTime: new Date().toISOString(),
+        modifiedTime: new Date().toISOString(),
+        ogImage: ogImage,
+        ogImageAlt: ogImageAlt,
+        ogImageWidth: 1200,
+        ogImageHeight: 630
+      });
     } else {
       // k 파라미터가 존재하지만 파싱에 실패한 경우 (오타, 잘못된 유입 등)
       // 검색 엔진이 중복 페이지로 수집하지 않도록 noindex를 주입하고 고유한 제목을 부여합니다.

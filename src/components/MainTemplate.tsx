@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { services, displayServices } from '@/data/services';
-import { BRAND_NAME, CONTACT_PHONE } from '@/lib/seo';
+import { BRAND_NAME, CONTACT_PHONE, SEO_IMAGE_MAP } from '@/lib/seo';
 import { regions, Region } from '@/data/regions';
 import { KeywordRecord } from '@/data/keywords';
 import { serviceContents } from '@/data/service-contents';
@@ -169,6 +169,10 @@ export default function MainTemplate({
 
   const hookingText = HOOKING_MAP[service] || '작업 범위와 견적부터 확인하세요';
 
+  const seoImage = SEO_IMAGE_MAP[service];
+  const dynamicImageUrl = seoImage ? seoImage.image : '/images/seo-thumbnails/allcare-cleaning-main.webp';
+  const dynamicAltText = seoImage ? `${region} ${seoImage.altBase}` : `${region} ${service} 전문 청소 현장`;
+
   return (
     <div className={styles.container}>
       {/* 1. Hero Section */}
@@ -176,6 +180,18 @@ export default function MainTemplate({
         <div className={styles.heroOverlay}></div>
         <div className={styles.inner} style={{ position: 'relative', zIndex: 2 }}>
           <div className="animate-fade-up">
+            {isDynamic && (
+              <div style={{ display: 'block', maxWidth: '300px', margin: '0 auto 20px', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', border: '2px solid rgba(255,255,255,0.2)' }}>
+                <img
+                  src={dynamicImageUrl}
+                  alt={dynamicAltText}
+                  width="1200"
+                  height="630"
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                  loading="eager"
+                />
+              </div>
+            )}
             <span className={styles.badge}>
               서울 주요 지역 종합청소 서비스
             </span>
