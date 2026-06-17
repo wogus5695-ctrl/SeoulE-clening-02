@@ -171,7 +171,7 @@ export default function MainTemplate({
     if (region !== '서울·경기' && service !== '종합청소') {
       return `${region} ${service} 의뢰에 맞추어 전문 장비와 직영 인력을 신속히 파견하며, 마감재 특성에 맞춰 디테일하게 복원합니다.`;
     }
-    return '상가 매장, 상업용 빌딩, 오피스, 완공 건축물의 찌든 오염을 첨단 특수 세정 기법으로 안전하게 해결해 드립니다.';
+    return '상가, 매장, 빌딩, 사무실, 음식점, 준공 현장까지 오염 상태와 작업 조건에 맞춰 청소를 안내합니다.';
   };
 
   // H1 타이틀 설정
@@ -199,7 +199,7 @@ export default function MainTemplate({
     return (
       <>
         공간의 가치를 높이는<br />
-        <span className={styles.highlight}>종합 특수 세정</span> 올케어
+        <span className={styles.highlight}>서울 종합청소 전문</span> 올케어
       </>
     );
   };
@@ -228,7 +228,7 @@ export default function MainTemplate({
         <div className={styles.inner} style={{ position: 'relative', zIndex: 2 }}>
           <div className="animate-fade-up">
             <span className={styles.badge}>
-              서울 주요 지역 및 경기 일부 종합청소 서비스
+              서울 주요 지역 종합청소 서비스
             </span>
             <h1 className={styles.heroTitle}>
               {getHeroTitle()}
@@ -240,7 +240,7 @@ export default function MainTemplate({
               <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>
                 {keywordObj 
                   ? `${keywordObj.regionName} ${keywordObj.serviceName} 전화 상담` 
-                  : (regionObj || region !== '서울·경기' || service !== '종합청소' ? `${region} ${service} 전화 상담` : '전화 상담')
+                  : (regionObj || region !== '서울·경기' || service !== '종합청소' ? `${region} ${service} 전화 상담` : '서울 종합청소 전화 상담')
                 }
               </a>
             </div>
