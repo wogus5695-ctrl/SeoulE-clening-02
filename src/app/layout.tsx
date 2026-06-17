@@ -70,18 +70,6 @@ export default function RootLayout({
                   지역별 작업 가능 여부는 상담 시 확인해 드립니다.
                 </p>
               </div>
-              <div>
-                <h4 style={{ fontSize: '16px', marginBottom: '15px' }}>주요 서비스 지역</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px 16px', fontSize: '13.5px' }}>
-                  <li><Link href="/keyword-hub/seoul-seocho" style={{ color: 'var(--gray-600)' }}>서초구 청소</Link></li>
-                  <li><Link href="/keyword-hub/seoul-gangnam" style={{ color: 'var(--gray-600)' }}>강남구 청소</Link></li>
-                  <li><Link href="/keyword-hub/seoul-songpa" style={{ color: 'var(--gray-600)' }}>송파구 청소</Link></li>
-                  <li><Link href="/keyword-hub/seoul-gangdong" style={{ color: 'var(--gray-600)' }}>강동구 청소</Link></li>
-                  <li><Link href="/keyword-hub/seoul-gwangjin" style={{ color: 'var(--gray-600)' }}>광진구 청소</Link></li>
-                  <li><Link href="/keyword-hub/seoul-seongdong" style={{ color: 'var(--gray-600)' }}>성동구 청소</Link></li>
-                  <li style={{ gridColumn: 'span 2', marginTop: '4px' }}><Link href="/sitemap-seoul" style={{ color: 'var(--accent)', fontWeight: '800' }}>전체 지역 보기 ➔</Link></li>
-                </ul>
-              </div>
             </div>
              <div style={{ marginTop: '50px', paddingTop: '30px', borderTop: '1px solid var(--gray-200)', textAlign: 'center', fontSize: '13px', color: 'var(--gray-600)' }}>
               <p style={{ marginBottom: '5px' }}>상호명: {BUSINESS_NAME}</p>
