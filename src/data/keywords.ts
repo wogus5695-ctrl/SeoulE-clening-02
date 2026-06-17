@@ -69,7 +69,7 @@ export function generateKeywords(): KeywordRecord[] {
         indexStatus: overrideWithGu?.indexStatus !== undefined ? overrideWithGu.indexStatus : 'index',
         canonicalTarget: overrideWithGu?.canonicalTarget !== undefined ? overrideWithGu.canonicalTarget : null,
         title: `${districtWithGu} ${serv.name} 전문 | ${BRAND_NAME}`,
-        description: `${districtWithGu} ${serv.name}이 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장을 확인하고 작업 범위에 맞춰 상담을 안내합니다.`,
+        description: `${districtWithGu} ${serv.name}이 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 작업 범위와 오염 상태를 확인해 상담을 안내합니다.`,
         h1: `${districtWithGu} ${serv.name} 전문 올케어 서비스`,
         priority: 1
       });
@@ -89,7 +89,7 @@ export function generateKeywords(): KeywordRecord[] {
         indexStatus: overrideWithoutGu?.indexStatus !== undefined ? overrideWithoutGu.indexStatus : 'noindex',
         canonicalTarget: overrideWithoutGu?.canonicalTarget !== undefined ? overrideWithoutGu.canonicalTarget : `/?k=${encodeURIComponent(urlKeywordWithGu)}`,
         title: `${districtWithoutGu} ${serv.name} 전문 | ${BRAND_NAME}`,
-        description: `${districtWithoutGu} ${serv.name}이 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장을 확인하고 작업 범위에 맞춰 상담을 안내합니다.`,
+        description: `${districtWithoutGu} ${serv.name}이 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 작업 범위와 오염 상태를 확인해 상담을 안내합니다.`,
         h1: `${districtWithoutGu} ${serv.name} 전문 올케어 서비스`,
         priority: 2
       });
@@ -109,7 +109,7 @@ export function generateKeywords(): KeywordRecord[] {
           indexStatus: overrideDong?.indexStatus !== undefined ? overrideDong.indexStatus : 'index',
           canonicalTarget: overrideDong?.canonicalTarget !== undefined ? overrideDong.canonicalTarget : null,
           title: `${dong} ${serv.name} 전문 | ${BRAND_NAME}`,
-          description: `${dong} ${serv.name}이 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장을 확인하고 작업 범위에 맞춰 상담을 안내합니다.`,
+          description: `${dong} ${serv.name}이 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 작업 범위와 오염 상태를 확인해 상담을 안내합니다.`,
           h1: `${dong} ${serv.name} 전문 올케어 서비스`,
           priority: 3
         });

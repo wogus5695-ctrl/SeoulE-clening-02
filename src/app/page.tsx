@@ -270,12 +270,9 @@ export default async function Home({ searchParams }: Props) {
         finalRegionName = keywordObj.regionName;
         finalServiceName = keywordObj.serviceName;
       } else {
-        const isDistrictLevel = region.subDistrict === '전지역';
-        const shortDistrict = region.district.replace(/(구|시)$/, '');
-        const titleRegion = isDistrictLevel ? `${region.district} ${shortDistrict}` : region.subDistrict;
-        const descRegion = isDistrictLevel ? `${region.district}(${shortDistrict})` : region.subDistrict;
-        title = `${titleRegion} ${service.serviceNameKo} 전문 | ${BRAND_NAME}`;
-        description = `${descRegion} ${service.serviceNameKo}이 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장을 확인하고 작업 범위에 맞춰 상담을 안내합니다.`;
+        const regionName = region.subDistrict === '전지역' ? region.district : `${region.district} ${region.subDistrict}`;
+        title = `${regionName} ${service.serviceNameKo} 전문 | ${BRAND_NAME}`;
+        description = `${regionName} ${service.serviceNameKo}이 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 작업 범위와 오염 상태를 확인해 상담을 안내합니다.`;
       }
 
       // Naver SEO를 위한 FAQ 스키마 생성
