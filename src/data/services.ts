@@ -395,3 +395,72 @@ export const services: CleaningService[] = [
     showOnMain: false,
   }
 ];
+
+export const serviceKeywords = services;
+
+export interface DisplayService {
+  id: string;
+  name: string;
+  desc: string;
+  tags: string[];
+  image: string;
+}
+
+export const displayServices: DisplayService[] = [
+  {
+    id: 'outer-wall',
+    name: '외벽청소',
+    desc: '건물 외벽에 쌓인 먼지, 빗물 자국, 매연 오염을 현장 조건에 맞춰 정리합니다.',
+    tags: ['외벽오염', '빗물자국', '건물관리'],
+    image: '/images/services/outer-wall.jpg'
+  },
+  {
+    id: 'window',
+    name: '유리창청소',
+    desc: '유리면의 물때, 손자국, 빗물 얼룩을 확인하고 깨끗한 시야를 유지할 수 있도록 관리합니다.',
+    tags: ['유리물때', '손자국', '외부유리'],
+    image: '/images/services/window.jpg'
+  },
+  {
+    id: 'fire',
+    name: '화재현장 청소',
+    desc: '화재 후 남은 그을음, 냄새, 분진 상태를 확인하고 정리 범위에 맞춰 청소를 안내합니다.',
+    tags: ['그을음', '냄새정리', '분진청소'],
+    image: '/images/services/fire.jpg'
+  },
+  {
+    id: 'floor-wax',
+    name: '바닥청소 및 왁스코팅',
+    desc: '오염이 누적된 바닥을 정리하고, 공간 상태에 맞춰 왁스코팅 작업을 진행합니다.',
+    tags: ['바닥오염', '광택관리', '왁스코팅'],
+    image: '/images/services/floor-wax.jpg'
+  },
+  {
+    id: 'awning-sign',
+    name: '어닝/간판청소',
+    desc: '매장 전면의 어닝, 간판에 쌓인 먼지와 빗물 자국을 정리해 외관을 관리합니다.',
+    tags: ['매장외관', '어닝오염', '간판청소'],
+    image: '/images/services/awning-sign.jpg'
+  },
+  {
+    id: 'interior-completion',
+    name: '준공/인테리어 후 청소',
+    desc: '공사 후 남은 분진, 접착제 자국, 잔여물을 확인하고 입주 전 상태에 맞춰 정리합니다.',
+    tags: ['공사분진', '입주전청소', '잔여물정리'],
+    image: '/images/services/interior-completion.jpg'
+  },
+  {
+    id: 'hood',
+    name: '후드청소',
+    desc: '주방 후드와 배기 주변에 쌓인 기름때, 찌든 오염을 확인하고 위생적으로 관리합니다.',
+    tags: ['기름때', '주방후드', '위생관리'],
+    image: '/images/services/hood.jpg'
+  },
+  {
+    id: 'special',
+    name: '쓰레기집/특수 청소',
+    desc: '생활폐기물, 악취, 방치된 공간처럼 일반 청소가 어려운 현장을 확인하고 정리 방향을 안내합니다.',
+    tags: ['생활폐기물', '악취관리', '특수청소'],
+    image: '/images/services/special-cleaning.jpg'
+  }
+];
