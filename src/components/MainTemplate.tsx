@@ -177,21 +177,17 @@ export default function MainTemplate({
     <div className={styles.container}>
       {/* 1. Hero Section */}
       <section className={styles.hero} role="img" aria-label="깨끗하게 청소 및 정돈된 상업 공간 매장 배경 이미지">
+        <img
+          src={dynamicImageUrl}
+          alt={dynamicAltText}
+          width="1200"
+          height="630"
+          className={styles.heroBgImage}
+          loading="eager"
+        />
         <div className={styles.heroOverlay}></div>
-        <div className={styles.inner} style={{ position: 'relative', zIndex: 2 }}>
+        <div className={styles.inner} style={{ position: 'relative', zIndex: 3 }}>
           <div className="animate-fade-up">
-            {isDynamic && (
-              <div style={{ display: 'block', maxWidth: '300px', margin: '0 auto 20px', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', border: '2px solid rgba(255,255,255,0.2)' }}>
-                <img
-                  src={dynamicImageUrl}
-                  alt={dynamicAltText}
-                  width="1200"
-                  height="630"
-                  style={{ width: '100%', height: 'auto', display: 'block' }}
-                  loading="eager"
-                />
-              </div>
-            )}
             <span className={styles.badge}>
               서울 주요 지역 종합청소 서비스
             </span>
