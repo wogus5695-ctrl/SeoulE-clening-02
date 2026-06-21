@@ -50,7 +50,7 @@ export default function FooterDescription() {
   if (!currentRegion && !currentService) {
     return (
       <p style={{ lineHeight: '1.6', fontSize: '14px', color: 'var(--gray-600)' }}>
-        올케어 서비스는 서울 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장 등 다양한 공간의 청소 상담을 안내합니다.
+        올케어서비스는 서울 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장 등 다양한 공간의 청소 상담을 안내합니다.
       </p>
     );
   }

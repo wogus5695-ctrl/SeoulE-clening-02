@@ -8,10 +8,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <Link href="/" className={styles.logo} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <img src="/logo.png" alt="올케어 서비스 로고" style={{ height: '32px', width: 'auto', objectFit: 'contain' }} />
-          올케어<span>서비스</span>
-        </Link>
+        <Link href="/" className={styles.logo} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><img src="/logo.png" alt="올케어서비스 로고" style={{ height: '32px', width: 'auto', objectFit: 'contain' }} />올케어<span>서비스</span></Link>
         <nav className={styles.nav}>
           <ul className={styles.menu}>
             {services.slice(0, 5).map(service => (

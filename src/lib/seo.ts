@@ -14,8 +14,8 @@ export const INDEXED_DONG_COMBINATIONS = [
 ];
 
 // --- 브랜드 환경 설정 (추후 관리자 입력 가능하도록 변수 처리) ---
-export const BRAND_NAME = '올케어 서비스';
-export const BUSINESS_NAME = '올케어 서비스';
+export const BRAND_NAME = '올케어서비스';
+export const BUSINESS_NAME = '올케어서비스';
 export const DOMAIN = 'https://www.allcareseoul.co.kr';
 export const CONTACT_PHONE = '010-4667-5568'; // 전화번호
 export const CONTACT_SMS = 'sms:010-4667-5568'; // 문자 상담 링크
@@ -240,7 +240,7 @@ export function getBaseMetadata({
 export function getMainMetadata(): Metadata {
   return getBaseMetadata({
     title: `서울 종합청소 전문 | ${BRAND_NAME}`,
-    description: `서울 상가, 빌딩, 사무실, 음식점, 준공 현장 청소가 필요할 때 올케어 서비스가 오염 상태와 작업 범위에 맞춰 상담을 안내합니다.`,
+    description: `서울 상가, 빌딩, 사무실, 음식점, 준공 현장 청소가 필요할 때 올케어서비스가 오염 상태와 작업 범위에 맞춰 상담을 안내합니다.`,
     path: '',
     indexStatus: 'index',
   });
@@ -349,8 +349,8 @@ export function getJsonLd() {
     '@type': 'CleaningService',
     'name': BRAND_NAME,
     'legalName': BUSINESS_NAME,
-    'alternateName': '올케어 서비스 청소전문',
-    'description': '서울 상가, 빌딩, 사무실, 음식점, 준공 현장 청소가 필요할 때 올케어 서비스가 오염 상태와 작업 범위에 맞춰 상담을 안내합니다.',
+    'alternateName': '올케어서비스 청소전문',
+    'description': '서울 상가, 빌딩, 사무실, 음식점, 준공 현장 청소가 필요할 때 올케어서비스가 오염 상태와 작업 범위에 맞춰 상담을 안내합니다.',
     'url': DOMAIN,
     'logo': `${DOMAIN}/logo.png`,
     'image': DEFAULT_OG_IMAGE,
