@@ -307,12 +307,12 @@ export default function MainTemplate({
               <div className={styles.timelineLine}></div>
               <div className={styles.processSteps}>
                 {[
-                  { step: '01', title: '현장 정보 확인', desc: '대표 번호 전화를 통해 문의하시는 공간 주소와 기본 요건 등 기본 정보를 신속하게 파악합니다.' },
-                  { step: '02', title: '오염 상태 확인', desc: '유선 상담이나 주소 조회를 통해 오염 종류, 작업 높이, 현장 면적 등 세부 상태를 파악합니다.' },
-                  { step: '03', title: '작업 범위 안내', desc: '작업이 필요한 부위와 제외할 부위를 고객님과 협의 후, 고정식 견적 금액을 제안합니다.' },
-                  { step: '04', title: '일정 조율', desc: '영업 시간이나 이사 계획에 맞춰 주간, 야간 심야, 주말 일정 중 최적의 일정을 결정합니다.' },
-                  { step: '05', title: '청소 진행', desc: '현장 조건에 맞는 작업 인력이 자재별 pH 세제와 기계 장비를 투입하여 꼼꼼히 청소를 실시합니다.' },
-                  { step: '06', title: '마감 확인', desc: '작업 후 마감 상태 확인 및 1차 검수 후, 고객님과 최종 대면 검수를 통해 미흡 부위를 즉시 재수정하고 마감합니다.' }
+                  { step: '01', title: '상담 접수', desc: '사진·위치 확인' },
+                  { step: '02', title: '상태 확인', desc: '오염도·면적 확인' },
+                  { step: '03', title: '견적 안내', desc: '범위·비용 안내' },
+                  { step: '04', title: '일정 조율', desc: '작업 시간 조율' },
+                  { step: '05', title: '청소 진행', desc: '현장 맞춤 작업' },
+                  { step: '06', title: '마감 확인', desc: '작업 후 확인' }
                 ].map((item, idx) => (
                   <div key={idx} className={styles.processStepCard}>
                     <div className={styles.stepBadge}>{item.step}</div>
