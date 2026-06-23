@@ -164,6 +164,9 @@ export function getBaseMetadata({
   ogImageHeight = 630
 }: SeoOptions): Metadata {
   let canonicalUrl = `${DOMAIN}${path}`;
+  if (path === '' || path === '/') {
+    canonicalUrl = `${DOMAIN}/`;
+  }
   let robots = indexStatus === 'index' ? 'index, follow' : 'noindex, follow';
 
   if (indexStatus === 'noindex') {
