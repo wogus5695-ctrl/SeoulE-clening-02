@@ -7,7 +7,7 @@ export async function GET() {
   const urls: any[] = [];
 
   // 1. 메인 및 사이트맵 페이지
-  urls.push({ url: DOMAIN, priority: 1.0, changeFrequency: 'daily' });
+  urls.push({ url: `${DOMAIN}/`, priority: 1.0, changeFrequency: 'daily' });
   urls.push({ url: `${DOMAIN}/sitemap-seoul`, priority: 0.9, changeFrequency: 'weekly' });
 
   // 2. indexStatus가 index이고 canonicalTarget이 지정되지 않은 (중복 제거) 키워드 URL (/?k=...)

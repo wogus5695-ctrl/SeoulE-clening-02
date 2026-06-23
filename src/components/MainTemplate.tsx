@@ -29,7 +29,30 @@ export default function MainTemplate({
   const [portfolioIndex, setPortfolioIndex] = useState(0);
   const portfolioVisibleCount = 1; // Always show 1 card per slide for larger images
   const [portfolioPaused, setPortfolioPaused] = useState(false);
-  const totalPortfolioCards = 6;
+
+  const portfolioItems = [
+    {
+      title: '마루 왁스코팅',
+      before: '/images/portfolio/wax-before.jpg',
+      after: '/images/portfolio/wax-after.jpg'
+    },
+    {
+      title: '주방후드청소',
+      before: '/images/portfolio/hood-before.jpg',
+      after: '/images/portfolio/hood-after.jpg'
+    },
+    {
+      title: '준공청소',
+      before: '/images/portfolio/construction-before.jpg',
+      after: '/images/portfolio/construction-after.jpg'
+    },
+    {
+      title: '화재청소',
+      before: '/images/portfolio/fire-before.jpg',
+      after: '/images/portfolio/fire-after.jpg'
+    }
+  ];
+  const totalPortfolioCards = portfolioItems.length;
 
   useEffect(() => {
     if (portfolioPaused) return;
@@ -360,38 +383,7 @@ export default function MainTemplate({
                 transform: `translateX(calc(-${portfolioIndex} * (100% + var(--gap)) / var(--visible-count)))`
               }}
             >
-              {[
-                {
-                  title: '마루 왁스코팅',
-                  before: '/images/portfolio/wax-before.jpg',
-                  after: '/images/portfolio/wax-after.jpg'
-                },
-                {
-                  title: '수영장청소',
-                  before: '/images/portfolio/pool-before.jpg',
-                  after: '/images/portfolio/pool-after.jpg'
-                },
-                {
-                  title: '주방후드청소',
-                  before: '/images/portfolio/hood-before.jpg',
-                  after: '/images/portfolio/hood-after.jpg'
-                },
-                {
-                  title: '주차장청소',
-                  before: '/images/portfolio/parking-before.jpg',
-                  after: '/images/portfolio/parking-after.jpg'
-                },
-                {
-                  title: '준공청소',
-                  before: '/images/portfolio/construction-before.jpg',
-                  after: '/images/portfolio/construction-after.jpg'
-                },
-                {
-                  title: '화재청소',
-                  before: '/images/portfolio/fire-before.jpg',
-                  after: '/images/portfolio/fire-after.jpg'
-                }
-              ].map((item, idx) => (
+              {portfolioItems.map((item, idx) => (
                 <div key={idx} className={styles.portfolioCard}>
                   <h3 className={styles.portfolioCardTitle}>
                     <span className={styles.portfolioCardBar}></span>
@@ -399,11 +391,11 @@ export default function MainTemplate({
                   </h3>
                   <div className={styles.portfolioImages}>
                     <div className={styles.portfolioImgWrapper}>
-                      <img src={item.before} alt={`${item.title} 작업 전`} />
+                      <img src={item.before} alt={`${item.title} 작업 전 상태`} />
                       <span className={`${styles.portfolioBadge} ${styles.before}`}>BEFORE</span>
                     </div>
                     <div className={styles.portfolioImgWrapper}>
-                      <img src={item.after} alt={`${item.title} 작업 후`} />
+                      <img src={item.after} alt={`${item.title} 작업 후 상태`} />
                       <span className={`${styles.portfolioBadge} ${styles.after}`}>AFTER</span>
                     </div>
                   </div>
