@@ -119,8 +119,7 @@ export default function MainTemplate({
       const regionName = keywordObj.regionName;
       return (
         <>
-          {regionName} <span className={styles.highlight}>{serviceName}</span>
-          <span className={styles.pcOnly}> 전문</span>
+          {regionName} <span className={styles.highlight}>{serviceName}</span> 전문
           <br />
           올케어서비스
         </>
@@ -129,8 +128,7 @@ export default function MainTemplate({
     if (region !== '서울·경기' && service !== '종합청소') {
       return (
         <>
-          {region} <span className={styles.highlight}>{service}</span>
-          <span className={styles.pcOnly}> 전문</span>
+          {region} <span className={styles.highlight}>{service}</span> 전문
           <br />
           올케어서비스
         </>

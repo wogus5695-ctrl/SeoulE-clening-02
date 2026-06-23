@@ -45,9 +45,16 @@ export const KEYWORD_SEO_OVERRIDES: {
   }
 } = {};
 
-// 한글 종성(받침)에 따른 주격 조사 판별 함수
-function getSubjectParticle(word: string): string {
-  const lastChar = word.charCodeAt(word.length - 1);
+// 한글 종성(받침)에 따른 주격 조사 판별 함수 (공용)
+export function getSubjectParticle(word: string): string {
+  const cleanWord = word.trim();
+  if (cleanWord.endsWith('청소')) {
+    return '가';
+  }
+  const lastChar = cleanWord.charCodeAt(cleanWord.length - 1);
+  if (lastChar < 0xac00 || lastChar > 0xd7a3) {
+    return '가'; // 한글이 아닌 경우 기본값 '가'
+  }
   const jong = (lastChar - 0xac00) % 28;
   return jong === 0 ? '가' : '이';
 }
@@ -61,6 +68,20 @@ export function generateKeywords(): KeywordRecord[] {
       const josa = getSubjectParticle(serv.name);
       const customContent = serviceContents[serv.name];
 
+      // 안전한 fallback 설명문 사전 계산
+      let fallbackDescBase = `${serv.name}${josa} 필요한 현장의 오염 상태와 작업 범위를 확인해 상세 상담을 안내합니다.`;
+      if (serv.name === '쓰레기집 청소') {
+        fallbackDescBase = '생활폐기물 수거 및 방치된 쓰레기집 청소 가능 여부와 작업 범위를 확인해 비대면 상담을 안내합니다.';
+      } else if (serv.name === '후드청소') {
+        fallbackDescBase = '음식점 주방 후드 기름때와 배기 덕트 주변의 오염 상태를 확인해 정밀 청소 상담을 안내합니다.';
+      } else if (serv.name === '특수청소') {
+        fallbackDescBase = '고독사 현장 정리, 유품 수거 및 일반 청소로 해결이 어려운 특수 오염 상태를 확인해 살균 소독 상담을 안내합니다.';
+      } else if (serv.name === '준공청소') {
+        fallbackDescBase = '신축 건물 입주를 위해 공사 분진, 시멘트 가루, 보양 필름 정리 등의 준공 청소 범위와 일정을 확인해 상담을 안내합니다.';
+      } else if (serv.name === '인테리어 후 청소') {
+        fallbackDescBase = '공사 후 발생한 석고 분진, 본드/실리콘 잔여 자국 제거 등 입주 전 실내 청소 범위와 일정을 확인해 상담을 안내합니다.';
+      }
+
       // 1. 구 포함 버전 (예: 강남구 외벽청소) - index
       const districtWithGu = reg.fullName;
       const keywordWithGu = `${districtWithGu} ${serv.name}`;
@@ -69,7 +90,7 @@ export function generateKeywords(): KeywordRecord[] {
       
       const fullDesc = customContent
         ? customContent.intro.replace(/{region}/g, districtWithGu)
-        : `${districtWithGu} ${serv.name}${josa} 필요한 상가, 매장, 음식점, 사무실 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
+        : `${districtWithGu} ${fallbackDescBase}`;
 
       records.push({
         keyword: keywordWithGu,
@@ -93,7 +114,7 @@ export function generateKeywords(): KeywordRecord[] {
 
       const shortDesc = customContent
         ? customContent.intro.replace(/{region}/g, districtWithoutGu)
-        : `${districtWithoutGu} ${serv.name}${josa} 필요한 상가, 매장, 음식점, 사무실 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
+        : `${districtWithoutGu} ${fallbackDescBase}`;
 
       records.push({
         keyword: keywordWithoutGu,
@@ -117,7 +138,7 @@ export function generateKeywords(): KeywordRecord[] {
 
         const dongDesc = customContent
           ? customContent.intro.replace(/{region}/g, dong)
-          : `${dong} ${serv.name}${josa} 필요한 상가, 매장, 음식점, 사무실 현장의 오염 상태와 작업 범위를 확인해 상담을 안내합니다.`;
+          : `${dong} ${fallbackDescBase}`;
 
         records.push({
           keyword: keywordDong,

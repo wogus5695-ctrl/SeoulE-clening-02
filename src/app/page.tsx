@@ -6,7 +6,7 @@ import { services } from '@/data/services';
 import { regions } from '@/data/regions';
 import { serviceContents } from '@/data/service-contents';
 import { getBaseMetadata, getLandingMetadata, getMainMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME, DEFAULT_OG_IMAGE } from '@/lib/seo';
-import { keywords, KeywordRecord } from '@/data/keywords';
+import { keywords, KeywordRecord, getSubjectParticle } from '@/data/keywords';
 
 interface Props {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -311,7 +311,13 @@ export default async function Home({ searchParams }: Props) {
       } else {
         const regionName = region.subDistrict === '전지역' ? region.district : `${region.district} ${region.subDistrict}`;
         title = `${regionName} ${service.serviceNameKo} 전문 | ${BRAND_NAME}`;
-        description = `${regionName} ${service.serviceNameKo}${service.serviceNameKo.endsWith('코팅') ? '이' : '가'} 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 작업 범위와 오염 상태를 확인해 상담을 안내합니다.`;
+        const customContent = serviceContents[service.serviceNameKo];
+        if (customContent) {
+          description = customContent.intro.replace(/{region}/g, regionName);
+        } else {
+          const josa = getSubjectParticle(service.serviceNameKo);
+          description = `${regionName} ${service.serviceNameKo}${josa} 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 작업 범위와 오염 상태를 확인해 상담을 안내합니다.`;
+        }
       }
 
       // Naver SEO를 위한 FAQ 스키마 생성
