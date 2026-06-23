@@ -59,15 +59,15 @@ export const SEO_IMAGE_MAP: {
     altBase: '바닥왁스코팅 바닥 광택 관리 현장'
   },
   '어닝청소': {
-    image: '/images/seo-thumbnails/awning-signboard-cleaning.webp',
+    image: '/images/seo-thumbnails/awning-signboard-cleaning.jpg',
     altBase: '어닝청소 매장 어닝 오염 정리 현장'
   },
   '어닝/간판청소': {
-    image: '/images/seo-thumbnails/awning-signboard-cleaning.webp',
+    image: '/images/seo-thumbnails/awning-signboard-cleaning.jpg',
     altBase: '어닝청소 매장 어닝 오염 정리 현장'
   },
   '간판청소': {
-    image: '/images/seo-thumbnails/awning-signboard-cleaning.webp',
+    image: '/images/seo-thumbnails/awning-signboard-cleaning.jpg',
     altBase: '간판청소 매장 간판 오염 정리 현장'
   },
   '인테리어 후 청소': {
@@ -126,7 +126,7 @@ export const VALID_OG_IMAGES = [
   '/images/seo-thumbnails/window-cleaning.webp',
   '/images/seo-thumbnails/fire-cleaning.webp',
   '/images/seo-thumbnails/floor-wax-coating.webp',
-  '/images/seo-thumbnails/awning-signboard-cleaning.webp',
+  '/images/seo-thumbnails/awning-signboard-cleaning.jpg',
   '/images/seo-thumbnails/construction-cleaning.webp',
   '/images/seo-thumbnails/hood-cleaning.webp',
   '/images/seo-thumbnails/special-cleaning.webp',
