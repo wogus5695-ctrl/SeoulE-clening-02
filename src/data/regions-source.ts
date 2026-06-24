@@ -159,5 +159,25 @@ export const sourceRegions: SourceRegion[] = [
     dongs: ['다산동', '별내동'],
     localDescription: '다수의 계획 신도시가 조성되어 쾌적하고 안전한 위생 관리가 중요한 거대 도시입니다.',
     buildingCharacteristics: '다산/별내 신축 빌딩 상권, 별내 카페거리, 남양주 행정타운, 지식산업센터'
+  },
+  {
+    name: '분당',
+    fullName: '분당구',
+    slug: 'bundang',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['판교동'],
+    localDescription: '성남 분당구 판교동 주변은 IT 벤처 허브와 주거 단지가 공존하는 곳입니다.',
+    buildingCharacteristics: 'IT 벤처 빌딩, 아파트 상가, 오피스 빌딩'
+  },
+  {
+    name: '수정',
+    fullName: '수정구',
+    slug: 'sujeong',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['신흥동'],
+    localDescription: '성남 수정구 신흥동 주변은 밀집 주택가와 리모델링 상권이 발달해 있습니다.',
+    buildingCharacteristics: '상가 주택, 로드샵 매장, 아파트 상가'
   }
 ];
