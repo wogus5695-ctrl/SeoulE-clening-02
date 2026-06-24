@@ -179,5 +179,25 @@ export const sourceRegions: SourceRegion[] = [
     dongs: ['신흥동'],
     localDescription: '성남 수정구 신흥동 주변은 밀집 주택가와 리모델링 상권이 발달해 있습니다.',
     buildingCharacteristics: '상가 주택, 로드샵 매장, 아파트 상가'
+  },
+  {
+    name: '영통',
+    fullName: '영통구',
+    slug: 'yeongtong',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['영통동', '광교동'],
+    localDescription: '수원 영통구 영통동과 광교동 주변은 첨단 테크노밸리와 대단지 상권이 복합된 중추 지역입니다.',
+    buildingCharacteristics: '지식산업센터, 프랜차이즈 상가, 오피스 빌딩, 대학가 상권'
+  },
+  {
+    name: '단원',
+    fullName: '단원구',
+    slug: 'danwon',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['중앙동'],
+    localDescription: '안산 단원구 중앙동 주변은 유동인구가 집중된 최대 상권이자 오피스 밀집 지역입니다.',
+    buildingCharacteristics: '대형 복합 상가, 유흥/외식 주방 후드, 빌딩 오피스'
   }
 ];
