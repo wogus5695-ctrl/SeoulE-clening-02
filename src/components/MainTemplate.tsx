@@ -316,6 +316,74 @@ export default function MainTemplate({
         </section>
       )}
 
+      {/* 3-2. 청소 범위 설정 안내 섹션 (벤다이어그램 / 단계형 카드) */}
+      <section className={styles.rangeSection}>
+        <div className={styles.inner}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.subTitle}>CLEANING SCOPE</span>
+            <h2 className={styles.sectionTitle}>청소 범위는 현장 상태를 보고 정합니다</h2>
+            <p className={styles.sectionDesc}>
+              공간 구조, 오염 상태, 필요한 작업 종류를 확인한 뒤 무리한 작업보다 필요한 범위부터 안내합니다.
+            </p>
+          </div>
+
+          {/* PC용: 벤다이어그램 인포그래픽 */}
+          <div className={styles.pcDiagramWrapper}>
+            <div className={styles.diagramContainer}>
+              <div className={`${styles.circle} ${styles.circle1}`}>
+                <h3>현장 상태</h3>
+                <p>면적 · 구조 · 접근성</p>
+              </div>
+              <div className={`${styles.circle} ${styles.circle2}`}>
+                <h3>오염 정도</h3>
+                <p>먼지 · 기름때 · 분진 · 생활오염</p>
+              </div>
+              <div className={`${styles.circle} ${styles.circle3}`}>
+                <h3>작업 종류</h3>
+                <p>외벽 · 유리창 · 바닥 · 준공 · 후드 · 특수청소</p>
+              </div>
+              <div className={styles.intersection}>
+                맞춤 작업<br />범위 안내
+              </div>
+            </div>
+            <p className={styles.diagramFooterDesc}>
+              💡 전화 상담 시 지역 and 필요한 청소 종류만 알려주셔도 작업 가능 여부부터 확인해드립니다.
+            </p>
+          </div>
+
+          {/* 모바일용: 단계형 미니 카드 */}
+          <div className={styles.mobileStepsWrapper}>
+            <div className={styles.mobileSteps}>
+              <div className={styles.mobileStepCard}>
+                <span className={styles.stepNum}>1</span>
+                <div className={styles.stepInfo}>
+                  <h3>현장 상태 확인</h3>
+                  <p>면적, 구조, 접근성을 먼저 확인합니다.</p>
+                </div>
+              </div>
+              <div className={styles.mobileStepCard}>
+                <span className={styles.stepNum}>2</span>
+                <div className={styles.stepInfo}>
+                  <h3>오염 정도 확인</h3>
+                  <p>먼지, 기름때, 분진, 생활오염 상태를 봅니다.</p>
+                </div>
+              </div>
+              <div className={styles.mobileStepCard}>
+                <span className={styles.stepNum}>3</span>
+                <div className={styles.stepInfo}>
+                  <h3>작업 종류 확인</h3>
+                  <p>필요한 청소 종류와 작업 범위를 구분합니다.</p>
+                </div>
+              </div>
+              <div className={styles.mobileResultCard}>
+                <h3>✔ 맞춤 작업 범위 안내</h3>
+                <p>지역과 필요한 청소 종류만 알려주시면 작업 가능 여부부터 확인합니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 4. 올케어 서비스의 진행 방식 */}
       <section className={styles.process} role="img" aria-label="유리창 및 실내 청소 작업 도구가 준비된 정돈된 매장 배경 이미지">
         <div className={styles.processOverlay}></div>

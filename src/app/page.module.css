@@ -879,6 +879,90 @@
     width: 100%;
     text-align: center;
   }
+
+  /* Range Section Mobile */
+  .rangeSection {
+    padding: 60px 0;
+  }
+  .pcDiagramWrapper {
+    display: none;
+  }
+  .mobileStepsWrapper {
+    display: block;
+    margin-top: 30px;
+  }
+  .mobileSteps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .mobileStepCard {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    transition: all 0.2s ease;
+  }
+  .mobileStepCard:active {
+    border-color: var(--accent);
+    background: white;
+  }
+  .stepNum {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .stepInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stepInfo h3 {
+    font-size: 14.5px;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 0;
+  }
+  .stepInfo p {
+    font-size: 12.5px;
+    color: var(--gray-600);
+    margin: 0;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+  .mobileResultCard {
+    background: var(--primary);
+    color: white;
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    text-align: center;
+    margin-top: 4px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+  }
+  .mobileResultCard h3 {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 4px;
+    color: white;
+  }
+  .mobileResultCard p {
+    font-size: 12.5px;
+    color: var(--gray-300);
+    margin: 0;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
 }
 
 /* Hero Tip Box */
@@ -1264,4 +1348,129 @@
   .pcOnly {
     display: none;
   }
+}
+
+/* 3-2. Cleaning Range Section */
+.rangeSection {
+  padding: 100px 0;
+  background-color: white;
+}
+
+.pcDiagramWrapper {
+  display: block;
+  margin-top: 50px;
+}
+
+.diagramContainer {
+  position: relative;
+  width: 500px;
+  height: 440px;
+  margin: 0 auto;
+}
+
+.circle {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 24px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(15, 118, 110, 0.1);
+  cursor: pointer;
+}
+
+.circle h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.circle p {
+  font-size: 13.5px;
+  line-height: 1.5;
+  opacity: 0.95;
+  word-break: keep-all;
+}
+
+.circle1 {
+  top: 10px;
+  left: 125px;
+  background: rgba(15, 118, 110, 0.85); /* Teal 700 */
+}
+
+.circle1:hover {
+  transform: translateY(-5px) scale(1.03);
+  background: rgba(15, 118, 110, 0.95);
+  z-index: 4;
+}
+
+.circle2 {
+  bottom: 20px;
+  left: 40px;
+  background: rgba(8, 145, 178, 0.85); /* Cyan 600 */
+}
+
+.circle2:hover {
+  transform: translateY(-5px) scale(1.03);
+  background: rgba(8, 145, 178, 0.95);
+  z-index: 4;
+}
+
+.circle3 {
+  bottom: 20px;
+  right: 40px;
+  background: rgba(16, 185, 129, 0.85); /* Emerald 500 */
+}
+
+.circle3:hover {
+  transform: translateY(-5px) scale(1.03);
+  background: rgba(16, 185, 129, 0.95);
+  z-index: 4;
+}
+
+.intersection {
+  position: absolute;
+  top: 177px;
+  left: 185px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: var(--primary); /* #0f172a */
+  border: 3px solid var(--accent); /* #10b981 */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 800;
+  font-size: 14.5px;
+  line-height: 1.4;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+  z-index: 10;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.intersection:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.55);
+}
+
+.diagramFooterDesc {
+  text-align: center;
+  margin-top: 48px;
+  font-size: 14.5px;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.mobileStepsWrapper {
+  display: none;
 }
