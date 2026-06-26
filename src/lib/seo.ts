@@ -25,7 +25,7 @@ export const BUSINESS_NUMBER = '405-15-02677'; // 사업자 등록 번호
 export const BUSINESS_OWNER = '김재현'; // 대표자명
 export const DEFAULT_OG_IMAGE = `/images/seo-thumbnails/allcare-cleaning-main.webp`;
 export const NAVER_VERIFICATION = 'f89acb1b81e4f71333fd80b4a090c53cde40ab89'; // 네이버 서치어드바이저 연동 코드
-export const GOOGLE_VERIFICATION = 'Ii7CJaIsKz33EVUVJhJfnbT6cv7MN_4Nda52eMQOv7s'; // 구글 서치 콘솔 연동 코드
+export const GOOGLE_VERIFICATION = 'blHhDPGG_HSm0Di8-FnxZzNBgTIYz9uT_oO4F_SdmRs'; // 구글 서치 콘솔 연동 코드
 
 // 작업명별 SEO 썸네일 이미지 및 altBase 정보 정의
 export const SEO_IMAGE_MAP: {
