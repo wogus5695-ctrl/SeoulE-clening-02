@@ -885,11 +885,24 @@
     padding: 60px 0;
   }
   .pcDiagramWrapper {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow: visible;
+  }
+  .diagramContainer {
+    transform: scale(0.65);
+    transform-origin: top center;
+    margin-bottom: -150px; /* Adjust spacing after scale */
+  }
+  .diagramFooterDesc {
+    font-size: 13px;
+    padding: 0 16px;
+    margin-top: 10px;
   }
   .mobileStepsWrapper {
-    display: block;
-    margin-top: 30px;
+    display: none;
   }
   .mobileSteps {
     display: flex;
