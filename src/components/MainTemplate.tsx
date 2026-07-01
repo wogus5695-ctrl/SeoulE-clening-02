@@ -330,27 +330,32 @@ export default function MainTemplate({
           {/* PC용: 벤다이어그램 인포그래픽 */}
           <div className={styles.pcDiagramWrapper}>
             <div className={styles.diagramContainer}>
-              {/* Circle backgrounds */}
-              <div className={`${styles.circle} ${styles.circle1}`}></div>
-              <div className={`${styles.circle} ${styles.circle2}`}></div>
-              <div className={`${styles.circle} ${styles.circle3}`}></div>
-              
-              {/* Circle text labels */}
-              <div className={`${styles.circleText} ${styles.circleText1}`}>
-                <h3>현장 상태</h3>
-                <p>면적 · 구조 · 접근성</p>
+              {/* Circle 1 (Top) */}
+              <div className={`${styles.circle} ${styles.circle1}`}>
+                <div className={styles.circleText}>
+                  <h3>현장 상태</h3>
+                  <p>면적 · 구조 · 접근성</p>
+                </div>
               </div>
-              <div className={`${styles.circleText} ${styles.circleText2}`}>
-                <h3>오염 상태</h3>
-                <p>먼지 · 기름때 · 생활오염</p>
+
+              {/* Circle 2 (Bottom Left) */}
+              <div className={`${styles.circle} ${styles.circle2}`}>
+                <div className={styles.circleText}>
+                  <h3>오염 상태</h3>
+                  <p>먼지 · 기름때 · 생활오염</p>
+                </div>
               </div>
-              <div className={`${styles.circleText} ${styles.circleText3}`}>
-                <h3>작업 종류</h3>
-                <p>
-                  외벽 · 유리창 · 바닥 · 준공
-                  <br />
-                  후드 · 특수청소
-                </p>
+
+              {/* Circle 3 (Bottom Right) */}
+              <div className={`${styles.circle} ${styles.circle3}`}>
+                <div className={styles.circleText}>
+                  <h3>작업 종류</h3>
+                  <p>
+                    외벽 · 유리창 · 바닥 · 준공
+                    <br />
+                    후드 · 특수청소
+                  </p>
+                </div>
               </div>
               
               {/* Center intersection circle */}
