@@ -330,18 +330,30 @@ export default function MainTemplate({
           {/* PC용: 벤다이어그램 인포그래픽 */}
           <div className={styles.pcDiagramWrapper}>
             <div className={styles.diagramContainer}>
-              <div className={`${styles.circle} ${styles.circle1}`}>
+              {/* Circle backgrounds */}
+              <div className={`${styles.circle} ${styles.circle1}`}></div>
+              <div className={`${styles.circle} ${styles.circle2}`}></div>
+              <div className={`${styles.circle} ${styles.circle3}`}></div>
+              
+              {/* Circle text labels */}
+              <div className={`${styles.circleText} ${styles.circleText1}`}>
                 <h3>현장 상태</h3>
                 <p>면적 · 구조 · 접근성</p>
               </div>
-              <div className={`${styles.circle} ${styles.circle2}`}>
-                <h3>오염 정도</h3>
-                <p>먼지 · 기름때 · 분진 · 생활오염</p>
+              <div className={`${styles.circleText} ${styles.circleText2}`}>
+                <h3>오염 상태</h3>
+                <p>먼지 · 기름때 · 생활오염</p>
               </div>
-              <div className={`${styles.circle} ${styles.circle3}`}>
+              <div className={`${styles.circleText} ${styles.circleText3}`}>
                 <h3>작업 종류</h3>
-                <p>외벽 · 유리창 · 바닥 · 준공 · 후드 · 특수청소</p>
+                <p>
+                  외벽 · 유리창 · 바닥 · 준공
+                  <br />
+                  후드 · 특수청소
+                </p>
               </div>
+              
+              {/* Center intersection circle */}
               <div className={styles.intersection}>
                 맞춤 작업<br />범위 안내
               </div>
@@ -351,35 +363,34 @@ export default function MainTemplate({
             </p>
           </div>
 
-          {/* 모바일용: 단계형 미니 카드 */}
+          {/* 모바일용: 세로 카드형 레이아웃 */}
           <div className={styles.mobileStepsWrapper}>
             <div className={styles.mobileSteps}>
               <div className={styles.mobileStepCard}>
-                <span className={styles.stepNum}>1</span>
-                <div className={styles.stepInfo}>
-                  <h3>현장 상태 확인</h3>
-                  <p>면적, 구조, 접근성을 먼저 확인합니다.</p>
+                <div className={styles.mobileStepInfo}>
+                  <h3>현장 상태</h3>
+                  <p>면적 · 구조 · 접근성</p>
                 </div>
               </div>
               <div className={styles.mobileStepCard}>
-                <span className={styles.stepNum}>2</span>
-                <div className={styles.stepInfo}>
-                  <h3>오염 정도 확인</h3>
-                  <p>먼지, 기름때, 분진, 생활오염 상태를 봅니다.</p>
+                <div className={styles.mobileStepInfo}>
+                  <h3>오염 상태</h3>
+                  <p>먼지 · 기름때 · 생활오염</p>
                 </div>
               </div>
               <div className={styles.mobileStepCard}>
-                <span className={styles.stepNum}>3</span>
-                <div className={styles.stepInfo}>
-                  <h3>작업 종류 확인</h3>
-                  <p>필요한 청소 종류와 작업 범위를 구분합니다.</p>
+                <div className={styles.mobileStepInfo}>
+                  <h3>작업 종류</h3>
+                  <p>외벽 · 유리창 · 바닥 · 준공 · 후드 · 특수청소</p>
                 </div>
               </div>
               <div className={styles.mobileResultCard}>
-                <h3>✔ 맞춤 작업 범위 안내</h3>
-                <p>지역과 필요한 청소 종류만 알려주시면 작업 가능 여부부터 확인합니다.</p>
+                <h3>맞춤 작업 범위 안내</h3>
               </div>
             </div>
+            <p className={styles.diagramFooterDesc}>
+              💡 전화 상담 시 지역과 필요한 청소 종류만 알려주셔도 작업 가능 여부부터 확인해드립니다.
+            </p>
           </div>
         </div>
       </section>
