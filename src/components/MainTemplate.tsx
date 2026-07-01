@@ -347,7 +347,7 @@ export default function MainTemplate({
               </div>
             </div>
             <p className={styles.diagramFooterDesc}>
-              💡 전화 상담 시 지역 and 필요한 청소 종류만 알려주셔도 작업 가능 여부부터 확인해드립니다.
+              💡 전화 상담 시 지역과 필요한 청소 종류만 알려주셔도 작업 가능 여부부터 확인해드립니다.
             </p>
           </div>
 

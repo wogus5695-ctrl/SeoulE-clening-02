@@ -926,18 +926,30 @@
     top: 0 !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
+    justify-content: flex-start !important;
+    padding-top: 20px !important;
   }
   .circle2 {
     bottom: 3% !important;
     left: 3% !important;
     top: auto !important;
     right: auto !important;
+    justify-content: flex-end !important;
+    align-items: flex-start !important;
+    padding-bottom: 24px !important;
+    padding-left: 20px !important;
+    text-align: left !important;
   }
   .circle3 {
     bottom: 3% !important;
     right: 3% !important;
     top: auto !important;
     left: auto !important;
+    justify-content: flex-end !important;
+    align-items: flex-end !important;
+    padding-bottom: 24px !important;
+    padding-right: 20px !important;
+    text-align: right !important;
   }
   .intersection {
     position: absolute !important;
@@ -1477,6 +1489,8 @@
   top: 10px;
   left: 125px;
   background: rgba(15, 118, 110, 0.85); /* Teal 700 */
+  justify-content: flex-start;
+  padding-top: 36px;
 }
 
 .circle1:hover {
@@ -1489,6 +1503,11 @@
   bottom: 20px;
   left: 40px;
   background: rgba(8, 145, 178, 0.85); /* Cyan 600 */
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-bottom: 45px;
+  padding-left: 36px;
+  text-align: left;
 }
 
 .circle2:hover {
@@ -1501,6 +1520,11 @@
   bottom: 20px;
   right: 40px;
   background: rgba(16, 185, 129, 0.85); /* Emerald 500 */
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-bottom: 45px;
+  padding-right: 36px;
+  text-align: right;
 }
 
 .circle3:hover {
