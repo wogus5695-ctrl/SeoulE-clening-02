@@ -933,14 +933,14 @@
     left: 3% !important;
     top: auto !important;
     right: auto !important;
-    padding: 20% 8% 10% 18% !important;
+    padding: 20% 4% 10% 26% !important;
   }
   .circle3 {
     bottom: 3% !important;
     right: 3% !important;
     top: auto !important;
     left: auto !important;
-    padding: 20% 18% 10% 8% !important;
+    padding: 20% 26% 10% 4% !important;
   }
   .intersection {
     position: absolute !important;
@@ -1493,7 +1493,7 @@
   bottom: 20px;
   left: 40px;
   background: rgba(8, 145, 178, 0.85); /* Cyan 600 */
-  padding: 65px 20px 30px 48px;
+  padding: 65px 12px 30px 60px;
 }
 
 .circle2:hover {
@@ -1506,7 +1506,7 @@
   bottom: 20px;
   right: 40px;
   background: rgba(16, 185, 129, 0.85); /* Emerald 500 */
-  padding: 65px 48px 30px 20px;
+  padding: 65px 60px 30px 12px;
 }
 
 .circle3:hover {
