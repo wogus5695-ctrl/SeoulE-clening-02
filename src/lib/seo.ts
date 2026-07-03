@@ -401,8 +401,11 @@ export function getJsonLd() {
 }
 
 // 7. 문서(Article) 스키마 생성기
-export function getArticleJsonLd(title: string, description: string, url: string) {
+export function getArticleJsonLd(title: string, description: string, url: string, image?: string) {
   const now = new Date().toISOString();
+  const finalImage = image 
+    ? (image.startsWith('http') ? image : `${DOMAIN}${image}`) 
+    : `${DOMAIN}${DEFAULT_OG_IMAGE}`;
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -426,7 +429,7 @@ export function getArticleJsonLd(title: string, description: string, url: string
       '@type': 'WebPage',
       '@id': url
     },
-    'image': DEFAULT_OG_IMAGE
+    'image': finalImage
   };
 }
 

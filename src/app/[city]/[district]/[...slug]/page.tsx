@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { regions } from '@/data/regions';
 import { services } from '@/data/services';
-import { getLandingMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME, INDEXED_DONG_COMBINATIONS } from '@/lib/seo';
+import { getLandingMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME, INDEXED_DONG_COMBINATIONS, SEO_IMAGE_MAP } from '@/lib/seo';
 import MainTemplate from '@/components/MainTemplate';
 
 type Props = {
@@ -74,7 +74,9 @@ export default async function LandingPage({ params }: Props) {
   
   const url = `${DOMAIN}${path}`;
   
-  const articleJsonLd = getArticleJsonLd(title, description, url);
+  const seoImage = SEO_IMAGE_MAP[service.serviceNameKo];
+  const imageUrl = seoImage ? seoImage.image : service.imageUrl;
+  const articleJsonLd = getArticleJsonLd(title, description, url, imageUrl);
   const breadcrumbJsonLd = getBreadcrumbJsonLd(regionName, service.serviceNameKo, url);
 
   return (

@@ -2,8 +2,8 @@ export interface SourceRegion {
   name: string;        // 구/시 이름 (예: '강남', '구리')
   fullName: string;    // 구/시 전체 이름 (예: '강남구', '구리시')
   slug: string;        // 영문 슬러그 (예: 'gangnam', 'guri')
-  city: '서울' | '경기'; // 광역 자치단체 구분
-  citySlug: 'seoul' | 'gyeonggi'; // 광역 자치단체 슬러그
+  city: '서울' | '경기' | '인천'; // 광역 자치단체 구분
+  citySlug: 'seoul' | 'gyeonggi' | 'incheon'; // 광역 자치단체 슬러그
   dongs: string[];     // 산하 동 단위 리스트
   localDescription?: string; // 구/시 단위 대표 설명글 (생략 시 기본 템플릿 사용)
   buildingCharacteristics?: string; // 구/시 단위 대표 건물 특성 (생략 시 기본 템플릿 사용)
@@ -131,6 +131,136 @@ export const sourceRegions: SourceRegion[] = [
     buildingCharacteristics: '대형 학원가 빌딩, 상가 타워, 메디컬 센터, 아파트 상권'
   },
   {
+    name: '양천',
+    fullName: '양천구',
+    slug: 'yangcheon',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['목동', '신월동', '신정동'],
+    localDescription: '목동 신시가지 대단지 아파트와 학원가가 밀집한 대표적인 교육 및 주거 중심지입니다.',
+    buildingCharacteristics: '대형 학원 빌딩, 상가 건물, 아파트 상가'
+  },
+  {
+    name: '강서',
+    fullName: '강서구',
+    slug: 'gangseo',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['염창동', '등촌동', '화곡동', '우장산동', '가양동', '마곡동', '발산동', '내발산동', '공항동', '방화동', '개화동'],
+    localDescription: '마곡 R&D 밸리와 김포공항 배후 단지가 어우러진 신흥 비즈니스 및 주거 중심지입니다.',
+    buildingCharacteristics: '신축 R&D 센터, 지식산업센터, 대형 쇼핑몰, 상가 빌딩'
+  },
+  {
+    name: '구로',
+    fullName: '구로구',
+    slug: 'guro',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['신도림동', '구로동', '가리봉동', '고척동', '개봉동', '구로 오류동', '천왕동', '항동', '온수동', '궁동'],
+    localDescription: '구로디지털단지(G밸리)와 교통 요충지인 신도림역 상권이 결합된 산업 및 상업 거점입니다.',
+    buildingCharacteristics: '지식산업센터, 대형 쇼핑몰 및 복합 빌딩, IT 오피스 타워'
+  },
+  {
+    name: '금천',
+    fullName: '금천구',
+    slug: 'geumcheon',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['가산동', '독산동', '시흥동'],
+    localDescription: '가산디지털단지를 중심으로 아웃렛 사거리 상권과 지식산업센터가 초고밀도로 집중된 IT 벤처 허브입니다.',
+    buildingCharacteristics: '지식산업센터, 대형 패션 아웃렛 매장, 벤처 빌딩, 공장 및 창고'
+  },
+  {
+    name: '영등포',
+    fullName: '영등포구',
+    slug: 'yeongdeungpo',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['영등포동', '여의도동', '당산동', '도림동', '문래동', '양평동', '신길동', '대림동'],
+    localDescription: '대한민국 금융 중심지 여의도와 전통 상업 허브 영등포역, 예술 창작촌 문래동이 공존하는 복합 중심지입니다.',
+    buildingCharacteristics: '초고층 오피스 빌딩, 대형 백화점, 지식산업센터, 복합 문화시설'
+  },
+  {
+    name: '동작',
+    fullName: '동작구',
+    slug: 'dongjak',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['노량진동', '상도동', '흑석동', '사당동', '대방동', '신대방동'],
+    localDescription: '노량진 수산시장 및 수험가 상권과 중앙대/숭실대 대학가 상권이 결합된 역동적인 거주/교육 지역입니다.',
+    buildingCharacteristics: '학원가 상가, 대학 상권 매장, 수산물 센터, 메디컬 빌딩'
+  },
+  {
+    name: '관악',
+    fullName: '관악구',
+    slug: 'gwanak',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['봉천동', '신림동', '남현동'],
+    localDescription: '서울대 배후 상권인 샤로수길과 신림역 상업 지구가 결합된 고밀도 유동 인구 중심지입니다.',
+    buildingCharacteristics: '트렌디한 외식 매장, 대학가 상가, 고시촌 상권, 다세대 복합 빌딩'
+  },
+  {
+    name: '은평',
+    fullName: '은평구',
+    slug: 'eunpyeong',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['녹번동', '불광동', '갈현동', '구산동', '대조동', '응암동', '역촌동', '은평 신사동', '증산동', '수색동', '진관동'],
+    localDescription: '은평뉴타운의 쾌적한 주거 단지와 연신내 상권이 연계된 북서부의 대표적인 주거 배후 도시입니다.',
+    buildingCharacteristics: '연신내 로드샵 매장, 상가 주택, 신축 복합 상가, 병원 및 학원'
+  },
+  {
+    name: '서대문',
+    fullName: '서대문구',
+    slug: 'seodaemun',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['충현동', '천연동', '북아현동', '신촌동', '서대문 연희동', '홍제동', '홍은동', '남가좌동', '북가좌동'],
+    localDescription: '신촌/이대 대학가 문화의 발상지이자 연희동/홍대 배후 상권이 결합된 교육 및 복합 상업 구역입니다.',
+    buildingCharacteristics: '대학가 상가 빌딩, 이색 카페 및 로드샵, 연희동 단독주택형 매장'
+  },
+  {
+    name: '마포',
+    fullName: '마포구',
+    slug: 'mapo',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['아현동', '공덕동', '마포 도화동', '용강동', '대흥동', '염리동', '신수동', '서강동', '서교동', '합정동', '망원동', '연남동', '성산동', '상암동'],
+    localDescription: '홍대/신촌 배후 문화 상권, 상암 DMC 미디어 밸리, 공덕 오피스 타운이 공존하는 트렌디 비즈니스 구역입니다.',
+    buildingCharacteristics: 'DMC 빌딩, 공덕 대형 오피스, 이색 팝업스토어, 음식점 주방 및 어닝'
+  },
+  {
+    name: '종로',
+    fullName: '종로구',
+    slug: 'jongno',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['청운효자동', '사직동', '삼청동', '부암동', '평창동', '무악동', '교남동', '가회동', '종로1가', '종로2가', '종로3가', '종로4가', '종로5가', '종로6가', '이화동', '혜화동', '창신동', '숭인동'],
+    localDescription: '경복궁, 삼청동 한옥 거리, 대학로 문화지구와 대기업 본사 오피스가 융합된 전통과 현대의 중심지입니다.',
+    buildingCharacteristics: '한옥 개조 매장, 소극장 빌딩, 광화문 대형 오피스, 전통 상가'
+  },
+  {
+    name: '중구',
+    fullName: '중구',
+    slug: 'jung-gu',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['소공동', '회현동', '명동', '필동', '장충동', '광희동', '을지로동', '신당동', '다산동', '약수동', '청구동', '동화동', '황학동', '중림동'],
+    localDescription: '명동 쇼핑 허브, 남대문 시장, 동대문 패션 타운과 을지로 오피스/인쇄 골목이 밀집된 행정·상업 핵심 요충지입니다.',
+    buildingCharacteristics: '명동 대형 매장, 동대문 쇼핑몰, 을지로 오피스 빌딩, 호텔 및 게스트하우스'
+  },
+  {
+    name: '용산',
+    fullName: '용산구',
+    slug: 'yongsan',
+    city: '서울',
+    citySlug: 'seoul',
+    dongs: ['후암동', '용산2가동', '남영동', '청파동', '원효로동', '효창동', '용문동', '한강로동', '이촌동', '이태원동', '한남동', '서빙고동', '보광동'],
+    localDescription: '용산 국제업무지구 개발 거점과 이태원/한남동 글로벌 이색 상권이 융합된 핵심 중심지입니다.',
+    buildingCharacteristics: '이태원 이색 상가, 용산역 대형 쇼핑몰, 신축 주상복합, 오피스 타워'
+  },
+  {
     name: '구리',
     fullName: '구리시',
     slug: 'guri',
@@ -199,5 +329,85 @@ export const sourceRegions: SourceRegion[] = [
     dongs: ['중앙동'],
     localDescription: '안산 단원구 중앙동 주변은 유동인구가 집중된 최대 상권이자 오피스 밀집 지역입니다.',
     buildingCharacteristics: '대형 복합 상가, 유흥/외식 주방 후드, 빌딩 오피스'
+  },
+  {
+    name: '인천 중구',
+    fullName: '인천 중구',
+    slug: 'incheon-jung-gu',
+    city: '인천',
+    citySlug: 'incheon',
+    dongs: ['신포동', '연안동', '신흥동', '율목동', '동인천동', '개항동', '영종동', '운서동', '용유동'],
+    localDescription: '인천국제공항과 영종국제도시, 인천항 배후 구도심이 공존하는 물류 및 관광의 중심지입니다.',
+    buildingCharacteristics: '공항 배후 시설, 물류 센터 및 창고, 관광지 상가, 영종 신도시 상업 빌딩'
+  },
+  {
+    name: '인천 동구',
+    fullName: '인천 동구',
+    slug: 'incheon-dong-gu',
+    city: '인천',
+    citySlug: 'incheon',
+    dongs: ['만석동', '화수화평동', '송현동', '송림동', '금창동'],
+    localDescription: '인천의 전통적인 산업 및 공업 단지와 오랜 역사를 지닌 주거 지구가 결합된 지역입니다.',
+    buildingCharacteristics: '공업 단지 시설, 전통시장 상가, 상업 빌딩, 리모델링 상가'
+  },
+  {
+    name: '미추홀',
+    fullName: '미추홀구',
+    slug: 'michuhol',
+    city: '인천',
+    citySlug: 'incheon',
+    dongs: ['숭의동', '용현동', '학익동', '도화동', '주안동', '관교동', '문학동'],
+    localDescription: '주안역 법조 타운과 남구 최대의 전통적인 교통 요충지 및 대학 상권이 밀집해 있는 주거/상업 거점입니다.',
+    buildingCharacteristics: '법조 빌딩, 대학 상권 매장, 역세권 상가, 요식업 주방 및 후드'
+  },
+  {
+    name: '연수',
+    fullName: '연수구',
+    slug: 'yeonsu',
+    city: '인천',
+    citySlug: 'incheon',
+    dongs: ['옥련동', '선학동', '연수동', '청학동', '동춘동', '송도동'],
+    localDescription: '송도국제도시의 첨단 오피스 빌딩 및 바이오 산업 단지와 기존 연수동 생활 상권이 결합된 고밀도 도시입니다.',
+    buildingCharacteristics: '초고층 빌딩, 지식산업센터, 다국적 기업 오피스, 송도 프리미엄 아웃렛 매장'
+  },
+  {
+    name: '남동',
+    fullName: '남동구',
+    slug: 'namdong',
+    city: '인천',
+    citySlug: 'incheon',
+    dongs: ['구월동', '간석동', '만수동', '장수서창동', '서창동', '남촌도림동', '논현동', '논현고잔동'],
+    localDescription: '인천시청 행정 타운과 남동국가산업단지(남동공단), 구월동 최대 로데오 상권이 집중된 복합 거점입니다.',
+    buildingCharacteristics: '공단 공장 및 창고, 시청 행정 빌딩, 고밀도 상가 및 식당'
+  },
+  {
+    name: '부평',
+    fullName: '부평구',
+    slug: 'bupyeong',
+    city: '인천',
+    citySlug: 'incheon',
+    dongs: ['부평동', '산곡동', '청천동', '갈산동', '삼산동', '부개동', '일신동', '십정동'],
+    localDescription: '인천 최대의 지하상가 쇼핑권과 대규모 주거 타운, 갈산/청천 공업 단지가 어우러진 부평의 중추입니다.',
+    buildingCharacteristics: '대규모 지하 상가 및 로드샵, 공업 지대 복합 빌딩, 상업 타워, 학원가'
+  },
+  {
+    name: '계양',
+    fullName: '계양구',
+    slug: 'gyeyang',
+    city: '인천',
+    citySlug: 'incheon',
+    dongs: ['효성동', '계산동', '작전동', '작전서운동', '계양동'],
+    localDescription: '김포공항 인접 교통 요충지이자 서운일반산업단지 등 제조업 및 유통 단지가 발달하는 도시입니다.',
+    buildingCharacteristics: '산업단지 제조업 시설, 유통 물류 매장, 학원 및 병원, 역세권 상권'
+  },
+  {
+    name: '인천 서구',
+    fullName: '인천 서구',
+    slug: 'incheon-seo-gu',
+    city: '인천',
+    citySlug: 'incheon',
+    dongs: ['검암경서동', '연희동', '청라동', '가정동', '석남동', '가좌동', '신현원창동', '검단동', '당하동', '아라동', '오류동'],
+    localDescription: '청라국제도시, 루원시티, 검단신도시 등 다수의 계획 신도시와 제조업 공단이 결합된 인천 최대 면적의 성장 거점입니다.',
+    buildingCharacteristics: '청라/검단 오피스, 신축 지식산업센터, 매장 쇼윈도 및 준공 현장'
   }
 ];

@@ -128,11 +128,20 @@ export default function MainTemplate({
   // Hero 서브문구 설정
   const getHeroDesc = () => {
     const customContent = serviceContents[service];
+    let introText = '';
+    const displayRegion = region === '서울·경기' ? '서울' : region;
+    
     if (customContent && service !== '종합청소') {
-      const displayRegion = region === '서울·경기' ? '서울' : region;
-      return customContent.intro.replace(/{region}/g, displayRegion);
+      introText = customContent.intro.replace(/{region}/g, displayRegion);
+    } else {
+      introText = '상가, 매장, 빌딩, 사무실, 음식점, 준공 현장까지 오염 상태와 작업 조건에 맞춰 청소를 안내합니다.';
     }
-    return '상가, 매장, 빌딩, 사무실, 음식점, 준공 현장까지 오염 상태와 작업 조건에 맞춰 청소를 안내합니다.';
+
+    const targetRegion = keywordObj ? keywordObj.regionName : region;
+    if (targetRegion.includes('인천 서구') || targetRegion.includes('인천서구')) {
+      introText = `${targetRegion} ${service} 상담은 기존 인천 서구 권역과 현 서해구·검단구 일대 현장 조건을 함께 고려해 안내합니다. ` + introText;
+    }
+    return introText;
   };
 
   // H1 타이틀 설정

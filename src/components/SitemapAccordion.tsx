@@ -91,7 +91,23 @@ export default function SitemapAccordion({ sourceRegions, targetServices }: Site
                   <div className={styles.keywordGrid}>
                     {targetServices.map(serv => {
                       const fullKw = `${reg.fullName}-${serv.name}`;
-                      const shortKw = `${shortDistrict}-${serv.name}`;
+                      
+                      // 1. 서울 중구 예외: '서울 중구 외벽청소' (noindex, canonical to 중구)
+                      // 2. 인천 중구 예외: '인천중구 외벽청소' (noindex, canonical to 인천 중구)
+                      // 3. 인천 서구 예외: 단독 '서구 외벽청소' 생성 안 함 (shortKw 노출 생략)
+                      let showShort = true;
+                      let shortKw = `${shortDistrict}-${serv.name}`;
+                      let shortLabel = `${shortDistrict} ${serv.name}`;
+
+                      if (reg.fullName === '중구') {
+                        shortKw = `서울 중구-${serv.name}`.replace(/\s+/g, '-');
+                        shortLabel = `서울 중구 ${serv.name}`;
+                      } else if (reg.fullName === '인천 중구') {
+                        shortKw = `인천중구-${serv.name}`.replace(/\s+/g, '-');
+                        shortLabel = `인천중구 ${serv.name}`;
+                      } else if (reg.fullName === '인천 서구') {
+                        showShort = false;
+                      }
 
                       return (
                         <React.Fragment key={serv.id}>
@@ -101,12 +117,14 @@ export default function SitemapAccordion({ sourceRegions, targetServices }: Site
                           >
                             🔗 {reg.fullName} {serv.name}
                           </Link>
-                          <Link 
-                            href={`/?k=${encodeURIComponent(shortKw)}`}
-                            className={styles.keywordLink}
-                          >
-                            🔗 {shortDistrict} {serv.name}
-                          </Link>
+                          {showShort && (
+                            <Link 
+                              href={`/?k=${encodeURIComponent(shortKw)}`}
+                              className={styles.keywordLink}
+                            >
+                              🔗 {shortLabel}
+                            </Link>
+                          )}
                         </React.Fragment>
                       );
                     })}

@@ -35,7 +35,7 @@ export const targetServices = [
 ];
 
 // regions-source에서 가져온 데이터를 targetRegions로 맵핑 사용
-export const targetRegions = sourceRegions.filter(r => r.city === '서울');
+export const targetRegions = sourceRegions.filter(r => r.city === '서울' || r.city === '인천');
 
 // 개별 키워드의 SEO 설정(수집여부, 캐노니컬 타겟)을 수동으로 재정의(오버라이드)할 수 있는 사전 데이터 구조.
 export const KEYWORD_SEO_OVERRIDES: {
@@ -59,9 +59,39 @@ export function getSubjectParticle(word: string): string {
   return jong === 0 ? '가' : '이';
 }
 
+// 중복 동명에 대한 상위 지역구분용 접두사 매핑
+function getDongPrefix(districtName: string, dongName: string): string {
+  if (dongName === '신사동') {
+    if (districtName === '은평구') return '은평 ';
+  }
+  if (dongName === '도화동') {
+    if (districtName === '마포구') return '마포 ';
+    if (districtName === '미추홀구') return '미추홀 ';
+  }
+  if (dongName === '연희동') {
+    if (districtName === '서대문구') return '서대문 ';
+    if (districtName === '인천 서구') return '인천 ';
+  }
+  if (dongName === '논현동') {
+    if (districtName === '남동구') return '남동 ';
+  }
+  if (dongName === '오류동') {
+    if (districtName === '구로구') return '구로 ';
+    if (districtName === '인천 서구') return '검단 ';
+  }
+  return '';
+}
+
 // 동적 조합 기반 키워드 데이터셋 생성
 export function generateKeywords(): KeywordRecord[] {
   const records: KeywordRecord[] = [];
+  const processedUrlKeywords = new Set<string>();
+
+  const addRecord = (rec: KeywordRecord) => {
+    if (processedUrlKeywords.has(rec.urlKeyword)) return;
+    processedUrlKeywords.add(rec.urlKeyword);
+    records.push(rec);
+  };
 
   for (const reg of targetRegions) {
     for (const serv of targetServices) {
@@ -92,7 +122,7 @@ export function generateKeywords(): KeywordRecord[] {
         ? customContent.intro.replace(/{region}/g, districtWithGu)
         : `${districtWithGu} ${fallbackDescBase}`;
 
-      records.push({
+      addRecord({
         keyword: keywordWithGu,
         regionName: districtWithGu,
         regionType: 'district',
@@ -106,8 +136,16 @@ export function generateKeywords(): KeywordRecord[] {
         priority: 1
       });
 
-      // 2. 구 제외 버전 (예: 강남 외벽청소) - noindex (canonical to 구 포함 버전)
-      const districtWithoutGu = reg.name;
+      // 2. 구 제외 버전 - noindex (canonical to 구 포함 버전)
+      let districtWithoutGu = '';
+      if (reg.name === '중구') {
+        districtWithoutGu = '서울 중구';
+      } else if (reg.name === '인천 중구') {
+        districtWithoutGu = '인천중구';
+      } else {
+        districtWithoutGu = reg.name;
+      }
+
       const keywordWithoutGu = `${districtWithoutGu} ${serv.name}`;
       const urlKeywordWithoutGu = `${districtWithoutGu}-${serv.name}`.replace(/\s+/g, '-');
       const overrideWithoutGu = KEYWORD_SEO_OVERRIDES[urlKeywordWithoutGu];
@@ -116,7 +154,7 @@ export function generateKeywords(): KeywordRecord[] {
         ? customContent.intro.replace(/{region}/g, districtWithoutGu)
         : `${districtWithoutGu} ${fallbackDescBase}`;
 
-      records.push({
+      addRecord({
         keyword: keywordWithoutGu,
         regionName: districtWithoutGu,
         regionType: 'district',
@@ -132,25 +170,26 @@ export function generateKeywords(): KeywordRecord[] {
 
       // 3. 산하 동 단위 버전 (예: 역삼동 외벽청소) - index
       for (const dong of reg.dongs) {
-        const keywordDong = `${dong} ${serv.name}`;
-        const urlKeywordDong = `${dong}-${serv.name}`.replace(/\s+/g, '-');
+        const prefix = getDongPrefix(reg.fullName, dong);
+        const keywordDong = `${prefix}${dong} ${serv.name}`;
+        const urlKeywordDong = `${prefix}${dong}-${serv.name}`.replace(/\s+/g, '-');
         const overrideDong = KEYWORD_SEO_OVERRIDES[urlKeywordDong];
 
         const dongDesc = customContent
-          ? customContent.intro.replace(/{region}/g, dong)
-          : `${dong} ${fallbackDescBase}`;
+          ? customContent.intro.replace(/{region}/g, `${prefix}${dong}`)
+          : `${prefix}${dong} ${fallbackDescBase}`;
 
-        records.push({
+        addRecord({
           keyword: keywordDong,
-          regionName: dong,
+          regionName: `${prefix}${dong}`.trim(),
           regionType: 'dong',
           serviceName: serv.name,
           urlKeyword: urlKeywordDong,
           indexStatus: overrideDong?.indexStatus !== undefined ? overrideDong.indexStatus : 'index',
           canonicalTarget: overrideDong?.canonicalTarget !== undefined ? overrideDong.canonicalTarget : null,
-          title: `${dong} ${serv.name} 전문 | ${BRAND_NAME}`,
+          title: `${prefix}${dong} ${serv.name} 전문 | ${BRAND_NAME}`,
           description: dongDesc,
-          h1: `${dong} ${serv.name} 전문 ${BRAND_NAME}`,
+          h1: `${prefix}${dong} ${serv.name} 전문 ${BRAND_NAME}`,
           priority: 3
         });
       }

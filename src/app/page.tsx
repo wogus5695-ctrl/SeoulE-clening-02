@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 import { services } from '@/data/services';
 import { regions } from '@/data/regions';
 import { serviceContents } from '@/data/service-contents';
-import { getBaseMetadata, getLandingMetadata, getMainMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME, DEFAULT_OG_IMAGE } from '@/lib/seo';
+import { getBaseMetadata, getLandingMetadata, getMainMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME, DEFAULT_OG_IMAGE, SEO_IMAGE_MAP } from '@/lib/seo';
 import { keywords, KeywordRecord, getSubjectParticle } from '@/data/keywords';
 
 interface Props {
@@ -334,7 +334,9 @@ export default async function Home({ searchParams }: Props) {
         }))
       };
 
-      const articleJsonLd = getArticleJsonLd(title, description, url);
+      const seoImage = SEO_IMAGE_MAP[finalServiceName] || SEO_IMAGE_MAP[service.serviceNameKo];
+      const imageUrl = seoImage ? seoImage.image : service.imageUrl;
+      const articleJsonLd = getArticleJsonLd(title, description, url, imageUrl);
       const breadcrumbJsonLd = getBreadcrumbJsonLd(finalRegionName, finalServiceName, url);
 
       return (

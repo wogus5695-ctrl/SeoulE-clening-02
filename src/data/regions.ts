@@ -116,7 +116,21 @@ const DONG_SLUG_MAP: { [key: string]: string } = {
   '망월동': 'mangwol-dong',
   '신장동': 'sinjang-dong',
   '다산동': 'dasan-dong',
-  '별내동': 'byeollae-dong'
+  '별내동': 'byeollae-dong',
+  '은평 신사동': 'eunpyeong-sinsa-dong',
+  '서대문 연희동': 'seodaemun-yeonhui-dong',
+  '마포 도화동': 'mapo-dohwa-dong',
+  '구로 오류동': 'guro-oryu-dong',
+  '미추홀 도화동': 'michuhol-dohwa-dong',
+  '인천 연희동': 'incheon-yeonhui-dong',
+  '검단 오류동': 'geomdan-oryu-dong',
+  '남동 논현동': 'namdong-nonhyeon-dong',
+  '종로1가': 'jongno-1-ga',
+  '종로2가': 'jongno-2-ga',
+  '종로3가': 'jongno-3-ga',
+  '종로4가': 'jongno-4-ga',
+  '종로5가': 'jongno-5-ga',
+  '종로6가': 'jongno-6-ga'
 };
 
 function getDongSlug(dongName: string): string {
@@ -132,7 +146,7 @@ function getDongSlug(dongName: string): string {
 export function generateRegions(): Region[] {
   const list: Region[] = [];
 
-  for (const src of sourceRegions.filter(r => r.city === '서울')) {
+  for (const src of sourceRegions.filter(r => r.city === '서울' || r.city === '인천')) {
     const parentDesc = src.localDescription || `${src.fullName} 전 지역 종합청소 서비스를 지원합니다.`;
     const parentBuilding = src.buildingCharacteristics || '상가, 오피스 빌딩, 매장 및 준공 현장';
 
