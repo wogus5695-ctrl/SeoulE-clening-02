@@ -331,32 +331,12 @@ export const sourceRegions: SourceRegion[] = [
     buildingCharacteristics: '대형 복합 상가, 유흥/외식 주방 후드, 빌딩 오피스'
   },
   {
-    name: '인천 중구',
-    fullName: '인천 중구',
-    slug: 'incheon-jung-gu',
-    city: '인천',
-    citySlug: 'incheon',
-    dongs: ['신포동', '연안동', '신흥동', '율목동', '동인천동', '개항동', '영종동', '운서동', '용유동'],
-    localDescription: '인천국제공항과 영종국제도시, 인천항 배후 구도심이 공존하는 물류 및 관광의 중심지입니다.',
-    buildingCharacteristics: '공항 배후 시설, 물류 센터 및 창고, 관광지 상가, 영종 신도시 상업 빌딩'
-  },
-  {
-    name: '인천 동구',
-    fullName: '인천 동구',
-    slug: 'incheon-dong-gu',
-    city: '인천',
-    citySlug: 'incheon',
-    dongs: ['만석동', '화수화평동', '송현동', '송림동', '금창동'],
-    localDescription: '인천의 전통적인 산업 및 공업 단지와 오랜 역사를 지닌 주거 지구가 결합된 지역입니다.',
-    buildingCharacteristics: '공업 단지 시설, 전통시장 상가, 상업 빌딩, 리모델링 상가'
-  },
-  {
     name: '미추홀',
     fullName: '미추홀구',
     slug: 'michuhol',
     city: '인천',
     citySlug: 'incheon',
-    dongs: ['숭의동', '용현동', '학익동', '도화동', '주안동', '관교동', '문학동'],
+    dongs: ['숭의동', '용현동', '학익동', '미추홀 도화동', '주안동', '관교동', '문학동'],
     localDescription: '주안역 법조 타운과 남구 최대의 전통적인 교통 요충지 및 대학 상권이 밀집해 있는 주거/상업 거점입니다.',
     buildingCharacteristics: '법조 빌딩, 대학 상권 매장, 역세권 상가, 요식업 주방 및 후드'
   },
@@ -376,7 +356,7 @@ export const sourceRegions: SourceRegion[] = [
     slug: 'namdong',
     city: '인천',
     citySlug: 'incheon',
-    dongs: ['구월동', '간석동', '만수동', '장수서창동', '서창동', '남촌도림동', '논현동', '논현고잔동'],
+    dongs: ['구월동', '간석동', '만수동', '장수서창동', '서창동', '남촌도림동', '남동 논현동', '논현고잔동'],
     localDescription: '인천시청 행정 타운과 남동국가산업단지(남동공단), 구월동 최대 로데오 상권이 집중된 복합 거점입니다.',
     buildingCharacteristics: '공단 공장 및 창고, 시청 행정 빌딩, 고밀도 상가 및 식당'
   },
@@ -406,8 +386,28 @@ export const sourceRegions: SourceRegion[] = [
     slug: 'incheon-seo-gu',
     city: '인천',
     citySlug: 'incheon',
-    dongs: ['검암경서동', '연희동', '청라동', '가정동', '석남동', '가좌동', '신현원창동', '검단동', '당하동', '아라동', '오류동'],
+    dongs: ['검암경서동', '인천 연희동', '청라동', '가정동', '석남동', '가좌동', '신현원창동', '검단동', '당하동', '아라동', '검단 오류동'],
     localDescription: '청라국제도시, 루원시티, 검단신도시 등 다수의 계획 신도시와 제조업 공단이 결합된 인천 최대 면적의 성장 거점입니다.',
     buildingCharacteristics: '청라/검단 오피스, 신축 지식산업센터, 매장 쇼윈도 및 준공 현장'
+  },
+  {
+    name: '인천 서해구',
+    fullName: '인천 서해구',
+    slug: 'incheon-seohae-gu',
+    city: '인천',
+    citySlug: 'incheon',
+    dongs: [],
+    localDescription: '서해구 전 지역 종합청소 서비스를 지원하며 기존 인천 서구 권역과 함께 청소 상담이 가능합니다.',
+    buildingCharacteristics: '상가, 매장, 오피스 및 지식산업센터'
+  },
+  {
+    name: '인천 검단구',
+    fullName: '인천 검단구',
+    slug: 'incheon-geomdan-gu',
+    city: '인천',
+    citySlug: 'incheon',
+    dongs: [],
+    localDescription: '검단구 전 지역 종합청소 서비스를 지원하며 기존 인천 서구 권역 및 신도시 상권을 중심으로 청소 상담이 가능합니다.',
+    buildingCharacteristics: '신축 상가, 아파트 단지 상권, 매장 및 준공 현장'
   }
 ];

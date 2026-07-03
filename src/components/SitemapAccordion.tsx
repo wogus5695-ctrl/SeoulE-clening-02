@@ -105,7 +105,7 @@ export default function SitemapAccordion({ sourceRegions, targetServices }: Site
                       } else if (reg.fullName === '인천 중구') {
                         shortKw = `인천중구-${serv.name}`.replace(/\s+/g, '-');
                         shortLabel = `인천중구 ${serv.name}`;
-                      } else if (reg.fullName === '인천 서구') {
+                      } else if (reg.fullName === '인천 서구' || reg.fullName === '인천 서해구' || reg.fullName === '인천 검단구') {
                         showShort = false;
                       }
 

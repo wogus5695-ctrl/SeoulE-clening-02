@@ -44,13 +44,13 @@ export default function FooterDescription() {
   if (pService) currentService = pService;
 
   // 기본값 설정
-  const displayRegion = currentRegion || '서울';
+  const displayRegion = currentRegion || '서울·인천';
   const displayService = currentService || '종합청소';
 
   if (!currentRegion && !currentService) {
     return (
       <p style={{ lineHeight: '1.6', fontSize: '14px', color: 'var(--gray-600)' }}>
-        올케어서비스는 서울 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장 등 다양한 공간의 청소 상담을 안내합니다.
+        올케어서비스는 서울·인천 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장 등 다양한 공간의 청소 상담을 안내합니다.
       </p>
     );
   }

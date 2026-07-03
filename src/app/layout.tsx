@@ -66,7 +66,7 @@ export default function RootLayout({
               <div>
                 <h4 style={{ fontSize: '16px', marginBottom: '15px' }}>작업 지역</h4>
                 <p style={{ fontSize: '14px', color: 'var(--gray-600)', lineHeight: '1.6' }}>
-                  서울 주요 지역 상담 가능<br />
+                  서울·인천 주요 지역 상담 가능<br />
                   지역별 작업 가능 여부는 상담 시 확인해 드립니다.
                 </p>
               </div>

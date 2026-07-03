@@ -219,7 +219,9 @@ export default function MainTemplate({
         <div className={styles.inner} style={{ position: 'relative', zIndex: 3 }}>
           <div className="animate-fade-up">
             <span className={styles.badge}>
-              서울 주요 지역 종합청소 서비스
+              {region.includes('인천') || (keywordObj && keywordObj.regionName.includes('인천')) 
+                ? '인천 주요 지역 종합청소 서비스' 
+                : '서울 주요 지역 종합청소 서비스'}
             </span>
             <h1 className={styles.heroTitle}>
               {getHeroTitle()}
