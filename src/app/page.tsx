@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import MainTemplate from '@/components/MainTemplate';
 
 export const dynamic = 'force-dynamic';
@@ -115,27 +116,33 @@ function parseK(k: string): { region: any; service: any; keywordObj?: KeywordRec
   // URL 인코딩된 문자열을 한글 및 일반 특수기호 형태로 디코딩
   let decodedK = '';
   try {
-    decodedK = decodeURIComponent(k).trim();
+    decodedK = decodeURIComponent(k.replace(/\+/g, ' ')).trim();
   } catch (e) {
-    decodedK = k.trim();
+    decodedK = k.replace(/\+/g, ' ').trim();
   }
 
-  const cleanK = decodedK.replace(/\s+/g, '-');
+  // 공백 및 하이픈 정규화 비교를 위해 도우미 함수 정의
+  const normalize = (str: string) => str.replace(/[\s-_]+/g, ' ').trim();
+  const normalizedInput = normalize(decodedK);
 
   // 1. 신규 데이터베이스 기반 1:1 매치 시도
-  const keywordObj = keywords.find(item => item.urlKeyword === cleanK);
+  const keywordObj = keywords.find(item => 
+    normalize(item.keyword) === normalizedInput || 
+    normalize(item.urlKeyword) === normalizedInput
+  );
   if (keywordObj) {
     // 1-1. 서비스 매칭
     const service = services.find(s => 
-      s.serviceNameKo === keywordObj.serviceName || 
-      s.serviceNameKo.replace(/\s+/g, '') === keywordObj.serviceName.replace(/\s+/g, '')
+      normalize(s.serviceNameKo) === normalize(keywordObj.serviceName)
     );
     // 1-2. 지역 매칭
-    const region = regions.find(r => 
-      r.subDistrict === keywordObj.regionName || 
-      r.district === keywordObj.regionName ||
-      (keywordObj.regionType === 'district' && r.subDistrictSlug === 'all' && r.district.startsWith(keywordObj.regionName.replace(/구$/, '')))
-    );
+    const region = regions.find(r => {
+      if (keywordObj.regionType === 'district') {
+        return r.district === keywordObj.regionName && r.subDistrict === '전지역';
+      } else {
+        return r.subDistrict === keywordObj.regionName;
+      }
+    });
 
     if (service && region) {
       return { region, service, keywordObj };
@@ -163,44 +170,38 @@ function parseK(k: string): { region: any; service: any; keywordObj?: KeywordRec
     }
   }
 
-  // 3. 한글 기반 파싱 시도 (예: "서빙고동-인테리어-후-청소", "용산구-외벽청소")
-  // 하이픈으로 쪼갠 후, 서비스명을 만족하는 가장 긴 뒷부분을 찾고 나머지를 지역명으로 해석하는 백트래킹(Backtracking) 기법 적용
-  const parts = decodedK.split('-');
-  for (let i = 1; i < parts.length; i++) {
-    const inputRegionStr = parts.slice(0, i).join('-').trim(); // 앞부분 전체를 지역명으로 가정
-    const inputServiceStr = parts.slice(i).join('-').trim();    // 뒷부분 전체를 서비스명으로 가정
+  // 3. 한글 기반 파싱 시도 (작업명 목록 기준 끝부분 백트래킹 및 exact match)
+  const sortedServices = [...services].sort((a, b) => b.serviceNameKo.length - a.serviceNameKo.length);
+  for (const s of sortedServices) {
+    const serviceName = s.serviceNameKo;
+    const matchEnds = [
+      '-' + serviceName,
+      ' ' + serviceName,
+      serviceName
+    ];
 
-    const cleanServiceStr = inputServiceStr.replace(/[\s-]/g, '');
-    let serviceId = SERVICE_NAME_MAP[inputServiceStr] || SERVICE_NAME_MAP[cleanServiceStr];
+    for (const matchText of matchEnds) {
+      if (decodedK.endsWith(matchText)) {
+        const regionPart = decodedK.slice(0, -matchText.length).trim();
+        const searchInput = normalize(`${regionPart} ${serviceName}`);
+        
+        const matched = keywords.find(item => 
+          normalize(item.keyword) === searchInput || 
+          normalize(item.urlKeyword) === searchInput
+        );
 
-    if (!serviceId) {
-      const matchedService = services.find(s => s.serviceNameKo.replace(/[\s-]/g, '') === cleanServiceStr);
-      if (matchedService) {
-        serviceId = matchedService.id;
-      }
-    }
-
-    const service = services.find(s => s.id === serviceId);
-
-    if (service) {
-      // 3-2. 지역 매칭 시도
-      const regionParts = inputRegionStr.split('-');
-      const targetRegionStr = regionParts[regionParts.length - 1].trim();
-
-      // 구 단위 매칭 시도
-      const inputDistrictClean = targetRegionStr.replace(/구$/, '');
-      const districtRegion = regions.find(r => 
-        r.district.replace(/구$/, '') === inputDistrictClean && 
-        r.subDistrictSlug === 'all'
-      );
-      if (districtRegion && regionParts.length === 1) {
-        return { region: districtRegion, service };
-      }
-
-      // 동 단위 매칭 시도
-      const closestRegion = findClosestSubDistrict(targetRegionStr);
-      if (closestRegion) {
-        return { region: closestRegion, service };
+        if (matched) {
+          const region = regions.find(r => {
+            if (matched.regionType === 'district') {
+              return r.district === matched.regionName && r.subDistrict === '전지역';
+            } else {
+              return r.subDistrict === matched.regionName;
+            }
+          });
+          if (region) {
+            return { region, service: s, keywordObj: matched };
+          }
+        }
       }
     }
   }
@@ -361,6 +362,8 @@ export default async function Home({ searchParams }: Props) {
           />
         </>
       );
+    } else {
+      notFound();
     }
   }
 
