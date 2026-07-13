@@ -1,5 +1,6 @@
 import { sourceRegions } from './regions-source';
 import { serviceContents } from './service-contents';
+import { gyeonggiRegions } from './gyeonggi-regions';
 
 export interface KeywordRecord {
   keyword: string;
@@ -34,8 +35,11 @@ export const targetServices = [
   { id: 'trash-house', name: '쓰레기집 청소', slug: 'hoarder-house-cleaning' }
 ];
 
-// regions-source에서 가져온 데이터를 targetRegions로 맵핑 사용
-export const targetRegions = sourceRegions.filter(r => r.city === '서울' || r.city === '인천');
+// regions-source에서 가져온 서울/인천 데이터와 gyeonggi-regions의 시/구 단위를 결합
+export const targetRegions = [
+  ...sourceRegions.filter(r => r.city === '서울' || r.city === '인천'),
+  ...gyeonggiRegions.map(r => ({ ...r, dongs: [] as string[] }))
+];
 
 // 개별 키워드의 SEO 설정(수집여부, 캐노니컬 타겟)을 수동으로 재정의(오버라이드)할 수 있는 사전 데이터 구조.
 export const KEYWORD_SEO_OVERRIDES: {

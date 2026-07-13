@@ -1,4 +1,5 @@
 import { sourceRegions, SourceRegion } from './regions-source';
+import { gyeonggiRegions } from './gyeonggi-regions';
 
 export interface Region {
   city: string;             // 시/도 (예: 서울)
@@ -181,6 +182,25 @@ export function generateRegions(): Region[] {
         indexStatus: 'index'
       });
     }
+  }
+
+  // 3. 경기 지역 중 시/구 단위(전지역) 레코드만 동적으로 추가
+  for (const src of gyeonggiRegions) {
+    const parentDesc = src.localDescription || `${src.fullName} 전 지역 종합청소 서비스를 지원합니다.`;
+    const parentBuilding = src.buildingCharacteristics || '상가, 오피스 빌딩, 매장 및 준공 현장';
+
+    list.push({
+      city: src.city,
+      district: src.fullName,
+      subDistrict: '전지역',
+      regionSlug: src.citySlug,
+      districtSlug: src.slug,
+      subDistrictSlug: 'all',
+      localDescription: parentDesc,
+      buildingCharacteristics: parentBuilding,
+      priority: 4,
+      indexStatus: 'index'
+    });
   }
 
   return list;
