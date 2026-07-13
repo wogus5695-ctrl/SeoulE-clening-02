@@ -270,7 +270,7 @@ export const gyeonggiRegions: GyeonggiRegion[] = [
     slug: 'seongnam-jungwon',
     city: '경기',
     citySlug: 'gyeonggi',
-    dongs: ['성남동', '성남 중동', '금광동', '은행동', '상대원동', '하대원동', '도촌동', '여수동'],
+    dongs: ['성남동', '성남 중동', '금광동', '성남 은행동', '상대원동', '하대원동', '도촌동', '여수동'],
     localDescription: '모란역 종합 시장/핵심 교통 환승 상권과 성남 하이테크밸리 아파트형 공장이 결합된 구역입니다.',
     buildingCharacteristics: '모란역 대형 상업 빌딩, 모란시장 전통 어닝/간판, 공장 및 지식산업센터'
   },
@@ -281,7 +281,7 @@ export const gyeonggiRegions: GyeonggiRegion[] = [
     slug: 'seongnam-bundang',
     city: '경기',
     citySlug: 'gyeonggi',
-    dongs: ['분당동', '수내동', '정자동', '율동', '서현동', '이매동', '야탑동', '판교동', '삼평동', '백현동', '금곡동', '구미동', '운중동'],
+    dongs: ['분당동', '수내동', '성남 정자동', '율동', '서현동', '이매동', '야탑동', '판교동', '삼평동', '백현동', '성남 금곡동', '구미동', '운중동'],
     localDescription: '판교 테크노밸리 IT 대기업군과 분당 정자 카페거리 등 명품 상권이 구축된 경기 남부 최고 요충지입니다.',
     buildingCharacteristics: '판교 테크노밸리 오피스 빌딩, 정자동 정밀 유리창 및 외벽, 서현역 로데오 상가'
   },
@@ -329,7 +329,7 @@ export const gyeonggiRegions: GyeonggiRegion[] = [
     slug: 'namyangju',
     city: '경기',
     citySlug: 'gyeonggi',
-    dongs: ['와부읍', '진접읍', '화도읍', '진건읍', '오남읍', '퇴계원읍', '별내면', '수동면', '조안면', '호평동', '평내동', '금곡동', '양정동', '남양주 다산동', '별내동'],
+    dongs: ['와부읍', '진접읍', '화도읍', '진건읍', '오남읍', '퇴계원읍', '별내면', '수동면', '조안면', '호평동', '평내동', '남양주 금곡동', '양정동', '남양주 다산동', '별내동'],
     localDescription: '다산신도시, 별내신도시 및 별내 카페거리 등 쾌적한 위생 관리가 요구되는 신도시 밀집 연계 도시입니다.',
     buildingCharacteristics: '다산/별내 복합 지식산업센터, 별내 신축 상가 카페, 병원 및 외식 매장'
   }

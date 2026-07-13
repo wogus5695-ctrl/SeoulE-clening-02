@@ -145,7 +145,11 @@ const DONG_SLUG_MAP: { [key: string]: string } = {
   '안산 부곡동': 'ansan-bugok-dong',
   '의왕 부곡동': 'uiwang-bugok-dong',
   '안양 관양동': 'anyang-gwanyang-dong',
-  '군포 산본동': 'gunpo-sanbon-dong'
+  '군포 산본동': 'gunpo-sanbon-dong',
+  '성남 은행동': 'seongnam-eunhaeng-dong',
+  '성남 정자동': 'seongnam-jeongja-dong',
+  '성남 금곡동': 'seongnam-geumgok-dong',
+  '남양주 금곡동': 'namyangju-geumgok-dong'
 };
 
 function getDongSlug(dongName: string): string {
@@ -198,8 +202,8 @@ export function generateRegions(): Region[] {
     }
   }
 
-  // 3. 경기 지역 중 시/구 단위(전지역) 및 지정된 10개 도시의 동 단위 레코드 추가
-  const allowedCitiesForDongs = ['gimpo', 'goyang', 'bucheon', 'gwangmyeong', 'siheung', 'anyang', 'gwacheon', 'gunpo', 'ansan', 'uiwang'];
+  // 3. 경기 지역 중 시/구 단위(전지역) 및 지정된 15개 도시의 동 단위 레코드 추가
+  const allowedCitiesForDongs = ['gimpo', 'goyang', 'bucheon', 'gwangmyeong', 'siheung', 'anyang', 'gwacheon', 'gunpo', 'ansan', 'uiwang', 'seongnam', 'hanam', 'guri', 'yangju', 'namyangju'];
 
   for (const src of gyeonggiRegions) {
     const parentDesc = src.localDescription || `${src.fullName} 전 지역 종합청소 서비스를 지원합니다.`;
