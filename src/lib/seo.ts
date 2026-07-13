@@ -345,6 +345,16 @@ export function getSitemapMetadata(): Metadata {
   });
 }
 
+// 6-2. 경기 마스터 사이트맵 (경기 지역 키워드 맵)
+export function getGyeonggiSitemapMetadata(): Metadata {
+  return getBaseMetadata({
+    title: `경기 지역별 종합청소 키워드 안내 | ${BRAND_NAME}`,
+    description: `김포, 고양, 부천, 광명, 시흥, 안양, 과천, 군포, 안산, 의왕, 성남, 하남, 구리, 양주, 남양주의 종합청소 서비스 키워드를 확인하세요.`,
+    indexStatus: 'index',
+    path: `/sitemap-gyeonggi`,
+  });
+}
+
 // --- JSON-LD LocalBusiness 스키마 생성기 ---
 export function getJsonLd() {
   return {

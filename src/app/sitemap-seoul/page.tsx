@@ -1,5 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { sourceRegions } from '@/data/regions-source';
 import { targetServices } from '@/data/keywords';
 import { getSitemapMetadata, BRAND_NAME } from '@/lib/seo';
@@ -26,6 +27,29 @@ export default function SitemapSeoulPage() {
 
       <section className={styles.content}>
         <div className={styles.container}>
+          <div style={{ marginBottom: '30px', textAlign: 'right' }}>
+            <Link 
+              href="/sitemap-gyeonggi" 
+              style={{ 
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontSize: '15px', 
+                fontWeight: '700', 
+                color: 'var(--primary, #1b4d3e)', 
+                textDecoration: 'none',
+                padding: '10px 20px',
+                border: '2px solid var(--primary, #1b4d3e)',
+                borderRadius: '30px',
+                backgroundColor: '#ffffff',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              경기 지역 종합청소 키워드 보기 ➔
+            </Link>
+          </div>
+
           {/* 서울 지역 섹션 */}
           <div className={styles.sectionHeader} style={{ marginBottom: '24px' }}>
             <h2 className={styles.sectionTitle} style={{ fontSize: '24px', fontWeight: '800', color: 'var(--primary, #1b4d3e)', borderBottom: '2px solid var(--gray-200, #e2e8f0)', paddingBottom: '12px', margin: '0 0 10px' }}>
