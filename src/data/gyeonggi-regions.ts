@@ -164,8 +164,8 @@ export const gyeonggiRegions: GyeonggiRegion[] = [
     slug: 'anyang-dongan',
     city: '경기',
     citySlug: 'gyeonggi',
-    dongs: ['비산동', '관양동', '평촌동', '평안동', '귀인동', '범계동', '신촌동', '갈산동', '호계동'],
-    localDescription: '평촌 신도시 행정 타운과 안양IT밸리 지식산업센터가 밀집된 지식 비즈니스 구역입니다.',
+    dongs: ['비산동', '안양 관양동', '평촌동', '평안동', '귀인동', '범계동', '안양 신촌동', '안양 갈산동', '호계동'],
+    localDescription: '평촌 신도시 행정 타운 and 안양IT밸리 지식산업센터가 밀집된 지식 비즈니스 구역입니다.',
     buildingCharacteristics: '지식산업센터 빌딩, 범계역 핵심 로데오 상업 빌딩, 병원/학원 빌딩'
   },
   // 7. 과천시
@@ -188,7 +188,7 @@ export const gyeonggiRegions: GyeonggiRegion[] = [
     slug: 'gunpo',
     city: '경기',
     citySlug: 'gyeonggi',
-    dongs: ['군포동', '산본동', '금정동', '재궁동', '오금동', '수리동', '궁내동', '대야동', '광정동', '송부동'],
+    dongs: ['군포동', '군포 산본동', '금정동', '재궁동', '오금동', '수리동', '궁내동', '군포 대야동', '광정동', '송부동'],
     localDescription: '산본신도시 중심 상업용 로데오 거리와 금정역 역세권 환승 허브가 연계된 중심지입니다.',
     buildingCharacteristics: '산본 로데오 빌딩, 역세권 지식산업센터, 요식업 후드 및 주방'
   },
@@ -212,7 +212,7 @@ export const gyeonggiRegions: GyeonggiRegion[] = [
     slug: 'ansan-sangrok',
     city: '경기',
     citySlug: 'gyeonggi',
-    dongs: ['일동', '이동', '사동', '본오동', '부곡동', '월피동', '성포동', '반월동', '안산동'],
+    dongs: ['안산 일동', '안산 이동', '안산 사동', '본오동', '안산 부곡동', '월피동', '성포동', '반월동', '안산동'],
     localDescription: '한양대 에리카 캠퍼스 대학가 상권과 본오동 배후 주거 상권이 활성화된 지역입니다.',
     buildingCharacteristics: '대학가 이색 매장, 상가 주택 빌딩, 신축 복합 메디컬 상가'
   },
@@ -235,7 +235,7 @@ export const gyeonggiRegions: GyeonggiRegion[] = [
     slug: 'uiwang',
     city: '경기',
     citySlug: 'gyeonggi',
-    dongs: ['고천동', '오전동', '내손동', '청계동', '삼동', '부곡동'],
+    dongs: ['고천동', '오전동', '내손동', '청계동', '삼동', '의왕 부곡동'],
     localDescription: '의왕 테크노파크 개발 및 철도 물류 연구 거점 배후 상권이 연계된 쾌적한 도시입니다.',
     buildingCharacteristics: '테크노파크 신축 공장/오피스, 상가 빌딩, 학원 상가'
   },

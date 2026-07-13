@@ -36,7 +36,7 @@ export const targetServices = [
 ];
 
 // regions-source에서 가져온 서울/인천 데이터와 gyeonggi-regions의 시/구/동 단위를 결합
-const allowedCitiesForDongs = ['gimpo', 'goyang', 'bucheon', 'gwangmyeong', 'siheung'];
+const allowedCitiesForDongs = ['gimpo', 'goyang', 'bucheon', 'gwangmyeong', 'siheung', 'anyang', 'gwacheon', 'gunpo', 'ansan', 'uiwang'];
 
 export const targetRegions = [
   ...sourceRegions.filter(r => r.city === '서울' || r.city === '인천'),

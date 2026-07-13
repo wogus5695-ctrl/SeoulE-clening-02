@@ -135,7 +135,17 @@ const DONG_SLUG_MAP: { [key: string]: string } = {
   '김포 장기동': 'gimpo-janggi-dong',
   '고양 백석동': 'goyang-baekseok-dong',
   '부천 중동': 'bucheon-jung-dong',
-  '시흥 신천동': 'siheung-sincheon-dong'
+  '시흥 신천동': 'siheung-sincheon-dong',
+  '안양 신촌동': 'anyang-sinchon-dong',
+  '안양 갈산동': 'anyang-galsan-dong',
+  '군포 대야동': 'gunpo-daeya-dong',
+  '안산 일동': 'ansan-il-dong',
+  '안산 이동': 'ansan-i-dong',
+  '안산 사동': 'ansan-sa-dong',
+  '안산 부곡동': 'ansan-bugok-dong',
+  '의왕 부곡동': 'uiwang-bugok-dong',
+  '안양 관양동': 'anyang-gwanyang-dong',
+  '군포 산본동': 'gunpo-sanbon-dong'
 };
 
 function getDongSlug(dongName: string): string {
@@ -188,8 +198,8 @@ export function generateRegions(): Region[] {
     }
   }
 
-  // 3. 경기 지역 중 시/구 단위(전지역) 및 지정된 5개 도시의 동 단위 레코드 추가
-  const allowedCitiesForDongs = ['gimpo', 'goyang', 'bucheon', 'gwangmyeong', 'siheung'];
+  // 3. 경기 지역 중 시/구 단위(전지역) 및 지정된 10개 도시의 동 단위 레코드 추가
+  const allowedCitiesForDongs = ['gimpo', 'goyang', 'bucheon', 'gwangmyeong', 'siheung', 'anyang', 'gwacheon', 'gunpo', 'ansan', 'uiwang'];
 
   for (const src of gyeonggiRegions) {
     const parentDesc = src.localDescription || `${src.fullName} 전 지역 종합청소 서비스를 지원합니다.`;
