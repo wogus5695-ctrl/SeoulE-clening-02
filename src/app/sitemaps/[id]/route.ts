@@ -14,7 +14,73 @@ export async function GET(request: Request, { params }: Props) {
   
   let urls: any[] = [];
 
-  if (fileName === 'sitemap-main') {
+  if (fileName === 'sitemap-static') {
+    urls.push({ url: DOMAIN, priority: 1.0, changeFrequency: 'daily' });
+    urls.push({ url: `${DOMAIN}/sitemap-seoul`, priority: 0.9, changeFrequency: 'weekly' });
+    urls.push({ url: `${DOMAIN}/sitemap-gyeonggi`, priority: 0.9, changeFrequency: 'weekly' });
+  } 
+  
+  else if (fileName === 'sitemap-seoul') {
+    const activeKeywords = keywords.filter(kw => kw.indexStatus === 'index' && !kw.canonicalTarget);
+    activeKeywords.forEach(kw => {
+      const matched = regions.find(r => {
+        if (kw.regionType === 'district') {
+          return r.district === kw.regionName && r.subDistrict === '전지역';
+        } else {
+          return r.subDistrict === kw.regionName;
+        }
+      });
+      if (matched && matched.city === '서울') {
+        urls.push({
+          url: `${DOMAIN}/?k=${encodeURIComponent(kw.urlKeyword)}`,
+          priority: kw.regionType === 'district' ? 0.7 : 0.5,
+          changeFrequency: 'weekly'
+        });
+      }
+    });
+  }
+
+  else if (fileName === 'sitemap-incheon') {
+    const activeKeywords = keywords.filter(kw => kw.indexStatus === 'index' && !kw.canonicalTarget);
+    activeKeywords.forEach(kw => {
+      const matched = regions.find(r => {
+        if (kw.regionType === 'district') {
+          return r.district === kw.regionName && r.subDistrict === '전지역';
+        } else {
+          return r.subDistrict === kw.regionName;
+        }
+      });
+      if (matched && matched.city === '인천') {
+        urls.push({
+          url: `${DOMAIN}/?k=${encodeURIComponent(kw.urlKeyword)}`,
+          priority: kw.regionType === 'district' ? 0.7 : 0.5,
+          changeFrequency: 'weekly'
+        });
+      }
+    });
+  }
+
+  else if (fileName === 'sitemap-gyeonggi') {
+    const activeKeywords = keywords.filter(kw => kw.indexStatus === 'index' && !kw.canonicalTarget);
+    activeKeywords.forEach(kw => {
+      const matched = regions.find(r => {
+        if (kw.regionType === 'district') {
+          return r.district === kw.regionName && r.subDistrict === '전지역';
+        } else {
+          return r.subDistrict === kw.regionName;
+        }
+      });
+      if (matched && matched.city === '경기') {
+        urls.push({
+          url: `${DOMAIN}/?k=${encodeURIComponent(kw.urlKeyword)}`,
+          priority: kw.regionType === 'district' ? 0.7 : 0.5,
+          changeFrequency: 'weekly'
+        });
+      }
+    });
+  }
+
+  else if (fileName === 'sitemap-main') {
     // 1. 메인 페이지 및 sitemap-seoul 추가
     urls.push({ url: DOMAIN, priority: 1, changeFrequency: 'daily' });
     urls.push({ url: `${DOMAIN}/sitemap-seoul`, priority: 0.9, changeFrequency: 'weekly' });
