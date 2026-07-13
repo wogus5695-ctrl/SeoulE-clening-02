@@ -335,11 +335,11 @@ export function getKeywordHubMetadata(cityDistrict: string): Metadata {
   });
 }
 
-// 6. 마스터 사이트맵 (서울 지역 키워드 맵)
+// 6. 마스터 사이트맵 (서울·경기·인천 통합 키워드 맵)
 export function getSitemapMetadata(): Metadata {
   return getBaseMetadata({
-    title: `서울 지역별 청소 키워드 안내 | ${BRAND_NAME}`,
-    description: `서울 주요 지역(송파, 강동, 광진, 성동, 노원, 중랑 등)의 구/동별 청소 서비스 키워드를 한눈에 확인하세요. 외벽, 유리창, 준공 등 맞춤형 솔루션을 안내합니다.`,
+    title: `서울·경기·인천 지역별 청소 키워드 안내 | ${BRAND_NAME}`,
+    description: `서울·경기·인천 주요 지역의 외벽청소, 유리창청소, 화재청소, 바닥왁스코팅, 어닝청소, 간판청소, 준공청소, 후드청소 등 종합청소 서비스를 지역별로 확인할 수 있습니다.`,
     indexStatus: 'index',
     path: `/sitemap-seoul`,
   });

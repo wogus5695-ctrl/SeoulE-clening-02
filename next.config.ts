@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        // 0-2. /sitemap-gyeonggi를 /sitemap-seoul로 301 영구 리디렉션
+        source: '/sitemap-gyeonggi',
+        destination: '/sitemap-seoul',
+        permanent: true,
+      },
+      {
         // 1. -gu 접미사가 붙은 구명을 접미사 없는 표준 슬러그로 변환하여 리디렉션
         // 예: /floor-wax-coating/gangnam-gu -> /seoul/gangnam/floor-wax-coating
         source: '/:service(exterior-cleaning|window-cleaning|fire-cleaning|floor-wax-coating|awning-cleaning|signboard-cleaning|interior-post-cleaning|construction-completion-cleaning|hood-cleaning|hoarder-house-cleaning|special-cleaning)/:district(yangcheon|gangseo|guro|geumcheon|yeongdeungpo|dongjak|gwanak|eunpyeong|seodaemun|mapo|jongno|yongsan)-gu',

@@ -17,7 +17,6 @@ export async function GET(request: Request, { params }: Props) {
   if (fileName === 'sitemap-static') {
     urls.push({ url: DOMAIN, priority: 1.0, changeFrequency: 'daily' });
     urls.push({ url: `${DOMAIN}/sitemap-seoul`, priority: 0.9, changeFrequency: 'weekly' });
-    urls.push({ url: `${DOMAIN}/sitemap-gyeonggi`, priority: 0.9, changeFrequency: 'weekly' });
   } 
   
   else if (fileName === 'sitemap-seoul') {
