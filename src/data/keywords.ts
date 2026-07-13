@@ -35,10 +35,18 @@ export const targetServices = [
   { id: 'trash-house', name: '쓰레기집 청소', slug: 'hoarder-house-cleaning' }
 ];
 
-// regions-source에서 가져온 서울/인천 데이터와 gyeonggi-regions의 시/구 단위를 결합
+// regions-source에서 가져온 서울/인천 데이터와 gyeonggi-regions의 시/구/동 단위를 결합
+const allowedCitiesForDongs = ['gimpo', 'goyang', 'bucheon', 'gwangmyeong', 'siheung'];
+
 export const targetRegions = [
   ...sourceRegions.filter(r => r.city === '서울' || r.city === '인천'),
-  ...gyeonggiRegions.map(r => ({ ...r, dongs: [] as string[] }))
+  ...gyeonggiRegions.map(r => {
+    const isAllowed = allowedCitiesForDongs.some(slug => r.slug.startsWith(slug));
+    return {
+      ...r,
+      dongs: isAllowed ? r.dongs : ([] as string[])
+    };
+  })
 ];
 
 // 개별 키워드의 SEO 설정(수집여부, 캐노니컬 타겟)을 수동으로 재정의(오버라이드)할 수 있는 사전 데이터 구조.

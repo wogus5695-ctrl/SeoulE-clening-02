@@ -131,7 +131,11 @@ const DONG_SLUG_MAP: { [key: string]: string } = {
   '종로3가': 'jongno-3-ga',
   '종로4가': 'jongno-4-ga',
   '종로5가': 'jongno-5-ga',
-  '종로6가': 'jongno-6-ga'
+  '종로6가': 'jongno-6-ga',
+  '김포 장기동': 'gimpo-janggi-dong',
+  '고양 백석동': 'goyang-baekseok-dong',
+  '부천 중동': 'bucheon-jung-dong',
+  '시흥 신천동': 'siheung-sincheon-dong'
 };
 
 function getDongSlug(dongName: string): string {
@@ -184,7 +188,9 @@ export function generateRegions(): Region[] {
     }
   }
 
-  // 3. 경기 지역 중 시/구 단위(전지역) 레코드만 동적으로 추가
+  // 3. 경기 지역 중 시/구 단위(전지역) 및 지정된 5개 도시의 동 단위 레코드 추가
+  const allowedCitiesForDongs = ['gimpo', 'goyang', 'bucheon', 'gwangmyeong', 'siheung'];
+
   for (const src of gyeonggiRegions) {
     const parentDesc = src.localDescription || `${src.fullName} 전 지역 종합청소 서비스를 지원합니다.`;
     const parentBuilding = src.buildingCharacteristics || '상가, 오피스 빌딩, 매장 및 준공 현장';
@@ -201,6 +207,25 @@ export function generateRegions(): Region[] {
       priority: 4,
       indexStatus: 'index'
     });
+
+    const isAllowed = allowedCitiesForDongs.some(slug => src.slug.startsWith(slug));
+    if (isAllowed && src.dongs) {
+      for (const dong of src.dongs) {
+        const slug = getDongSlug(dong);
+        list.push({
+          city: src.city,
+          district: src.fullName,
+          subDistrict: dong,
+          regionSlug: src.citySlug,
+          districtSlug: src.slug,
+          subDistrictSlug: slug,
+          localDescription: `${src.fullName} ${dong} 주변은 ${parentDesc}`,
+          buildingCharacteristics: `${dong} 내에 입지한 ${parentBuilding} 공간을 특성에 맞춰 클리닝합니다.`,
+          priority: 4,
+          indexStatus: 'index'
+        });
+      }
+    }
   }
 
   return list;
