@@ -33,13 +33,13 @@ export const targetServices = [
   { id: 'special', name: '특수청소', slug: 'special-cleaning' },
   { id: 'floor-clean', name: '바닥청소', slug: 'floor-cleaning' },
   { id: 'trash-house', name: '쓰레기집 청소', slug: 'hoarder-house-cleaning' },
-  { id: 'office-cleaning', name: '사무실청소', slug: 'office-cleaning', enabled: false },
-  { id: 'store-cleaning', name: '상가청소', slug: 'store-cleaning', enabled: false },
-  { id: 'factory-cleaning', name: '공장청소', slug: 'factory-cleaning', enabled: false },
-  { id: 'building-cleaning', name: '건물청소', slug: 'building-cleaning', enabled: false },
-  { id: 'flood-cleaning', name: '침수청소', slug: 'flood-cleaning', enabled: false },
-  { id: 'warehouse-cleaning', name: '창고청소', slug: 'warehouse-cleaning', enabled: false },
-  { id: 'hospital-cleaning', name: '병원청소', slug: 'hospital-cleaning', enabled: false }
+  { id: 'office-cleaning', name: '사무실청소', slug: 'office-cleaning' },
+  { id: 'store-cleaning', name: '상가청소', slug: 'store-cleaning' },
+  { id: 'factory-cleaning', name: '공장청소', slug: 'factory-cleaning' },
+  { id: 'building-cleaning', name: '건물청소', slug: 'building-cleaning' },
+  { id: 'flood-cleaning', name: '침수청소', slug: 'flood-cleaning' },
+  { id: 'warehouse-cleaning', name: '창고청소', slug: 'warehouse-cleaning' },
+  { id: 'hospital-cleaning', name: '병원청소', slug: 'hospital-cleaning' }
 ];
 
 // regions-source에서 가져온 서울/인천 데이터와 gyeonggi-regions의 시/구/동 단위를 결합
@@ -127,7 +127,7 @@ export function generateKeywords(): KeywordRecord[] {
 
   for (const reg of targetRegions) {
     for (const serv of targetServices) {
-      if ((serv as any).enabled === false) continue;
+      const isNewService = ['사무실청소', '상가청소', '공장청소', '건물청소', '침수청소', '창고청소', '병원청소'].includes(serv.name);
       const josa = getSubjectParticle(serv.name);
       const customContent = serviceContents[serv.name];
 
@@ -185,7 +185,7 @@ export function generateKeywords(): KeywordRecord[] {
         regionType: 'district',
         serviceName: serv.name,
         urlKeyword: urlKeywordWithGu,
-        indexStatus: overrideWithGu?.indexStatus !== undefined ? overrideWithGu.indexStatus : defaultIndexStatusWithGu,
+        indexStatus: isNewService ? 'noindex' : (overrideWithGu?.indexStatus !== undefined ? overrideWithGu.indexStatus : defaultIndexStatusWithGu),
         canonicalTarget: overrideWithGu?.canonicalTarget !== undefined ? overrideWithGu.canonicalTarget : defaultCanonicalTargetWithGu,
         title: `${districtWithGu} ${serv.name} 전문 | ${BRAND_NAME}`,
         description: fullDesc,
@@ -204,7 +204,7 @@ export function generateKeywords(): KeywordRecord[] {
         regionType: 'district',
         serviceName: serv.name,
         urlKeyword: urlKeywordWithoutGu,
-        indexStatus: overrideWithoutGu?.indexStatus !== undefined ? overrideWithoutGu.indexStatus : defaultIndexStatusWithoutGu,
+        indexStatus: isNewService ? 'noindex' : (overrideWithoutGu?.indexStatus !== undefined ? overrideWithoutGu.indexStatus : defaultIndexStatusWithoutGu),
         canonicalTarget: overrideWithoutGu?.canonicalTarget !== undefined ? overrideWithoutGu.canonicalTarget : defaultCanonicalTargetWithoutGu,
         title: `${districtWithoutGu} ${serv.name} 전문 | ${BRAND_NAME}`,
         description: shortDesc,
@@ -229,7 +229,7 @@ export function generateKeywords(): KeywordRecord[] {
           regionType: 'dong',
           serviceName: serv.name,
           urlKeyword: urlKeywordDong,
-          indexStatus: overrideDong?.indexStatus !== undefined ? overrideDong.indexStatus : 'index',
+          indexStatus: isNewService ? 'noindex' : (overrideDong?.indexStatus !== undefined ? overrideDong.indexStatus : 'index'),
           canonicalTarget: overrideDong?.canonicalTarget !== undefined ? overrideDong.canonicalTarget : null,
           title: `${prefix}${dong} ${serv.name} 전문 | ${BRAND_NAME}`,
           description: dongDesc,
