@@ -8,6 +8,7 @@ import { regions, resolveRegion } from '@/data/regions';
 import { serviceContents } from '@/data/service-contents';
 import { getBaseMetadata, getLandingMetadata, getMainMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME, DEFAULT_OG_IMAGE, SEO_IMAGE_MAP } from '@/lib/seo';
 import { keywords, KeywordRecord, getSubjectParticle } from '@/data/keywords';
+import { pilotKeywords } from '@/data/pilot-keywords';
 
 interface Props {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -143,6 +144,9 @@ function parseK(k: string): { region: any; service: any; keywordObj?: KeywordRec
   const keywordObj = keywords.find(item => 
     normalize(item.keyword) === normalizedInput || 
     normalize(item.urlKeyword) === normalizedInput
+  ) || pilotKeywords.find(item =>
+    normalize(item.keyword) === normalizedInput || 
+    normalize(item.urlKeyword) === normalizedInput
   );
   if (keywordObj) {
     // 1-1. 서비스 매칭
@@ -194,6 +198,9 @@ function parseK(k: string): { region: any; service: any; keywordObj?: KeywordRec
         const searchInput = normalize(`${regionPart} ${serviceName}`);
         
         const matched = keywords.find(item => 
+          normalize(item.keyword) === searchInput || 
+          normalize(item.urlKeyword) === searchInput
+        ) || pilotKeywords.find(item =>
           normalize(item.keyword) === searchInput || 
           normalize(item.urlKeyword) === searchInput
         );
