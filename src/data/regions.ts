@@ -246,3 +246,71 @@ export function generateRegions(): Region[] {
 }
 
 export const regions = generateRegions();
+
+export function normalizeRegionName(value: string): string {
+  try {
+    return decodeURIComponent(value)
+      .replace(/\+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  } catch (e) {
+    return value
+      .replace(/\+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+}
+
+// Map from normalized alias to Region array
+export const regionAliasIndex = new Map<string, Region[]>();
+
+export function resolveRegion(regionName: string): Region | null {
+  const normalized = normalizeRegionName(regionName);
+  const matched = regionAliasIndex.get(normalized);
+  if (!matched) return null;
+  if (matched.length === 1) {
+    return matched[0];
+  }
+  const legacyMatches = matched.filter(r => r.city === '서울' || r.city === '인천');
+  if (legacyMatches.length === 1) {
+    return legacyMatches[0];
+  }
+  return null;
+}
+// Build the alias index once during module initialization
+regions.forEach(r => {
+  const aliasesSet = new Set<string>();
+
+  if (r.subDistrict === '전지역') {
+    aliasesSet.add(normalizeRegionName(r.district));
+
+    const isGyeonggi = r.city === '경기';
+    if (isGyeonggi) {
+      const src = gyeonggiRegions.find(gr => gr.fullName === r.district);
+      if (src) {
+        aliasesSet.add(normalizeRegionName(src.fullName));
+        if (src.name && src.name !== src.fullName) {
+          aliasesSet.add(normalizeRegionName(src.name));
+        }
+      }
+    } else {
+      const src = sourceRegions.find(sr => sr.fullName === r.district && (sr.city === '서울' || sr.city === '인천'));
+      if (src) {
+        aliasesSet.add(normalizeRegionName(src.fullName));
+        if (src.name && src.name !== src.fullName) {
+          aliasesSet.add(normalizeRegionName(src.name));
+        }
+      }
+    }
+  } else {
+    aliasesSet.add(normalizeRegionName(r.subDistrict));
+  }
+
+  aliasesSet.forEach(alias => {
+    const list = regionAliasIndex.get(alias) || [];
+    if (!list.some(item => item === r)) {
+      list.push(r);
+    }
+    regionAliasIndex.set(alias, list);
+  });
+});

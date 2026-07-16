@@ -4,7 +4,7 @@ import MainTemplate from '@/components/MainTemplate';
 
 export const dynamic = 'force-dynamic';
 import { services } from '@/data/services';
-import { regions } from '@/data/regions';
+import { regions, resolveRegion } from '@/data/regions';
 import { serviceContents } from '@/data/service-contents';
 import { getBaseMetadata, getLandingMetadata, getMainMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME, DEFAULT_OG_IMAGE, SEO_IMAGE_MAP } from '@/lib/seo';
 import { keywords, KeywordRecord, getSubjectParticle } from '@/data/keywords';
@@ -136,13 +136,7 @@ function parseK(k: string): { region: any; service: any; keywordObj?: KeywordRec
       normalize(s.serviceNameKo) === normalize(keywordObj.serviceName)
     );
     // 1-2. 지역 매칭
-    const region = regions.find(r => {
-      if (keywordObj.regionType === 'district') {
-        return r.district === keywordObj.regionName && r.subDistrict === '전지역';
-      } else {
-        return r.subDistrict === keywordObj.regionName;
-      }
-    });
+    const region = resolveRegion(keywordObj.regionName);
 
     if (service && region) {
       return { region, service, keywordObj };
@@ -191,13 +185,7 @@ function parseK(k: string): { region: any; service: any; keywordObj?: KeywordRec
         );
 
         if (matched) {
-          const region = regions.find(r => {
-            if (matched.regionType === 'district') {
-              return r.district === matched.regionName && r.subDistrict === '전지역';
-            } else {
-              return r.subDistrict === matched.regionName;
-            }
-          });
+          const region = resolveRegion(matched.regionName);
           if (region) {
             return { region, service: s, keywordObj: matched };
           }
