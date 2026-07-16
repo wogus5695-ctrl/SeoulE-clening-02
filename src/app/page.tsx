@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import MainTemplate from '@/components/MainTemplate';
 
 export const dynamic = 'force-dynamic';
@@ -215,12 +215,19 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         const ogImage = seoImage ? seoImage.image : service.imageUrl;
         const ogImageAlt = seoImage ? `${keywordObj.regionName} ${seoImage.altBase}` : `${keywordObj.regionName} ${keywordObj.serviceName} 전문 청소 현장`;
 
+        // Override canonical target if it's Gyeonggi general-gu and accessed via full-name URL
+        let canonicalTarget = keywordObj.canonicalTarget;
+        if (region.city === '경기' && region.canonicalKeywordName && region.canonicalKeywordName !== keywordObj.regionName) {
+          const canonicalUrlKeyword = `${region.canonicalKeywordName}-${service.serviceNameKo}`.replace(/\s+/g, '-');
+          canonicalTarget = `/?k=${encodeURIComponent(canonicalUrlKeyword)}`;
+        }
+
         return getBaseMetadata({
           title: keywordObj.title,
           description: keywordObj.description,
           path: path,
           indexStatus: keywordObj.indexStatus,
-          canonicalTarget: keywordObj.canonicalTarget,
+          canonicalTarget: canonicalTarget,
           ogType: 'article',
           publishedTime: new Date().toISOString(),
           modifiedTime: new Date().toISOString(),
@@ -283,6 +290,13 @@ export default async function Home({ searchParams }: Props) {
     const parsed = parseK(k);
     if (parsed) {
       const { region, service, keywordObj } = parsed;
+
+      // 301 Permanent Redirect: Gyeonggi general-gus from full-name to short-name URL
+      if (keywordObj && region.city === '경기' && region.canonicalKeywordName && region.canonicalKeywordName !== keywordObj.regionName) {
+        const canonicalUrlKeyword = `${region.canonicalKeywordName}-${service.serviceNameKo}`.replace(/\s+/g, '-');
+        permanentRedirect(`/?k=${encodeURIComponent(canonicalUrlKeyword)}`);
+      }
+
       const regionName = region.subDistrict === '전지역' ? region.district : region.subDistrict;
 
       let title = '';

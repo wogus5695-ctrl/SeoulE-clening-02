@@ -57,6 +57,19 @@ export const KEYWORD_SEO_OVERRIDES: {
   }
 } = {};
 
+const CANONICAL_KEYWORD_NAMES: { [districtName: string]: string } = {
+  '고양 덕양구': '덕양구',
+  '고양 일산동구': '일산동구',
+  '고양 일산서구': '일산서구',
+  '부천 원미구': '원미구',
+  '부천 소사구': '소사구',
+  '부천 오정구': '오정구',
+  '안양 만안구': '만안구',
+  '안양 동안구': '동안구',
+  '안산 상록구': '상록구',
+  '성남 중원구': '중원구'
+};
+
 // 한글 종성(받침)에 따른 주격 조사 판별 함수 (공용)
 export function getSubjectParticle(word: string): string {
   const cleanWord = word.trim();
@@ -124,31 +137,7 @@ export function generateKeywords(): KeywordRecord[] {
         fallbackDescBase = '공사 후 발생한 석고 분진, 본드/실리콘 잔여 자국 제거 등 입주 전 실내 청소 범위와 일정을 확인해 상담을 안내합니다.';
       }
 
-      // 1. 구 포함 버전 (예: 강남구 외벽청소) - index
-      const districtWithGu = reg.fullName;
-      const keywordWithGu = `${districtWithGu} ${serv.name}`;
-      const urlKeywordWithGu = `${districtWithGu}-${serv.name}`.replace(/\s+/g, '-');
-      const overrideWithGu = KEYWORD_SEO_OVERRIDES[urlKeywordWithGu];
-      
-      const fullDesc = customContent
-        ? customContent.intro.replace(/{region}/g, districtWithGu)
-        : `${districtWithGu} ${fallbackDescBase}`;
-
-      addRecord({
-        keyword: keywordWithGu,
-        regionName: districtWithGu,
-        regionType: 'district',
-        serviceName: serv.name,
-        urlKeyword: urlKeywordWithGu,
-        indexStatus: overrideWithGu?.indexStatus !== undefined ? overrideWithGu.indexStatus : 'index',
-        canonicalTarget: overrideWithGu?.canonicalTarget !== undefined ? overrideWithGu.canonicalTarget : null,
-        title: `${districtWithGu} ${serv.name} 전문 | ${BRAND_NAME}`,
-        description: fullDesc,
-        h1: `${districtWithGu} ${serv.name} 전문 ${BRAND_NAME}`,
-        priority: 1
-      });
-
-      // 2. 구 제외 버전 - noindex (canonical to 구 포함 버전)
+      // 1. 구 제외 버전 명칭 미리 계산
       let districtWithoutGu = '';
       if (reg.name === '중구') {
         districtWithoutGu = '서울 중구';
@@ -162,6 +151,41 @@ export function generateKeywords(): KeywordRecord[] {
       const urlKeywordWithoutGu = `${districtWithoutGu}-${serv.name}`.replace(/\s+/g, '-');
       const overrideWithoutGu = KEYWORD_SEO_OVERRIDES[urlKeywordWithoutGu];
 
+      // 2. 구 포함 버전 명칭 계산
+      const districtWithGu = reg.fullName;
+      const keywordWithGu = `${districtWithGu} ${serv.name}`;
+      const urlKeywordWithGu = `${districtWithGu}-${serv.name}`.replace(/\s+/g, '-');
+      const overrideWithGu = KEYWORD_SEO_OVERRIDES[urlKeywordWithGu];
+
+      // Gyeonggi 10 general-gus check
+      const isGeneralGu = !!CANONICAL_KEYWORD_NAMES[districtWithGu];
+
+      const defaultIndexStatusWithGu = isGeneralGu ? 'noindex' : 'index';
+      const defaultCanonicalTargetWithGu = isGeneralGu ? `/?k=${encodeURIComponent(urlKeywordWithoutGu)}` : null;
+
+      const defaultIndexStatusWithoutGu = isGeneralGu ? 'index' : 'noindex';
+      const defaultCanonicalTargetWithoutGu = isGeneralGu ? null : `/?k=${encodeURIComponent(urlKeywordWithGu)}`;
+
+      // 2. 구 포함 버전 레코드 추가
+      const fullDesc = customContent
+        ? customContent.intro.replace(/{region}/g, districtWithGu)
+        : `${districtWithGu} ${fallbackDescBase}`;
+
+      addRecord({
+        keyword: keywordWithGu,
+        regionName: districtWithGu,
+        regionType: 'district',
+        serviceName: serv.name,
+        urlKeyword: urlKeywordWithGu,
+        indexStatus: overrideWithGu?.indexStatus !== undefined ? overrideWithGu.indexStatus : defaultIndexStatusWithGu,
+        canonicalTarget: overrideWithGu?.canonicalTarget !== undefined ? overrideWithGu.canonicalTarget : defaultCanonicalTargetWithGu,
+        title: `${districtWithGu} ${serv.name} 전문 | ${BRAND_NAME}`,
+        description: fullDesc,
+        h1: `${districtWithGu} ${serv.name} 전문 ${BRAND_NAME}`,
+        priority: 1
+      });
+
+      // 3. 구 제외 버전 레코드 추가
       const shortDesc = customContent
         ? customContent.intro.replace(/{region}/g, districtWithoutGu)
         : `${districtWithoutGu} ${fallbackDescBase}`;
@@ -172,8 +196,8 @@ export function generateKeywords(): KeywordRecord[] {
         regionType: 'district',
         serviceName: serv.name,
         urlKeyword: urlKeywordWithoutGu,
-        indexStatus: overrideWithoutGu?.indexStatus !== undefined ? overrideWithoutGu.indexStatus : 'noindex',
-        canonicalTarget: overrideWithoutGu?.canonicalTarget !== undefined ? overrideWithoutGu.canonicalTarget : `/?k=${encodeURIComponent(urlKeywordWithGu)}`,
+        indexStatus: overrideWithoutGu?.indexStatus !== undefined ? overrideWithoutGu.indexStatus : defaultIndexStatusWithoutGu,
+        canonicalTarget: overrideWithoutGu?.canonicalTarget !== undefined ? overrideWithoutGu.canonicalTarget : defaultCanonicalTargetWithoutGu,
         title: `${districtWithoutGu} ${serv.name} 전문 | ${BRAND_NAME}`,
         description: shortDesc,
         h1: `${districtWithoutGu} ${serv.name} 전문 ${BRAND_NAME}`,

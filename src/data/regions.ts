@@ -12,6 +12,7 @@ export interface Region {
   buildingCharacteristics: string;
   priority: number;
   indexStatus: 'index' | 'noindex';
+  canonicalKeywordName?: string; // 공식 키워드용 대표 지역명
 }
 
 // 동 단위 영문 발음 예외/지정 사전 (URL 슬러그 호환성 유지)
@@ -277,8 +278,31 @@ export function resolveRegion(regionName: string): Region | null {
   }
   return null;
 }
+const CANONICAL_KEYWORD_NAMES: { [districtName: string]: string } = {
+  '고양 덕양구': '덕양구',
+  '고양 일산동구': '일산동구',
+  '고양 일산서구': '일산서구',
+  '부천 원미구': '원미구',
+  '부천 소사구': '소사구',
+  '부천 오정구': '오정구',
+  '안양 만안구': '만안구',
+  '안양 동안구': '동안구',
+  '안산 상록구': '상록구',
+  '성남 중원구': '중원구'
+};
+
 // Build the alias index once during module initialization
 regions.forEach(r => {
+  if (r.subDistrict === '전지역') {
+    if (CANONICAL_KEYWORD_NAMES[r.district]) {
+      r.canonicalKeywordName = CANONICAL_KEYWORD_NAMES[r.district];
+    } else {
+      r.canonicalKeywordName = r.district;
+    }
+  } else {
+    r.canonicalKeywordName = r.subDistrict;
+  }
+
   const aliasesSet = new Set<string>();
 
   if (r.subDistrict === '전지역') {
