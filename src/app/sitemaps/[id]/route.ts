@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { regions } from '@/data/regions';
+import { regions, resolveRegion } from '@/data/regions';
 import { keywords } from '@/data/keywords';
 import { DOMAIN } from '@/lib/seo';
 import { generateSitemapXml } from '@/lib/sitemap-utils';
@@ -22,13 +22,7 @@ export async function GET(request: Request, { params }: Props) {
   else if (fileName === 'sitemap-seoul') {
     const activeKeywords = keywords.filter(kw => kw.indexStatus === 'index' && !kw.canonicalTarget);
     activeKeywords.forEach(kw => {
-      const matched = regions.find(r => {
-        if (kw.regionType === 'district') {
-          return r.district === kw.regionName && r.subDistrict === '전지역';
-        } else {
-          return r.subDistrict === kw.regionName;
-        }
-      });
+      const matched = resolveRegion(kw.regionName);
       if (matched && matched.city === '서울') {
         urls.push({
           url: `${DOMAIN}/?k=${encodeURIComponent(kw.urlKeyword)}`,
@@ -42,13 +36,7 @@ export async function GET(request: Request, { params }: Props) {
   else if (fileName === 'sitemap-incheon') {
     const activeKeywords = keywords.filter(kw => kw.indexStatus === 'index' && !kw.canonicalTarget);
     activeKeywords.forEach(kw => {
-      const matched = regions.find(r => {
-        if (kw.regionType === 'district') {
-          return r.district === kw.regionName && r.subDistrict === '전지역';
-        } else {
-          return r.subDistrict === kw.regionName;
-        }
-      });
+      const matched = resolveRegion(kw.regionName);
       if (matched && matched.city === '인천') {
         urls.push({
           url: `${DOMAIN}/?k=${encodeURIComponent(kw.urlKeyword)}`,
@@ -62,13 +50,7 @@ export async function GET(request: Request, { params }: Props) {
   else if (fileName === 'sitemap-gyeonggi') {
     const activeKeywords = keywords.filter(kw => kw.indexStatus === 'index' && !kw.canonicalTarget);
     activeKeywords.forEach(kw => {
-      const matched = regions.find(r => {
-        if (kw.regionType === 'district') {
-          return r.district === kw.regionName && r.subDistrict === '전지역';
-        } else {
-          return r.subDistrict === kw.regionName;
-        }
-      });
+      const matched = resolveRegion(kw.regionName);
       if (matched && matched.city === '경기') {
         urls.push({
           url: `${DOMAIN}/?k=${encodeURIComponent(kw.urlKeyword)}`,

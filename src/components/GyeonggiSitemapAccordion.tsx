@@ -4,7 +4,21 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { GyeonggiRegion } from '@/data/gyeonggi-regions';
 import { targetServices } from '@/data/keywords';
+import { keywords } from '@/data/keywords';
+import { regions, resolveRegion } from '@/data/regions';
 import styles from '@/app/sitemap-seoul/page.module.css';
+
+function getActiveKeyword(district: string, subDistrict: string, serviceName: string) {
+  return keywords.find(kw => {
+    if (kw.serviceName !== serviceName) return false;
+    if (kw.indexStatus !== 'index' || kw.canonicalTarget) return false;
+    
+    const r = resolveRegion(kw.regionName);
+    if (!r) return false;
+    
+    return r.district === district && r.subDistrict === subDistrict;
+  });
+}
 
 interface GyeonggiSitemapAccordionProps {
   regions: GyeonggiRegion[];
@@ -88,24 +102,17 @@ export default function GyeonggiSitemapAccordion({ regions }: GyeonggiSitemapAcc
                   <h3 className={styles.blockTitle}>🏢 {city.name} 시 단위 키워드</h3>
                   <div className={styles.keywordGrid}>
                     {targetServices.map(serv => {
-                      const fullKw = `${city.fullName}-${serv.name}`;
-                      const shortKw = `${city.name}-${serv.name}`;
-                      
+                      const activeKw = getActiveKeyword(cityRecord?.fullName || city.fullName, '전지역', serv.name);
+                      if (!activeKw) return null;
+
                       return (
-                        <React.Fragment key={serv.id}>
-                          <Link 
-                            href={`/?k=${encodeURIComponent(fullKw)}`}
-                            className={styles.keywordLink}
-                          >
-                            🔗 {city.fullName} {serv.name}
-                          </Link>
-                          <Link 
-                            href={`/?k=${encodeURIComponent(shortKw)}`}
-                            className={styles.keywordLink}
-                          >
-                            🔗 {city.name} {serv.name}
-                          </Link>
-                        </React.Fragment>
+                        <Link 
+                          key={serv.id}
+                          href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
+                          className={styles.keywordLink}
+                        >
+                          🔗 {activeKw.keyword}
+                        </Link>
                       );
                     })}
                   </div>
@@ -118,24 +125,17 @@ export default function GyeonggiSitemapAccordion({ regions }: GyeonggiSitemapAcc
                     <div className={styles.keywordGrid}>
                       {guRecords.map(gu => {
                         return targetServices.map(serv => {
-                          const fullKw = `${gu.fullName}-${serv.name}`;
-                          const shortKw = `${gu.name}-${serv.name}`;
+                          const activeKw = getActiveKeyword(gu.fullName, '전지역', serv.name);
+                          if (!activeKw) return null;
 
                           return (
-                            <React.Fragment key={`${gu.id}-${serv.id}`}>
-                              <Link 
-                                href={`/?k=${encodeURIComponent(fullKw)}`}
-                                className={styles.keywordLink}
-                              >
-                                🔗 {gu.fullName} {serv.name}
-                              </Link>
-                              <Link 
-                                href={`/?k=${encodeURIComponent(shortKw)}`}
-                                className={styles.keywordLink}
-                              >
-                                🔗 {gu.name} {serv.name}
-                              </Link>
-                            </React.Fragment>
+                            <Link 
+                              key={`${gu.id}-${serv.id}`}
+                              href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
+                              className={styles.keywordLink}
+                            >
+                              🔗 {activeKw.keyword}
+                            </Link>
                           );
                         });
                       })}
@@ -154,14 +154,15 @@ export default function GyeonggiSitemapAccordion({ regions }: GyeonggiSitemapAcc
                           <div className={styles.dongKeywordGrid}>
                             {cityRecord.dongs.map(dong => {
                               return targetServices.map(serv => {
-                                const dongKw = `${dong}-${serv.name}`;
+                                const activeKw = getActiveKeyword(city.fullName, dong, serv.name);
+                                if (!activeKw) return null;
                                 return (
                                   <Link 
                                     key={`${dong}-${serv.id}`}
-                                    href={`/?k=${encodeURIComponent(dongKw)}`}
+                                    href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
                                     className={styles.dongKeywordLink}
                                   >
-                                    {dong} {serv.name}
+                                    {activeKw.keyword}
                                   </Link>
                                 );
                               });
@@ -179,14 +180,15 @@ export default function GyeonggiSitemapAccordion({ regions }: GyeonggiSitemapAcc
                             <div className={styles.dongKeywordGrid}>
                               {gu.dongs.map(dong => {
                                 return targetServices.map(serv => {
-                                  const dongKw = `${dong}-${serv.name}`;
+                                  const activeKw = getActiveKeyword(gu.fullName, dong, serv.name);
+                                  if (!activeKw) return null;
                                   return (
                                     <Link 
                                       key={`${dong}-${serv.id}`}
-                                      href={`/?k=${encodeURIComponent(dongKw)}`}
+                                      href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
                                       className={styles.dongKeywordLink}
                                     >
-                                      {dong} {serv.name}
+                                      {activeKw.keyword}
                                     </Link>
                                   );
                                 });

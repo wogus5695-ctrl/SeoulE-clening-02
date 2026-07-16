@@ -2,7 +2,21 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { keywords } from '@/data/keywords';
+import { resolveRegion } from '@/data/regions';
 import styles from '@/app/sitemap-seoul/page.module.css';
+
+function getActiveKeyword(district: string, subDistrict: string, serviceName: string) {
+  return keywords.find(kw => {
+    if (kw.serviceName !== serviceName) return false;
+    if (kw.indexStatus !== 'index' || kw.canonicalTarget) return false;
+    
+    const r = resolveRegion(kw.regionName);
+    if (!r) return false;
+    
+    return r.district === district && r.subDistrict === subDistrict;
+  });
+}
 
 // 각 구/시 단위별 실무 안내 카피 사전 (스팸 페이지 오인 방지 및 문맥 콘텐츠 강화)
 const DISTRICT_GUIDE_MAP: { [key: string]: string } = {
@@ -90,42 +104,17 @@ export default function SitemapAccordion({ sourceRegions, targetServices }: Site
                   <h3 className={styles.blockTitle}>🏢 {reg.fullName} 광역 키워드 링크</h3>
                   <div className={styles.keywordGrid}>
                     {targetServices.map(serv => {
-                      const fullKw = `${reg.fullName}-${serv.name}`;
-                      
-                      // 1. 서울 중구 예외: '서울 중구 외벽청소' (noindex, canonical to 중구)
-                      // 2. 인천 중구 예외: '인천중구 외벽청소' (noindex, canonical to 인천 중구)
-                      // 3. 인천 서구 예외: 단독 '서구 외벽청소' 생성 안 함 (shortKw 노출 생략)
-                      let showShort = true;
-                      let shortKw = `${shortDistrict}-${serv.name}`;
-                      let shortLabel = `${shortDistrict} ${serv.name}`;
-
-                      if (reg.fullName === '중구') {
-                        shortKw = `서울 중구-${serv.name}`.replace(/\s+/g, '-');
-                        shortLabel = `서울 중구 ${serv.name}`;
-                      } else if (reg.fullName === '인천 중구') {
-                        shortKw = `인천중구-${serv.name}`.replace(/\s+/g, '-');
-                        shortLabel = `인천중구 ${serv.name}`;
-                      } else if (reg.fullName === '인천 서구' || reg.fullName === '인천 서해구' || reg.fullName === '인천 검단구') {
-                        showShort = false;
-                      }
+                      const activeKw = getActiveKeyword(reg.fullName, '전지역', serv.name);
+                      if (!activeKw) return null;
 
                       return (
-                        <React.Fragment key={serv.id}>
-                          <Link 
-                            href={`/?k=${encodeURIComponent(fullKw)}`}
-                            className={styles.keywordLink}
-                          >
-                            🔗 {reg.fullName} {serv.name}
-                          </Link>
-                          {showShort && (
-                            <Link 
-                              href={`/?k=${encodeURIComponent(shortKw)}`}
-                              className={styles.keywordLink}
-                            >
-                              🔗 {shortLabel}
-                            </Link>
-                          )}
-                        </React.Fragment>
+                        <Link 
+                          key={serv.id}
+                          href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
+                          className={styles.keywordLink}
+                        >
+                          🔗 {activeKw.keyword}
+                        </Link>
                       );
                     })}
                   </div>
@@ -140,14 +129,16 @@ export default function SitemapAccordion({ sourceRegions, targetServices }: Site
                         <span className={styles.dongLabel}>{dong}</span>
                         <div className={styles.dongKeywordGrid}>
                           {targetServices.map(serv => {
-                            const dongKw = `${dong}-${serv.name}`;
+                            const activeKw = getActiveKeyword(reg.fullName, dong, serv.name);
+                            if (!activeKw) return null;
+
                             return (
                               <Link 
                                 key={serv.id}
-                                href={`/?k=${encodeURIComponent(dongKw)}`}
+                                href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
                                 className={styles.dongKeywordLink}
                               >
-                                {dong} {serv.name}
+                                {activeKw.keyword}
                               </Link>
                             );
                           })}
