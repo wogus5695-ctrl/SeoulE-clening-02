@@ -141,7 +141,7 @@ export const pilotKeywords: KeywordRecord[] = [
     h1: '만안구 침수청소 전문 올케어서비스',
     priority: 2
   },
-  // 11. 남양주 창고청소 (HTTP 200, noindex)
+  // 11. 남양주 창고청소 (Redirect to 남양주시 창고청소)
   {
     keyword: '남양주 창고청소',
     regionName: '남양주',
@@ -149,10 +149,24 @@ export const pilotKeywords: KeywordRecord[] = [
     serviceName: '창고청소',
     urlKeyword: '남양주-창고청소',
     indexStatus: 'noindex',
-    canonicalTarget: null,
+    canonicalTarget: '남양주시-창고청소',
     title: '남양주 창고청소 전문, 적재·물류공간 관리 | 올케어서비스',
     description: '남양주 창고 복도 랙의 미세 먼지 포집, 지게차 스키드 마크 제거, 바닥 오염 기계 세정을 안내합니다.',
     h1: '남양주 창고청소 전문 올케어서비스',
+    priority: 2
+  },
+  // 11-b. 남양주시 창고청소 (HTTP 200, noindex)
+  {
+    keyword: '남양주시 창고청소',
+    regionName: '남양주시',
+    regionType: 'district',
+    serviceName: '창고청소',
+    urlKeyword: '남양주시-창고청소',
+    indexStatus: 'noindex',
+    canonicalTarget: null,
+    title: '남양주시 창고청소 전문, 적재·물류공간 관리 | 올케어서비스',
+    description: '남양주시 창고 복도 랙의 미세 먼지 포집, 지게차 스키드 마크 제거, 바닥 오염 기계 세정을 안내합니다.',
+    h1: '남양주시 창고청소 전문 올케어서비스',
     priority: 2
   },
   // 12. 진접읍 창고청소 (HTTP 200, noindex)
