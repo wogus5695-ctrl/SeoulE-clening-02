@@ -199,5 +199,47 @@ export const serviceContents: { [serviceName: string]: DynamicContent } = {
       { q: '청소 후 소독이나 살균 처리는 어떻게 하나요?', a: '폐기물 배출 완료 후 벽면과 바닥 타일의 찌든 때를 약품 세정하고, 마지막 단계에서 피톤치드 살균 연무 소독 및 오존 정화 가동으로 악취와 세균을 정화합니다.' },
       { q: '폐기물 처리 차량 처리 비용이 요금에 포함되나요?', a: '네, 투명한 가견적 단계에서 폐기물 소각/매립 차량 적재 용량에 따른 공식 처리 수수료 and 인건비를 사전에 합산하여 확정 견적을 교부해 드립니다.' }
     ]
+  },
+  '사무실청소': {
+    intro: '',
+    suitableDesc: '',
+    situations: [],
+    faq: []
+  },
+  '상가청소': {
+    intro: '',
+    suitableDesc: '',
+    situations: [],
+    faq: []
+  },
+  '공장청소': {
+    intro: '',
+    suitableDesc: '',
+    situations: [],
+    faq: []
+  },
+  '건물청소': {
+    intro: '',
+    suitableDesc: '',
+    situations: [],
+    faq: []
+  },
+  '침수청소': {
+    intro: '',
+    suitableDesc: '',
+    situations: [],
+    faq: []
+  },
+  '창고청소': {
+    intro: '',
+    suitableDesc: '',
+    situations: [],
+    faq: []
+  },
+  '병원청소': {
+    intro: '',
+    suitableDesc: '',
+    situations: [],
+    faq: []
   }
 };

@@ -52,6 +52,20 @@ const SERVICE_NAME_MAP: { [key: string]: string } = {
   '쓰레기집 청소': 'trash-house',
   '특수': 'special-cleaning',
   '특수청소': 'special-cleaning',
+  '사무실': 'office-cleaning',
+  '사무실청소': 'office-cleaning',
+  '상가': 'store-cleaning',
+  '상가청소': 'store-cleaning',
+  '공장': 'factory-cleaning',
+  '공장청소': 'factory-cleaning',
+  '건물': 'building-cleaning',
+  '건물청소': 'building-cleaning',
+  '침수': 'flood-cleaning',
+  '침수청소': 'flood-cleaning',
+  '창고': 'warehouse-cleaning',
+  '창고청소': 'warehouse-cleaning',
+  '병원': 'hospital-cleaning',
+  '병원청소': 'hospital-cleaning',
 };
 
 // 두 문자열의 레벤슈타인 거리(편집 거리)를 계산하여 오타를 보정함
