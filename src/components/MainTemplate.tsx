@@ -718,15 +718,15 @@ export default function MainTemplate({
     return (
       <div className={styles.container}>
         {renderHero()}
+        {renderServices("올케어 전문 청소 서비스")}
         {renderSuitable()}
         {renderLandingCta()}
         {renderRangeSection()}
-        {renderProcess()}
         {renderPricingFactors()}
+        {renderProcess()}
         {renderPortfolio()}
         {renderFAQ()}
         {renderRelatedLinks()}
-        {renderServices("올케어의 다른 전문 청소 서비스")}
         {renderBottomCta()}
         <FloatingContact />
       </div>
