@@ -880,18 +880,6 @@
     text-align: center;
   }
 
-  /* Range Section Mobile */
-  /* Range Section Mobile */
-  .rangeSection {
-    padding: 56px 0 72px 0;
-  }
-  .pcDiagramWrapper {
-    display: none !important;
-  }
-  .mobileStepsWrapper {
-    display: block !important;
-    margin-top: 30px;
-  }
   .mobileSteps {
     display: flex;
     flex-direction: column;
@@ -1462,4 +1450,17 @@
 
 .mobileStepsWrapper {
   display: none;
+}
+
+@media (max-width: 768px) {
+  .rangeSection {
+    padding: 56px 0 72px 0;
+  }
+  .pcDiagramWrapper {
+    display: none;
+  }
+  .mobileStepsWrapper {
+    display: block;
+    margin-top: 30px;
+  }
 }

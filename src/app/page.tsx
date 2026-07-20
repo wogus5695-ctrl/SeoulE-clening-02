@@ -272,12 +272,17 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       const ogImageAlt = seoImage ? `${regionName} ${seoImage.altBase}` : `${regionName} ${service.serviceNameKo} 전문 청소 현장`;
 
       const customContent = serviceContents[service.serviceNameKo];
-      const description = customContent
-        ? customContent.intro.replace(/{region}/g, regionName)
-        : `${regionName} ${service.serviceNameKo} 전문 청소 상담을 안내합니다.`;
+      const title = customContent?.titleTemplate
+        ? customContent.titleTemplate.replace(/{region}/g, regionName).replace(/{service}/g, service.serviceNameKo)
+        : `${regionName} ${service.serviceNameKo} 전문 | 올케어서비스`;
+      const description = customContent?.descTemplate
+        ? customContent.descTemplate.replace(/{region}/g, regionName).replace(/{service}/g, service.serviceNameKo)
+        : (customContent
+          ? customContent.intro.replace(/{region}/g, regionName)
+          : `${regionName} ${service.serviceNameKo} 전문 청소 상담을 안내합니다.`);
 
       return getBaseMetadata({
-        title: `${regionName} ${service.serviceNameKo} 전문 | 올케어서비스`,
+        title: title,
         description: description,
         indexStatus: indexStatus,
         path: path,
@@ -335,25 +340,30 @@ export default async function Home({ searchParams }: Props) {
       } else {
         const regionName = region.subDistrict === '전지역' ? region.district : `${region.district} ${region.subDistrict}`;
         title = `${regionName} ${service.serviceNameKo} 전문 | ${BRAND_NAME}`;
-        const customContent = serviceContents[service.serviceNameKo];
-        if (customContent) {
-          description = customContent.intro.replace(/{region}/g, regionName);
+        const content = serviceContents[service.serviceNameKo];
+        if (content) {
+          description = content.intro.replace(/{region}/g, regionName);
         } else {
           const josa = getSubjectParticle(service.serviceNameKo);
           description = `${regionName} ${service.serviceNameKo}${josa} 필요한 상가, 빌딩, 매장, 사무실, 음식점, 준공 현장의 작업 범위와 오염 상태를 확인해 상담을 안내합니다.`;
         }
       }
 
+      const customContent = serviceContents[finalServiceName];
+      const rawFaqList = (customContent?.faq && customContent.faq.length > 0)
+        ? customContent.faq.map(f => ({ question: f.q, answer: f.a }))
+        : service.faq.map((item: any) => ({ question: item.question, answer: item.answer }));
+
       // Naver SEO를 위한 FAQ 스키마 생성
       const faqJsonLd = {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
-        'mainEntity': service.faq.map((item: any) => ({
+        'mainEntity': rawFaqList.map((item: any) => ({
           '@type': 'Question',
-          'name': item.question.replace('{service}', finalServiceName).replace('{region}', finalRegionName),
+          'name': item.question.replace(/{service}/g, finalServiceName).replace(/{region}/g, finalRegionName),
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': item.answer.replace('{service}', finalServiceName).replace('{region}', finalRegionName)
+            'text': item.answer.replace(/{service}/g, finalServiceName).replace(/{region}/g, finalRegionName)
           }
         }))
       };

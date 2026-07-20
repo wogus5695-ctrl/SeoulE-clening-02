@@ -82,9 +82,9 @@ export default function GyeonggiSitemapAccordion({ regions }: GyeonggiSitemapAcc
               aria-controls={`panel-${city.key}`}
             >
               <div className={styles.cardHeaderInfo}>
-                <h2 className={styles.districtTitle}>
+                <h3 className={styles.districtTitle}>
                   {city.fullName} {totalDongsCount > 0 && <span>{totalDongsCount}개 동네 관리 중</span>}
-                </h2>
+                </h3>
                 <p className={styles.cardHeaderDesc}>{cityRecord?.localDescription || city.desc}</p>
               </div>
               <span className={styles.toggleArrow}>{isOpen ? '▲' : '▼'}</span>
@@ -99,75 +99,78 @@ export default function GyeonggiSitemapAccordion({ regions }: GyeonggiSitemapAcc
                 
                 {/* 1. 시 단위 키워드 섹션 */}
                 <div className={styles.sectionBlock}>
-                  <h3 className={styles.blockTitle}>🏢 {city.name} 시 단위 키워드</h3>
-                  <div className={styles.keywordGrid}>
+                  <h4 className={styles.blockTitle}>🏢 {city.name} 시 단위 키워드</h4>
+                  <ul className={styles.keywordGrid} style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                     {targetServices.map(serv => {
                       const activeKw = getActiveKeyword(cityRecord?.fullName || city.fullName, '전지역', serv.name);
                       if (!activeKw) return null;
 
                       return (
-                        <Link 
-                          key={serv.id}
-                          href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
-                          className={styles.keywordLink}
-                        >
-                          🔗 {activeKw.keyword}
-                        </Link>
+                        <li key={serv.id}>
+                          <Link 
+                            href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
+                            className={styles.keywordLink}
+                          >
+                            🔗 {activeKw.keyword}
+                          </Link>
+                        </li>
                       );
                     })}
-                  </div>
+                  </ul>
                 </div>
 
                 {/* 2. 일반구 단위 키워드 섹션 */}
                 {city.hasGus && guRecords.length > 0 && (
                   <div className={styles.sectionBlock}>
-                    <h3 className={styles.blockTitle}>🔎 {city.name} 구 단위 키워드</h3>
-                    <div className={styles.keywordGrid}>
+                    <h4 className={styles.blockTitle}>🔎 {city.name} 구 단위 키워드</h4>
+                    <ul className={styles.keywordGrid} style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                       {guRecords.map(gu => {
                         return targetServices.map(serv => {
                           const activeKw = getActiveKeyword(gu.fullName, '전지역', serv.name);
                           if (!activeKw) return null;
 
                           return (
-                            <Link 
-                              key={`${gu.id}-${serv.id}`}
-                              href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
-                              className={styles.keywordLink}
-                            >
-                              🔗 {activeKw.keyword}
-                            </Link>
+                            <li key={`${gu.id}-${serv.id}`}>
+                              <Link 
+                                href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
+                                className={styles.keywordLink}
+                              >
+                                🔗 {activeKw.keyword}
+                              </Link>
+                            </li>
                           );
                         });
                       })}
-                    </div>
+                    </ul>
                   </div>
                 )}
 
                 {/* 3. 동·읍·면 단위 키워드 섹션 */}
                 {totalDongsCount > 0 && (
                   <div className={styles.sectionBlock}>
-                    <h3 className={styles.blockTitle}>📍 {city.name} 동·읍·면 단위 키워드</h3>
+                    <h4 className={styles.blockTitle}>📍 {city.name} 동·읍·면 단위 키워드</h4>
                     <div className={styles.dongList}>
                       {/* 시 단위 다이렉트 동 단위들 (구 없는 도시) */}
                       {cityRecord && cityRecord.dongs && cityRecord.dongs.length > 0 && (
                         <div className={styles.dongBox}>
-                          <div className={styles.dongKeywordGrid}>
+                          <ul className={styles.dongKeywordGrid} style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                             {cityRecord.dongs.map(dong => {
                               return targetServices.map(serv => {
                                 const activeKw = getActiveKeyword(city.fullName, dong, serv.name);
                                 if (!activeKw) return null;
                                 return (
-                                  <Link 
-                                    key={`${dong}-${serv.id}`}
-                                    href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
-                                    className={styles.dongKeywordLink}
-                                  >
-                                    {activeKw.keyword}
-                                  </Link>
+                                  <li key={`${dong}-${serv.id}`}>
+                                    <Link 
+                                      href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
+                                      className={styles.dongKeywordLink}
+                                    >
+                                      {activeKw.keyword}
+                                    </Link>
+                                  </li>
                                 );
                               });
                             })}
-                          </div>
+                          </ul>
                         </div>
                       )}
 
@@ -176,24 +179,25 @@ export default function GyeonggiSitemapAccordion({ regions }: GyeonggiSitemapAcc
                         if (!gu.dongs || gu.dongs.length === 0) return null;
                         return (
                           <div key={gu.id} className={styles.dongBox}>
-                            <span className={styles.dongLabel}>{gu.fullName} 소속</span>
-                            <div className={styles.dongKeywordGrid}>
+                            <h4 className={styles.dongLabel}>{gu.fullName} 소속</h4>
+                            <ul className={styles.dongKeywordGrid} style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                               {gu.dongs.map(dong => {
                                 return targetServices.map(serv => {
                                   const activeKw = getActiveKeyword(gu.fullName, dong, serv.name);
                                   if (!activeKw) return null;
                                   return (
-                                    <Link 
-                                      key={`${dong}-${serv.id}`}
-                                      href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
-                                      className={styles.dongKeywordLink}
-                                    >
-                                      {activeKw.keyword}
-                                    </Link>
+                                    <li key={`${dong}-${serv.id}`}>
+                                      <Link 
+                                        href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
+                                        className={styles.dongKeywordLink}
+                                      >
+                                        {activeKw.keyword}
+                                      </Link>
+                                    </li>
                                   );
                                 });
                               })}
-                            </div>
+                            </ul>
                           </div>
                         );
                       })}

@@ -82,9 +82,9 @@ export default function SitemapAccordion({ sourceRegions, targetServices }: Site
               aria-expanded={isOpen}
             >
               <div className={styles.cardHeaderInfo}>
-                <h2 className={styles.districtTitle}>
+                <h3 className={styles.districtTitle}>
                   {reg.fullName} <span>{reg.dongs.length}개 동네 관리 중</span>
-                </h2>
+                </h3>
                 <p className={styles.cardHeaderDesc}>{reg.localDescription}</p>
               </div>
               <span className={styles.toggleArrow}>{isOpen ? '▲' : '▼'}</span>
@@ -101,48 +101,50 @@ export default function SitemapAccordion({ sourceRegions, targetServices }: Site
 
                 {/* 2. 구/시 단위 통합 키워드 섹션 (구 포함 / 구 제외 버전 모두 생성) */}
                 <div className={styles.sectionBlock}>
-                  <h3 className={styles.blockTitle}>🏢 {reg.fullName} 광역 키워드 링크</h3>
-                  <div className={styles.keywordGrid}>
+                  <h4 className={styles.blockTitle}>🏢 {reg.fullName} 광역 키워드 링크</h4>
+                  <ul className={styles.keywordGrid} style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                     {targetServices.map(serv => {
                       const activeKw = getActiveKeyword(reg.fullName, '전지역', serv.name);
                       if (!activeKw) return null;
 
                       return (
-                        <Link 
-                          key={serv.id}
-                          href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
-                          className={styles.keywordLink}
-                        >
-                          🔗 {activeKw.keyword}
-                        </Link>
+                        <li key={serv.id}>
+                          <Link 
+                            href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
+                            className={styles.keywordLink}
+                          >
+                            🔗 {activeKw.keyword}
+                          </Link>
+                        </li>
                       );
                     })}
-                  </div>
+                  </ul>
                 </div>
 
                 {/* 3. 각 행정동 단위별 세부 키워드 섹션 */}
                 <div className={styles.sectionBlock}>
-                  <h3 className={styles.blockTitle}>📍 {reg.fullName} 동별 세부 키워드 링크</h3>
+                  <h4 className={styles.blockTitle}>📍 {reg.fullName} 동별 세부 키워드 링크</h4>
                   <div className={styles.dongList}>
                     {reg.dongs.map(dong => (
                       <div key={dong} className={styles.dongBox}>
-                        <span className={styles.dongLabel}>{dong}</span>
-                        <div className={styles.dongKeywordGrid}>
+                        <h4 className={styles.dongLabel}>{dong}</h4>
+                        <ul className={styles.dongKeywordGrid} style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                           {targetServices.map(serv => {
                             const activeKw = getActiveKeyword(reg.fullName, dong, serv.name);
                             if (!activeKw) return null;
 
                             return (
-                              <Link 
-                                key={serv.id}
-                                href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
-                                className={styles.dongKeywordLink}
-                              >
-                                {activeKw.keyword}
-                              </Link>
+                              <li key={serv.id}>
+                                <Link 
+                                  href={`/?k=${encodeURIComponent(activeKw.urlKeyword)}`}
+                                  className={styles.dongKeywordLink}
+                                >
+                                  {activeKw.keyword}
+                                </Link>
+                              </li>
                             );
                           })}
-                        </div>
+                        </ul>
                       </div>
                     ))}
                   </div>

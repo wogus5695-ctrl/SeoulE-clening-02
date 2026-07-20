@@ -431,7 +431,7 @@ export const services: CleaningService[] = [
       { question: '사무실청소 견적은 어떻게 책정되나요?', answer: '사무실의 실평수, 바닥 재질, 분진의 오염도, 쓰레기 배출량 및 야간 작업 조건에 따라 합리적인 단가를 제안해 드립니다.' }
     ],
     priority: 13,
-    indexStatus: 'noindex',
+    indexStatus: 'index',
     showOnMain: false
   },
   {
@@ -471,7 +471,7 @@ export const services: CleaningService[] = [
       { question: '매장 면적 외에 견적에 영향을 주는 요인은 무엇인가요?', answer: '바닥 왁스코팅 유무, 높은 층고에 따른 사다리 장비 사용 여부, 진열 가구의 복잡성 및 폐기물 배출량에 따라 견적이 조율됩니다.' }
     ],
     priority: 14,
-    indexStatus: 'noindex',
+    indexStatus: 'index',
     showOnMain: false
   },
   {
@@ -511,7 +511,7 @@ export const services: CleaningService[] = [
       { question: '견적 전에 공장을 사전에 둘러보아야 하나요?', answer: '공장 청소는 평수뿐 아니라 천장 높이와 설비 밀도가 다르므로, 현장 실사 또는 자세한 사진과 동영상 분석이 가견적 확인에 필수적입니다.' }
     ],
     priority: 15,
-    indexStatus: 'noindex',
+    indexStatus: 'index',
     showOnMain: false
   },
   {
@@ -551,7 +551,7 @@ export const services: CleaningService[] = [
       { question: '입주자가 있는 상태에서도 청소할 수 있나요?', answer: '네, 그렇습니다. 거주민이나 직원의 통행 불편이 없도록 보통 오전 일찍이나 유동량이 적은 시간대를 택해 신속히 마무리합니다.' }
     ],
     priority: 16,
-    indexStatus: 'noindex',
+    indexStatus: 'index',
     showOnMain: false
   },
   {
@@ -591,7 +591,7 @@ export const services: CleaningService[] = [
       { question: '침수청소 견적은 어떻게 산출되나요?', answer: '유입된 진흙의 깊이(토사량), 배수할 물의 양, 폐기할 집기의 양 및 소독 구역 면적을 기초로 합리적인 단가를 안내합니다.' }
     ],
     priority: 17,
-    indexStatus: 'noindex',
+    indexStatus: 'index',
     showOnMain: false
   },
   {
@@ -631,7 +631,7 @@ export const services: CleaningService[] = [
       { question: '공장청소와 창고청소는 어떤 차이가 있나요?', answer: '공장청소는 설비 기름때와 기계 분진 제거 위주이며, 창고청소는 넓은 면적의 지게차 타이어 자국(스키드마크)과 랙 선반 적재대 먼지 제거에 특화되어 있습니다.' }
     ],
     priority: 18,
-    indexStatus: 'noindex',
+    indexStatus: 'index',
     showOnMain: false
   },
   {
@@ -671,7 +671,7 @@ export const services: CleaningService[] = [
       { question: '병원청소 견적 전 확인하는 필수 정보는 무엇인가요?', answer: '원내 실평수, 진료실 및 침상 개수, 바닥 자재(데코타일 또는 석재), 유리창 청소 연계 유무에 따라 조율하여 견적을 교부합니다.' }
     ],
     priority: 19,
-    indexStatus: 'noindex',
+    indexStatus: 'index',
     showOnMain: false
   }
 ];

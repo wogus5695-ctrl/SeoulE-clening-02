@@ -296,16 +296,21 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
 
   const customContent = serviceContents[service.serviceNameKo];
-  const description = customContent
-    ? customContent.intro.replace(/{region}/g, regionName)
-    : `${regionName} ${service.serviceNameKo} 전문 청소 상담을 안내합니다.`;
+  const title = customContent?.titleTemplate
+    ? customContent.titleTemplate.replace(/{region}/g, regionName).replace(/{service}/g, service.serviceNameKo)
+    : `${regionName} ${service.serviceNameKo} 전문 | 올케어서비스`;
+  const description = customContent?.descTemplate
+    ? customContent.descTemplate.replace(/{region}/g, regionName).replace(/{service}/g, service.serviceNameKo)
+    : (customContent
+      ? customContent.intro.replace(/{region}/g, regionName)
+      : `${regionName} ${service.serviceNameKo} 전문 청소 상담을 안내합니다.`);
 
   const seoImage = SEO_IMAGE_MAP[service.serviceNameKo];
   const ogImage = seoImage ? seoImage.image : service.imageUrl;
   const ogImageAlt = seoImage ? `${regionName} ${seoImage.altBase}` : `${regionName} ${service.serviceNameKo} 전문 청소 현장`;
 
   return getBaseMetadata({
-    title: `${regionName} ${service.serviceNameKo} 전문 | 올케어서비스`,
+    title: title,
     description: description,
     indexStatus: indexStatus,
     path: path,

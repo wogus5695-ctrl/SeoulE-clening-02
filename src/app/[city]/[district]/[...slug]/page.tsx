@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { regions } from '@/data/regions';
 import { services } from '@/data/services';
 import { getLandingMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME, INDEXED_DONG_COMBINATIONS, SEO_IMAGE_MAP } from '@/lib/seo';
+import { serviceContents } from '@/data/service-contents';
 import MainTemplate from '@/components/MainTemplate';
 
 type Props = {
@@ -45,16 +46,21 @@ export default async function LandingPage({ params }: Props) {
 
   const regionName = region.subDistrict === '전지역' ? region.district : region.subDistrict;
 
+  const customContent = serviceContents[service.serviceNameKo];
+  const rawFaqList = (customContent?.faq && customContent.faq.length > 0)
+    ? customContent.faq.map(f => ({ question: f.q, answer: f.a }))
+    : service.faq.map((item: any) => ({ question: item.question, answer: item.answer }));
+
   // Naver SEO를 위한 FAQ 스키마 생성
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    'mainEntity': service.faq.map(item => ({
+    'mainEntity': rawFaqList.map((item: any) => ({
       '@type': 'Question',
-      'name': item.question.replace('{service}', service.serviceNameKo).replace('{region}', regionName),
+      'name': item.question.replace(/{service}/g, service.serviceNameKo).replace(/{region}/g, regionName),
       'acceptedAnswer': {
         '@type': 'Answer',
-        'text': item.answer.replace('{service}', service.serviceNameKo).replace('{region}', regionName)
+        'text': item.answer.replace(/{service}/g, service.serviceNameKo).replace(/{region}/g, regionName)
       }
     }))
   };
